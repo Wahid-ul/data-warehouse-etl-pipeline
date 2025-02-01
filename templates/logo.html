@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logo</title>
+</head>
+<body>
+    <div class="image-container">
+        <!-- First image (GIF) -->
+        <img class="first-image" src="{{ url_for('static', filename='assets/logo/DECODE AGE to DA1.gif') }}" alt="GIF">
+
+        <!-- Second image -->
+        <img class="second-image" src="{{ url_for('static', filename='assets/logo/StanAge_Pharma_R.png') }}" alt="Second Image">
+        <!-- Loading sand clock -->
+        <img class="third-image" src="{{ url_for('static', filename='assets/logo/sand-clock-loading.gif') }}" alt="Loading GIF">
+    </div>
+</body>
+<script>
+    // Wait for the window to load
+    window.onload = function() {
+        setTimeout(function() {
+            // After 2 seconds, start the transition
+            document.querySelector('.first-image').style.opacity = '0'; // Fade out the first image
+            document.querySelector('.second-image').style.opacity = '1'; // Fade in the second image
+        }, 2000); // Delay of 2 seconds before starting the transition
+        setTimeout(function() {
+                document.querySelector('.third-image').style.opacity = '1'; // Fade in the loading GIF
+            }, 3000); // Wait 5 seconds total (2 seconds + 3 seconds of transition)
+    };
+</script>
+<style>
+    /* Apply styles to center the content */
+    
+
+    /* Container for both images */
+    .image-container {
+        position: relative;
+        width: 20%; /* Full width */
+        height: 10vh; /* Full viewport height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    /* Style for the first image (GIF) */
+    .first-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        opacity: 1; /* Initially visible */
+        transition: opacity 1.2s ease; /* Transition for fading out */
+    }
+
+    /* Style for the second image */
+    .second-image {
+        position: absolute;
+        width: 13%;
+        height: auto;
+        object-fit: cover;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 3s ease; /* Transition for fading in */
+    }
+    .third-image {
+        position: absolute;
+        width: 30%;
+        height: 40%;
+        object-fit: contain; /* Ensures the image fills the container */
+        object-position: center; /* Center the image */
+        opacity: 0; /* Initially hidden */
+        transition: opacity 2s ease; /* Transition for fading in */
+        /* clip-path: inset(20% 40% 20% 40%); */
+
+        /* Positioning to shift the image towards the bottom-right corner */
+        bottom: 24%; /* Align the image to the bottom */
+        right: 28%; /* Align the image to the right */
+    }
+</style>
+</html>

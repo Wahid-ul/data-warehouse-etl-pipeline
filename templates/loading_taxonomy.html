@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading barcode {{Barcode}}</title>
+    <link rel="stylesheet" href="/static/loading_animation.css">
+</head>
+<body>
+    
+
+
+    
+    <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+  
+        <div id="loading_animation"></div>
+        
+        <!-- Add more spans for each animation element -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Add your logic to show/hide the loading animation
+            $("#loading_animation").show();  // Show loading animation
+            var barcode = "{{Barcode}}";
+            $.ajax({
+                url: "/report/"+barcode,  // Replace with the actual route
+                type: "GET",
+                success: function (data) {
+                    $("#loading_animation").hide();  // Hide loading animation when data is loaded
+                    // Add logic to update your page with the data
+                    console.log("So far came to this point");
+                    window.location.href="http://192.168.130.245:5000/report/"+barcode;
+                },
+                error: function (error) {
+                    $("#loading_animation").hide();  // Hide loading animation on error
+                    console.error("Error:", error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js" defer></script>
+    <title>Data Entry form</title>
+    
+  </head>
+  <body>
+    
+    <form action="{{url_for('index')}}" method="post" class="form" id="form">
+      <h1 class="text-center">Data submission process</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        
+        <div class="progress" id="progress"></div>
+        
+        <div
+          class="progress-step progress-step-active"
+          data-title="Barcode Generation"
+        ></div>
+        <div class="progress-step" data-title="Sample Collection"></div>
+        <div class="progress-step" data-title="DNA Extraction"></div>
+        <div class="progress-step" data-title="Library Preparation"></div>
+        <div class="progress-step" data-title="Taxonomy & Function"></div>
+      </div>
+
+      <!-- Steps -->
+      
+        <div class="form-step form-step-active">
+          
+            <div class="input-group">
+              
+              <div style="position: absolute; right: 80px;top: 20px;color: red;" id="exit1"><a href="#"><h1>Exit?</h1></a></div>
+              <span style="color: red;" id="Barcode_Confirm_Barcode"></span>
+              <label for="Barcode">Barcode</label>
+              <input type="text" name="Barcode" id="Barcode" >
+              
+              <label for="Confirm_Barcode">Confirm Barcode</label>
+              <input type="text" name="Confirm_Barcode" id="Confirm_Barcode" onpaste="return false;" >
+              <style>
+                #Barcode::-webkit-input-placeholder {
+               color: red;
+            } 
+            #Confirm_Barcode::-webkit-input-placeholder {
+               color: red;
+            }
+            
+            
+               </style> 
+            
+            
+            
+            </div>
+            <div class="">
+              <a href="#" type="Next" value="Next" id="next1" class="btn btn-next width-50 ml-auto" >Next</a>
+            </div>
+      
+      
+         
+      </div>
+      <div class="form-step">
+    <center><div id="id_a1" style="color:blue;font-family: verdana;
+      font-size: 200%;" ></div></center>
+        <script></script>
+        <div class="input-group">
+        <div style="position: absolute; right: 80px;top: 20px;color: red;" id="exit2"><a href="/templates/touch.html"><h1>Exit?</h1></a></div>
+               
+          
+          <label for="Initial_weight">Initial weight(gram) <span style="color: red;" id="numeric1"></span></label>
+          <input  type="text" name="Initial_weight" id="Initial_weight"  />
+          <label for="Texture">Texture <span style="color: red;" id="alphabetic1"></span></label>
+          <input type="text" name="Texture" id="Texture" />
+          <label for="Location">Location <span style="color: red;" id="alphabetic2"></span></label>
+          <input type="text" name="Location" id="Location" />
+          
+          <label for="Collection_date">Collection_date <span style="color: red;" id="futureDate"></span></label>
+          <input type="date" name="Collection_date" id="Collection_date" />
+          <label for="Remarks">Remarks <span style="color: red;" id="alphabetic3"></span></label>
+          <input type="text" name="Remarks" id="Remarks" />
+          <style>
+            #Initial_weight::-webkit-input-placeholder {
+               color: red;
+            }          
+            #Texture::-webkit-input-placeholder {
+               color: red;
+            }
+            #Location::-webkit-input-placeholder {
+               color: red;
+            }
+            #Collection_date::-webkit-input-placeholder {
+               color: red;
+            }
+            #Remarks::-webkit-input-placeholder {
+               color: red;
+            }
+          </style>
+          
+          </div>
+          
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev" id="prev1">Previous</a>
+          <a href="#" class="btn btn-next"  id="next2">Next</a>
+        </div>
+      </div>
+      
+      <div class="form-step">
+        <center><div id="id_a2" style="color:blue;font-family: verdana;
+          font-size: 200%;" ></div></center>
+        <div class="input-group">
+        <div style="position: absolute; right: 80px;top: 20px;" id="exit3"><a href="{{url_for('dashboard')}}"><h1>Exit?</h1></a></div>
+                
+          <label for="Kit_name">Kit Name</label>
+          <input type="text" name="Kit_name" id="Kit_name" />
+          <label for="Lot_no">Lot no. <span style="color: red;" id="ltno."></span></label>
+          <input type="text" name="Lot_no" id="Lot_no" />
+          <label for="Quantity">Quantity (mg)<span style="color: red;" id="qnt"></span></label>
+          <input type="text" name="Quantity"  id="Quantity" />
+          <!--
+          <label for="Gel_image">Gel_image</label>
+          <input type="file" accept=".jpg" name="Gel_image" id="Gel_image" />
+          -->
+          <label for="Qubit_conc">Qubit conc.(mg/ml)<span style="color: red;" id="qbt"></span></label>
+          <input type="text" name="Qubit_conc" id="Qubit_conc" />
+          <label for="Nanodrop_conc">Nanodrop conc.(mg/ml) <span style="color: red;" id="nano"></span></label>
+          <input type="text" name="Nanodrop_conc" id="Nanodrop_conc" />
+          <label for="Nanodrop_260_280">Nanodrop 260/280(mg/ml)<span style="color: red;" id="n280"></span></label>
+          <input type="text" name="Nanodrop_260_280" id="Nanodrop_260_280"  />
+          <label for="Nanodrop_260_230">Nanodrop 260/230(mg/ml) <span style="color: red;" id="n230"></span></label>
+          <input type="text" name="Nanodrop_260_230" id="Nanodrop_260_230"  />
+          <label for="Extraction_date">Extraction Date <span style="color: red;" id="extrDate"></span></label>
+          <input type="date" name="Extraction_date" id="Extraction_date" />
+          <label for="Repeat_no">Repeat no.<span style="color: red;" id="rpno."></span></label>
+          <input type="text" name="Repeat_no" id="Repeat_no" />
+          <label for="Remarks">Remarks <span style="color: red;" id="rmarks"></span></label>
+          <input type="text" name="Remarks" id="Remarks" />
+          <style>
+            #Qubit_conc::-webkit-input-placeholder {
+               color: red;
+            }          
+            #Nanodrop_conc::-webkit-input-placeholder {
+               color: red;
+            }
+            #Nanodrop_260_280::-webkit-input-placeholder {
+               color: red;
+            }
+            #Nanodrop_260_230::-webkit-input-placeholder {
+               color: red;
+            }
+            #Extraction_date::-webkit-input-placeholder {
+               color: red;
+            }
+            #Repeat_no::-webkit-input-placeholder {
+               color: red;
+            }
+            #Remarks::-webkit-input-placeholder {
+               color: red;
+            }
+          </style>
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next" id="next3">Next</a>
+        </div>
+        </div>
+        <div class="form-step">
+          <center><div id="id_a3" style="color:blue;font-family: verdana;
+            font-size: 200%;" ></div></center>
+          <div class="input-group">
+          <div style="position: absolute; right: 80px;top: 20px;" id="exit4"><a href="/templates/touch.html"><h1>Exit?</h1></a></div>
+                
+            <label for="Run_ID">Run ID</label>
+            <input type="text" name="Run_ID" id="Run_ID" />
+            <label for="Extraction_Startdate">Extraction Startdate <span style="color: red;" id="ex_start"></span></label>
+            <input type="date" name="Extraction_Startdate" id="Extraction_Startdate" />
+            <label for="Extraction_enddate">Extraction enddate<span style="color: red;" id="ex_end"></span></label>
+            <input type="date" name="Extraction_enddate" id="Extraction_enddate" />
+            <label for="Yield_nanodrop">Yield nanodrop</label>
+            <input type="text" name="Yield_nanodrop" id="Yield_nanodrop" />
+            <label for="Yield_qubit">Yield qubit</label>
+            <input type="text" name="Yield_qubit" id="Yield_qubit" />
+            <!--
+            <label for="Gel_image">Gel_image</label>
+            <input type="file" accept=".jpg" name="Gel_image" id="Gel_image" />
+            -->
+            <label for="Library_startdate">Library startdate <span style="color: red;" id="lib_start"></span></label>
+            <input type="date" name="Library_startdate" id="Library_startdate" />
+            <label for="Library_enddate">Library enddate <span style="color: red;" id="lib_end"></span></label>
+            <input type="date" name="Library_enddate" id="Library_enddate" />
+            <label for="Flowcell_id">Flowcell id</label>
+            <input type="text" name="Flowcell_id" id="Flowcell_id" />
+            <label for="Native_barcode">Native barcode</label>
+            <input type="text" name="Native_barcode" id="Native_barcode" />
+            <label for="Active_pores">Active pores</label>
+            <input type="text" name="Active_pores" id="Active_pores" />
+            <label for="Pores_remaining">Pores remaining</label>
+            <input type="text" name="Pores_remaining" id="Pores_remaining" />
+            <label for="Loading_start">Loading start<span style="color: red;" id="load_start"></span></label>
+            <input type="date" name="Loading_start" id="Loading_start" />
+            <label for="Loading_end">Loading end <span style="color: red;" id="load_end"></span></label>
+            <input type="date" name="Loading_end" id="Loading_end" />
+            <label for="Sequencing_status">Sequencing status</label>
+            <input type="text" name="Sequencing_status" id="Sequencing_status" />
+            <label for="Sequencing_duration">Sequencing duration</label>
+            <input type="time" name="Sequencing_duration" id="Sequencing_duration" />
+            <label for="Status">Status</label>
+            <input type="text" name="Status" id="Status" />
+            
+          </div>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next" id="next4">Next</a>
+          </div>
+      </div>
+
+      <div class="form-step">
+        <center><div id="id_a4" style="color:blue;font-family: verdana;
+          font-size: 200%;" ></div></center>
+        <div class="input-group">
+          
+          <center><h1>Upload a .zip file/folder </h1></center>
+         <span id="upload_error" style="color:red"></span>
+      <p><input type="file" id="upload_file" name="file" accept=".zip" ></p>
+          
+          
+        </div>
+
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <button  type="submit" id="button" value="Submit" class="btn" >Submit</button>
+      </div>
+    </div>
+    </form>
+	
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    
+    
+    
+    <script src="/static/form1.js"></script>
+    
+    <script src="/static/form2.js"></script>
+    <script src="/static/form4.js"></script>
+    
+    
+    <script src="/static/form3.js"></script>
+    
+    <script src="/static/upload.js"></script> 
+  
+   <!--
+   <script>
+    
+    $('#next1').click(function(e){
+    e.preventDefault();
+    var Barcode = document.getElementById("Barcode").value;
+        var Confirm_Barcode = document.getElementById("Confirm_Barcode").value;
+        if (!/^[a-zA-Z0-9]+$/.test(Barcode) || Barcode.length < 1) {
+            //confirm("Invalid barcode! ");
+            
+            
+            //window.location.href="http://127.0.0.1:5000/index";
+            //document.getElementById("error1").innerHTML = "must be filled";
+            console.warn(`The following event couldn't be canceled:`);
+            //e.stopPropagation();
+            console.log("Hello world!")
+            e.stopImmediatePropagation() ;
+            return false;
+          }
+    })
+   </script>  
+   <script>
+    $('#prvs').click(function(e){
+
+    })
+   </script>
+   -->  
+  </body>
+</html>

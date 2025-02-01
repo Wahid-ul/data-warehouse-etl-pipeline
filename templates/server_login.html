@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production server  Connection</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="/static/Decodeagelogo.png" alt="DecodeAge Logo" class="logo">
+   
+    <!-- <h1>DecodeAge Production </h1> -->
+    <form id="sshForm">
+        <label for="ipAddress">IP Address:</label>
+        <input type="text" id="ipAddress" name="ipAddress" value="192.168.130.245"   readonly><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username"  value="decodeage" readonly><br><br>
+<!--
+        <label for="command">Command:</label>
+        <input type="text" id="command" name="command" required><br><br>-->
+
+        <button type="submit">Connect</button>
+    </form>
+
+    <div id="output"></div>
+    <div id="output2"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- <script>
+        document.getElementById("sshForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get input values
+            const ipAddress = document.getElementById("ipAddress").value;
+            const password = document.getElementById("password").value;
+            const username=document.getElementById("username").value;
+            //const command = document.getElementById("command").value;
+
+            
+            $.ajax({
+                type:"POST",
+                url:"/",
+                data:{
+                    ipAddress:ipAddress,
+                    password:password,
+                    username:username,
+                },
+                success:function(result){
+                    console.log(result);
+                    document.getElementById("sshForm").style.display='none';
+                    document.getElementById("output").innerHTML=result;
+                    // window.location.href = p;
+                    const p=$(document).ready(function(){
+                        $('#nextButton').click(function(){
+                            
+                            const run = $('#run').val();
+                            $.ajax({
+                                type:"POST",
+                                url:"/bar",
+                                data:{
+                                    run:run,
+                                },
+                                success:function(result){
+                                    console.log("Result from /bar"+result)
+                                    document.getElementById("output").style.display='none';
+                                    document.getElementById("output2").innerHTML=result;
+                                    const p=$(document).ready(function(){
+                                        $('#submitButton').click(function(){
+                                            // Show loading spinner
+                                            $('#loadingSpinner').show();
+                                            $('#submitButton').hide();
+                                            const run = $('#run').val();
+                                            const barcode = $('#barcode').val();
+                                            console.log("Run id: "+run+", Barcode name: "+barcode);
+                                            $.ajax({
+                                                type:"POST",
+                                                url:"/try",
+                                                data:{
+                                                    run:run,
+                                                    barcode:barcode
+                                                },
+                                                xhrFields: {
+                                                    responseType: 'blob'  // Important to handle binary data
+                                                },
+                                                success:function(blob){
+                                                    console.log("Download Taxonomy file: "+blob);
+                                                    // csv file
+                                                    // var csv_data=added_things;
+                                                    // const download_file1=added_things.download_name;
+                                                    // var blob=new Blob([csv_data],{type:"text/csv"});
+                                                    // var url=window.URL.createObjectURL(blob);
+                                                    // const a=document.createElement("a");
+                                                    // a.href=url;
+                                                    // a.download="Taxonomy_report_"+barcode+".csv";
+                                                    // document.body.appendChild(a);
+                                                    // a.click();
+                                                    // document.body.removeChild(a);
+
+
+                                                    // zip file
+                                                    // var zip_data = added_things;
+                                                    // const download_file1 = added_things.download_name;
+                                                    // var blob = new Blob([zip_data], { type: "application/zip" });
+                                                    // zip download
+                                                    
+                                                    var url = window.URL.createObjectURL(blob);
+                                                    const a = document.createElement("a");
+                                                    a.href = url;
+                                                    a.download = "Report_file_" + barcode + ".zip";
+                                                    document.body.appendChild(a);
+                                                    a.click();
+                                                    document.body.removeChild(a);
+                                                    console.log("Successfully downloaded!");
+                                                    // Hide loading spinner after successful download
+                                                    $('#loadingSpinner').hide();
+                                                    $('#submitButton').show();
+
+                                                    
+
+                                                },
+                                                error:function(xhr, status,err){
+                                                    console.log(err);
+                                                    // Hide loading spinner on error
+                                                    $('#loadingSpinner').hide();
+                                                    $('#submitButton').show();
+                                                }
+                                            })
+                                            
+                                        })
+                                    })
+
+                                }
+                            })
+                            
+                            
+                        })
+                    })
+                    
+                    // document.getElementById("output").innerHTML = result+p;
+                   
+
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+        });
+    </script> -->
+    <script>
+        document.getElementById("sshForm").addEventListener("submit", function (event) {
+     event.preventDefault(); // Prevent default form submission
+ 
+     // Get input values
+     const ipAddress = document.getElementById("ipAddress").value;
+     const password = document.getElementById("password").value;
+     const username = document.getElementById("username").value;
+ 
+     $.ajax({
+         type: "POST",
+         url: "/report submission",
+         data: {
+             ipAddress: ipAddress,
+             password: password,
+             username: username
+         },
+         success: function (result) {
+             console.log(result);
+             document.getElementById("sshForm").style.display = 'none';
+             document.getElementById("output").innerHTML = result;
+ 
+             // Show next step and set up next button functionality
+             setupNextButton();
+         },
+         error: function (e) {
+             console.log(e);
+         }
+     });
+ });
+ 
+ // Function to handle the back button functionality
+function setupBackButton(run) {
+    $('#backButton').click(function (event) {
+        event.preventDefault();
+        event.stopPropagation(); // Prevent any other event handlers
+        // Show the previous output and hide the current one
+        document.getElementById("output").style.display = 'block';
+        document.getElementById("output2").innerHTML = '';
+
+        // Revert the flow back to the next button click state
+        $.ajax({
+            type: "POST",
+            url: "/bar",
+            data: {
+                run: run
+            },
+            success: function (result) {
+                console.log("Back action: Result from /bar: " + result);
+
+                // Restore the previous state
+                document.getElementById("output").style.display = 'block';
+                document.getElementById("output2").style.display = result;
+
+                // Hide back and submit buttons
+                $('#backButton').hide();
+                $('#submitButton').hide();
+
+                // Show the "Next" button again and rebind the event listener recursively
+                $('#nextButton').show();
+                
+                // Recursively call setupNextButton to reset the "Next" button behavior
+                setupNextButton();  // This will rebind the Next button functionality
+            },
+            error: function (xhr, status, err) {
+                console.log("Error during Back action: " + err);
+            }
+        });
+        return false; 
+    });
+}
+
+ // Recursive Next button setup
+function setupNextButton() {
+    $('#nextButton').off('click');  // Ensure no duplicate event handlers
+    $('#nextButton').click(function () {
+        const run = $('#run').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/bar",
+            data: {
+                run: run
+            },
+            success: function (result) {
+                console.log("Result from /bar: " + result);
+                document.getElementById("output").style.display = 'none';
+                document.getElementById("output2").innerHTML = result;
+
+                // Show submit and back buttons
+                $('#submitButton').show();
+                $('#backButton').show();
+
+                // Set up the back button recursively
+                setupBackButton(run);
+
+                // Set up submit button functionality
+                setupSubmitButton();
+            },
+            error: function (xhr, status, err) {
+                console.log("Error: " + err);
+            }
+        });
+    });
+}
+
+// Initial call to set up the Next button functionality
+setupNextButton();
+
+ // Function to handle the submit button functionality
+ function setupSubmitButton() {
+     $('#submitButton').click(function () {
+         // Show loading spinner
+         $('#loadingSpinner').show();
+         $('#submitButton').hide();
+ 
+         const run = $('#run').val();
+         const barcode = $('#barcode').val();
+        //  const name = $('#name').val();
+        //  const gender = $('#gender').val();
+ 
+         $.ajax({
+             type: "POST",
+             url: "/try",
+             data: {
+                 run: run,
+                 barcode: barcode,
+                //  name: name,
+                //  gender: gender
+             },
+             xhrFields: {
+                    responseType: 'blob'  // Important to handle binary data
+                },
+                success:function(blob){
+                            console.log("Download Taxonomy file: "+blob);
+                            // csv file
+                            // var csv_data=added_things;
+                            // const download_file1=added_things.download_name;
+                            // var blob=new Blob([csv_data],{type:"text/csv"});
+                            // var url=window.URL.createObjectURL(blob);
+                            // const a=document.createElement("a");
+                            // a.href=url;
+                            // a.download="Taxonomy_report_"+barcode+".csv";
+                            // document.body.appendChild(a);
+                            // a.click();
+                            // document.body.removeChild(a);
+
+
+                            // zip file
+                            // var zip_data = added_things;
+                            // const download_file1 = added_things.download_name;
+                            // var blob = new Blob([zip_data], { type: "application/zip" });
+                            // zip download
+                            
+                            var url = window.URL.createObjectURL(blob);
+                            const a = document.createElement("a");
+                            a.href = url;
+                            a.download = "Report_file_" + barcode + ".zip";
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            console.log("Successfully downloaded!");
+                            // Hide loading spinner after successful download
+                            $('#loadingSpinner').hide();
+                            $('#submitButton').show();
+
+                            
+
+                        },
+             error: function (xhr, status, err) {
+                 console.log(err);
+                 $('#loadingSpinner').hide();
+                 $('#submitButton').show();
+             }
+         });
+     });
+ }
+ 
+ // Initially hide buttons that shouldn't be visible
+//  $('#submitButton').hide();
+//  $('#backButton').hide();
+ 
+     </script>
+</body>
+</html>
+

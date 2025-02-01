@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Microbe Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Edit Microbe Information</h1>
+        <form id="editForm" >
+            <div class="mb-3">
+                <label for="microbeName" class="form-label">Microbes:</label>
+                <input type="text" class="form-control" id="microbeName" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category:</label>
+                <input type="text" class="form-control" id="category">
+            </div>
+            <div class="mb-3">
+                <label for="inflammatoryNature" class="form-label">Inflammatory Nature:</label>
+                <input type="text" class="form-control" id="inflammatoryNature">
+            </div>
+            <div class="mb-3">
+                <label for="interpretation" class="form-label">Interpretation:</label>
+                <input type="text" class="form-control" id="interpretation">
+            </div>
+            <input type="hidden" id="rowId">
+            <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+            <a href="/curation" class="btn btn-secondary">Back to Table</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Retrieve the query parameters and populate the form
+        const urlParams = new URLSearchParams(window.location.search);
+        const microbes = urlParams.get('microbes');
+        const rowId = urlParams.get('rowId');
+        
+        $('#microbeName').val(microbes);
+        $('#rowId').val(rowId);
+
+        $('#saveChanges').on('click', function() {
+            const category = $('#category').val();
+            const inflammatoryNature = $('#inflammatoryNature').val();
+            const interpretation = $('#interpretation').val();
+            const rowId = $('#rowId').val();
+            console.log("curation"+interpretation);
+            $.ajax({
+                type: 'POST',
+                url: '/update_data',
+                data: {
+                    microbes: microbes,
+                    category: category,
+                    inflammatoryNature: inflammatoryNature,
+                    interpretation: interpretation,
+                    rowId: rowId
+                },
+                success: function(response) {
+                    alert('Data updated successfully!');
+                    window.location.href = '/curation';  // Redirect back to the table page
+                },
+                error: function(error) {
+                    alert('An error occurred!');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

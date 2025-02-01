@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxonomy_I&R_{{Barcode}}</title>
+</head>
+<body>
+  
+    <h2 style="color: red;">Keystone species</h2>
+     
+        <table border="border-box">
+          
+          <tr>
+            <th style="color:rgb(0, 40, 100);font-size:large;">Bacteria</th>
+            <th style="color:rgb(40, 0, 100);font-size:large;">Abundance</th>
+            <th style="color:rgb(40, 0, 100);font-size:large;">Range</th>
+            <th style="color:rgb(40, 0, 100);font-size:large;">Recommendation</th>
+          </tr>
+            <tr>
+          {% for i in kstone1 %}   
+          {% if i['[Clostridium]_saccharolyticum']!='' %}
+          <tr><th>[Clostridium]_saccharolyticum</th>
+          <td>{{ i['[Clostridium]_saccharolyticum'] }}</td>
+          {% if i['[Clostridium]_saccharolyticum'] > 0 and i['[Clostridium]_saccharolyticum'] < 0.67%}
+          <td> In-Range</td>
+          {% endif %}
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Clostridium sachharolyticum' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i['[Ruminococcus]_torques']!='' %}
+          <tr><th>[Ruminococcus]_torques</th>
+          <td>{{ i['[Ruminococcus]_torques'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Ruminococcus torques' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Ruminococcus torques' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Acidaminococcus_fermentans!='' %}
+          <tr><th>Acidaminococcus_fermentans</th>
+          <td>{{ i.Acidaminococcus_fermentans }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Acidaminococcus fermentans' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Acidaminococcus fermentans' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Acidaminococcus_intestini!='' %}
+          <tr><th>Acidaminococcus_intestini</th>
+          <td>{{ i.Acidaminococcus_intestini }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Acidaminococcus intestini' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Acidaminococcus intestini' in row[0]  %}
+                {% if row[4]=="Pathogen"%}
+                {{row[2]}}
+                {% endif %}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i['Acidovorax_sp._KKS102']!='' %}
+          <tr><th>Acidovorax_sp._KKS102</th>
+          <td>{{ i['Acidovorax_sp._KKS102'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Acidovorax sp' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Acidovorax sp' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Adlercreutzia_equolifaciens!='' %}
+          <tr><th>Adlercreutzia_equolifaciens</th>
+          <td>{{ i.Adlercreutzia_equolifaciens }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Adlercreutzia equolifaciens' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Adlercreutzia equolifaciens' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Akkermansia_muciniphila!='' %}
+          <tr><th>Akkermansia_muciniphila</th>
+          <td>{{ i.Akkermansia_muciniphila }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Akkermansia muciniphila' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Akkermansia muciniphila' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Alistipes_finegoldii!='' %}
+          <tr><th>Alistipes_finegoldii</th>
+          <td>{{ i.Alistipes_finegoldii }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Alistipes finegoldii' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Alistipes finegoldii' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Alistipes_shahii!='' %}
+          <tr><th>Alistipes_shahii</th>
+          <td>{{ i.Alistipes_shahii }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Alistipes shahii' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Alistipes shahii' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Anaerococcus_prevotii!='' %}
+          <tr><th>Anaerococcus_prevotii</th>
+          <td>{{ i.Anaerococcus_prevotii }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Anaerococcus prevotii' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Anaerococcus prevotii' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Anaerostipes_hadrus!='' %}
+          <tr><th>Anaerostipes_hadrus</th>
+          <td>{{ i.Anaerostipes_hadrus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Anaerostipes hadrus' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Anaerostipes hadrus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacillus_methanolicus!='' %}
+          <tr><th>Bacillus_methanolicus</th>
+          <td>{{ i.Bacillus_methanolicus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacillus methanolicus' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacillus methanolicus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_cellulosilyticus!='' %}
+          <tr><th>Bacteroides_cellulosilyticus</th>
+          <td>{{ i.Bacteroides_cellulosilyticus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Bacteroides cellulosilyticus' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides cellulosilyticus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_dorei!='' %}
+          <tr><th>Bacteroides_dorei</th>
+          <td>{{ i.Bacteroides_dorei }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides dorei' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides dorei' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_helcogenes!='' %}
+          <tr><th>Bacteroides_helcogenes</th>
+          <td>{{ i.Bacteroides_helcogenes }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides helcogenes' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides helcogenes' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_ovatus!='' %}
+          <tr><th>Bacteroides_ovatus</th>
+          <td>{{ i.Bacteroides_ovatus }}</td>
+          
+          {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Bacteroides ovatus' in row[0]  %}
+            <td>{{row[2]+row[3]+row[4]}}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides ovatus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}
+            {% endif %}
+            {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_salanitronis!='' %}
+          <tr><th>Bacteroides_salanitronis</th>
+          <td>{{ i.Bacteroides_salanitronis }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides salanitronis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides salanitronis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i['Bacteroides_sp._CAG:98']!='' %}
+          <tr><th>Bacteroides_sp._CAG:98</th>
+          <td>{{ i['Bacteroides_sp._CAG:98'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides sp CAG:98' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroids sp CAG:98' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_thetaiotaomicron!='' %}
+          <tr><th>Bacteroides_thetaiotaomicron</th>
+          <td>{{ i.Bacteroides_thetaiotaomicron }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides thetaiotaomicron' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides thetaiotaomicron' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_vulgatus!='' %}
+          <tr><th>Bacteroides_vulgatus</th>
+          <td>{{ i.Bacteroides_vulgatus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides vulgatus' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides vulgatus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bacteroides_xylanisolvens!='' %}
+          <tr><th>Bacteroides_xylanisolvens</th>
+          <td>{{ i.Bacteroides_xylanisolvens }}</td>
+          
+         <td> {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Bacteroides xylanisolvens' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bacteroides xylanisolvens' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}
+            {% endif %}
+            {% endfor%}</td></tr>{% endif%}
+          {% if i.Barnesiella_viscericola!='' %}
+          <tr><th>Barnesiella_viscericola</th>
+          <td>{{ i.Barnesiella_viscericola }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Barnesiella viscericola' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Barnesiella viscericola' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bifidobacterium_adolescentis!='' %}
+          <tr ><th >Bifidobacterium adolescentis</th>
+          <td>{{ i.Bifidobacterium_adolescentis }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bifidobacterium adolescentis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bifidobacterium adolescentis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bifidobacterium_dentium!='' %}
+          <tr><th>Bifidobacterium_dentium</th>
+          <td>{{ i.Bifidobacterium_dentium }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Bifidobacterium dentium' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bifidobacterium dentium' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}
+            {% endif %}
+            {% endfor%}</td></tr>{% endif%}
+          {% if i.Bifidobacterium_kashiwanohense!='' %}
+          <tr><th>Bifidobacterium_kashiwanohense</th>
+          <td>{{ i.Bifidobacterium_kashiwanohense }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bifidobacterium kashiwanohense' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bifidobacterium kashiwanohense' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Bifidobacterium_thermophilum!='' %}
+          <tr><th>Bifidobacterium_thermophilum</th>
+          <td>{{ i.Bifidobacterium_thermophilum }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bifidobacterium thermophilum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bifidobacterium thermophilum' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Blautia_obeum!='' %}
+          <tr><th>Blautia_obeum</th>
+          <td>{{ i.Blautia_obeum }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Blautia obeum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Blautia obeum' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i['butyrate-producing_bacterium_SM4/1']!='' %}
+          <tr><th>butyrate-producing_bacterium_SM4/1</th>
+          <td>{{ i['butyrate-producing_bacterium_SM4/1'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'butyrate-producing bacterium SM4/1' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'butyrate-producing bacterium SM4/1' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i['butyrate-producing_bacterium_SS3/4'] !='' %}
+          <tr><th>butyrate-producing_bacterium_SS3/4</th>
+          <td>{{ i['butyrate-producing_bacterium_SS3/4'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'butyrate-producing bacterium SS3' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'butyrate-producing bacterium SS3' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Campylobacter_coli!='' %}
+          <tr><th>Campylobacter_coli</th>
+          <td>{{ i.Campylobacter_coli }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Campylobacter coli' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Campylobacter coli' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Campylobacter_hominis!='' %}
+          <tr><th>Campylobacter_hominis</th>
+          <td>{{ i.Campylobacter_hominis }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Campylobacter hominis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Campylobacter hominis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Candidatus_Methanomassiliicoccus_intestinalis!='' %}
+          <tr><th>Candidatus_Methanomassiliicoccus_intestinalis</th>
+          <td>{{ i.Candidatus_Methanomassiliicoccus_intestinalis }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Candidatus Methanomassiliicoccus intestinalis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Candidatus Methanomassiliicoccus intestinalis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Coprococcus_catus!='' %}
+          <tr><th>Coprococcus_catus</th>
+          <td>{{ i.Coprococcus_catus }}</td>
+          
+          {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Coprococcus catus' in row[0]  %}
+            <td>{{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Coprococcus catus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          
+          {% if i['Coprococcus_sp._ART55/1']!='' %}
+          <tr><th>Coprococcus_sp._ART55/1</th>
+          <td>{{ i['Coprococcus_sp._ART55/1'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Coprococcus sp ART55/1' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Coprococcus sp ART55/1' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Cutibacterium_acnes!='' %}
+          <tr style="color:red"><th>Cutibacterium_acnes(Pathogen)</th>
+          <td>{{ i.Cutibacterium_acnes }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Cutibacterium acnes' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Cutibacterium acnes' in row[0]  %}
+                {{row[3]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Eggerthella_lenta!='' %}
+          <tr><th>Eggerthella_lenta</th>
+          <td>{{ i.Eggerthella_lenta }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Eggerthella lenta' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Eggerthella lenta' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i['Eggerthella_sp._YY7918'] !='' %}
+          <tr><th>Eggerthella_sp._YY7918</th>
+          <td>{{ i['Eggerthella_sp._YY7918'] }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Eggerthella sp.7918' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Eggerthella sp.7918' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Enterococcus_hirae!='' %}
+          <tr><th>Enterococcus_hirae</th>
+          <td>{{ i.Enterococcus_hirae }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Enterococcus hirae' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Enterococcus hirae' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Ethanoligenens_harbinense!='' %}
+          <tr><th>Ethanoligenens_harbinense</th>
+          <td>{{ i.Ethanoligenens_harbinense }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Ethanoligenens harbinense' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Ethanoligenens harbinense' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Eubacterium_eligens!='' %}
+          <tr><th>Eubacterium_eligens</th>
+          <td>{{ i.Eubacterium_eligens }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Eubacterium eligens' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Eubacterium eligens' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Eubacterium_limosum!='' %}
+          <tr><th>Eubacterium_limosum</th>
+          <td>{{ i.Eubacterium_limosum }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Eubacterium limosum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Eubacterium limosum' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Eubacterium_rectale!='' %}
+          <tr><th>Eubacterium_rectale</th>
+          <td>{{ i.Eubacterium_rectale }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Eubacterium rectale' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Eubacterium rectale' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Faecalibacterium_prausnitzii!='' %}
+          <tr><th>Faecalibacterium_prausnitzii</th>
+          <td>{{ i.Faecalibacterium_prausnitzii }}</td>
+         
+          {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Faecalibacterium prausnitzii' in row[0]  %}
+            <td>{{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Faecalibacterium prausnitzii' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Faecalitalea_cylindroides!='' %}
+          <tr><th>Faecalitalea_cylindroides</th>
+          <td>{{ i.Faecalitalea_cylindroides }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Faecalitalea cylindroides' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Faecalitalea cylindroides' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Fermentimonas_caenicola!='' %}
+          <tr><th>Fermentimonas_caenicola</th>
+          <td>{{ i.Fermentimonas_caenicola }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Fermentimonas caenicola' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Fermentimonas caenicola' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Gardnerella_vaginalis!='' %}
+          <tr style="color:red"><th>Gardnerella_vaginalis(Pathogen)</th>
+          <td>{{ i.Gardnerella_vaginalis }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Gardnerella vaginalis' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Gardnerella vaginalis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Gordonibacter_pamelaeae!='' %}
+          <tr><th>Gordonibacter_pamelaeae</th>
+          <td>{{ i.Gordonibacter_pamelaeae }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Gordonibacter pamelaeae' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Gordonibacter pamelaeae' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Haemophilus_parainfluenzae!='' %}
+          <tr style="color:red"><th>Haemophilus_parainfluenzae(Pathogen)</th>
+          <td>{{ i.Haemophilus_parainfluenzae }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Haemophilus influenzae' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Haemophilus influenzae' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Intestinimonas_butyriciproducens!='' %}
+          <tr><th>Intestinimonas_butyriciproducens</th>
+          <td>{{ i.Intestinimonas_butyriciproducens }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Intestinimonas butyriciproducens' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Intestinimonas butyriciproducens' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Klebsiella_aerogenes!='' %}
+          <tr  style="color:red"><th>Klebsiella_aerogenes(Pathogen)</th>
+          <td>{{ i.Klebsiella_aerogenes }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Klebsiella aerogenes' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Klebsiella aerogenes' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Klebsiella_michiganensis!='' %}
+          <tr style="color:red"><th>Klebsiella_michiganensis(Pathogen)</th>
+          <td>{{ i.Klebsiella_michiganensis }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Klebsiella michiganensis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Klebsiella michiganensis' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Klebsiella_variicola!='' %}
+          <tr style="color:red"><th>Klebsiella_variicola(Pathogen)</th>
+          <td>{{ i.Klebsiella_variicola }}</td>
+       
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Klebsiella_variicola' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Klebsiella variicola' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Lachnoclostridium_phytofermentans!='' %}
+          <tr><th>Lachnoclostridium_phytofermentans</th>
+          <td>{{ i.Lachnoclostridium_phytofermentans }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Lachnoclostridium phytofermentans' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Lachnoclostridium phytofermentans' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Lactobacillus_ruminis!='' %}
+          <tr><th>Lactobacillus_ruminis</th>
+          <td>{{ i.Lactobacillus_ruminis }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Lactobacillus ruminis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Lactobacillus ruminis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Leuconostoc_citreum!='' %}
+          <tr><th>Leuconostoc_citreum</th>
+          <td>{{ i.Leuconostoc_citreum }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Leuconostoc citreum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Leuconostoc citreum' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Mageeibacillus_indolicus!='' %}
+          <tr><th>Mageeibacillus_indolicus</th>
+          <td>{{ i.Mageeibacillus_indolicus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Mageeibacillus indolicus' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Mageeibacillus indolicus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i['Megamonas_sp._Calf98-2']!='' %}
+          <tr><th>Megamonas_sp._Calf98-2</th>
+          <td>{{ i['Megamonas_sp._Calf98-2'] }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Megamonas sp. Calf98-2' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Megamonas sp. Calf98-2' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Methanobrevibacter_smithii!='' %}
+          <tr><th>Methanobrevibacter_smithii</th>
+          <td>{{ i.Methanobrevibacter_smithii }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Methanobrevibacter smithii' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Methanobrevibacter smithii' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Odoribacter_splanchnicus!='' %}
+          <tr><th>Odoribacter_splanchnicus</th>
+          <td>{{ i.Odoribacter_splanchnicus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Odoribacter splanchnicus' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Odoribacter splanchnicus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Ornithobacterium_rhinotracheale!='' %}
+          <tr><th>Ornithobacterium_rhinotracheale</th>
+          <td>{{ i.Ornithobacterium_rhinotracheale }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Ornithobacterium rhinotracheale' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Ornithobacterium rhinotracheale' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Oscillibacter_valericigenes!='' %}
+          <tr><th>Oscillibacter_valericigenes</th>
+          <td>{{ i.Oscillibacter_valericigenes }}</td>
+        
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Oscillibacter valericigenes' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Oscillibacter valericigenes' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Paenibacillus_sabinae!='' %}
+          <tr><th>Paenibacillus_sabinae</th>
+          <td>{{ i.Paenibacillus_sabinae }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Paenibacillus sabinae' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Paenibacillus sabinae' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Paeniclostridium_sordellii!='' %}
+          <tr><th>Paeniclostridium_sordellii</th>
+          <td>{{ i.Paeniclostridium_sordellii }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Paeniclostridium sordellii' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif%}
+          {% if i.Parabacteroides_distasonis!='' %}
+          <tr><th>Parabacteroides_distasonis</th>
+          <td>{{ i.Parabacteroides_distasonis }}</td>
+         
+         <td> {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Parabacteroides distasonis' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Parabacteroides distasonis' in row[0]  %}
+                {{row[3]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Parvimonas_micra!='' %}
+          <tr style="color:red"><th>Parvimonas_micra(Pathogen)</th>
+          <td>{{ i.Parvimonas_micra }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Parvimonas micra' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Parvimonas micra' in row[0]  %}
+                {{row[3]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Porphyromonas_asaccharolytica!='' %}
+          <tr><th>Porphyromonas_asaccharolytica</th>
+          <td>{{ i.Porphyromonas_asaccharolytica }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Porphyromonas asaccharolytica' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Porphyromonas asaccharolytica' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Porphyromonas_gingivalis!='' %}
+          <tr style="color:red"><th>Porphyromonas_gingivalis(Pathogen)</th>
+          <td>{{ i.Porphyromonas_gingivalis }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Porphyromonas gingivalis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Porphyromonas gingivalis' in row[0]  %}
+                {{row[3]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Prevotella_dentalis!='' %}
+          <tr><th>Prevotella_dentalis</th>
+          <td>{{ i.Prevotella_dentalis }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Prevotella dentalis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Prevotella dentalis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Prevotella_denticola!='' %}
+          <tr style="color:red"><th>Prevotella_denticola(pathogen)</th>
+          <td>{{ i.Prevotella_denticola }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Prevotella denticola' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Prevotella denticola' in row[0]  %}
+                {{row[3]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif%}
+          {% if i.Prevotella_intermedia!='' %}
+          <tr style="color:red"><th>Prevotella_intermedia(Pathogen)</th>
+          <td>{{ i.Prevotella_intermedia }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Prevotella intermedia' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Prevotella intermedia' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Prevotella_melaninogenica!='' %}
+          <tr style="color:red"><th>Prevotella_melaninogenica(Pathogen)</th>
+          <td>{{ i.Prevotella_melaninogenica }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Prevotella melaninogenica' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Prevotella_melaninogenica' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Prevotella_ruminicola!='' %}
+          <tr><th>Prevotella_ruminicola</th>
+          <td>{{ i.Prevotella_ruminicola }}</td></tr>
+          {% endif%}
+          {% if i['Prevotella_sp._oral_taxon_299']!='' %}
+          <tr><th>Prevotella_sp._oral_taxon_299</th>
+          <td>{{ i['Prevotella_sp._oral_taxon_299'] }}</td></tr>
+          {% endif%}
+          {% if i.Raoultella_ornithinolytica!='' %}
+          <tr><th>Raoultella_ornithinolytica</th>
+          <td>{{ i.Raoultella_ornithinolytica }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Raoultella ornithinolytica' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Raoultella ornithinolytica' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Roseburia_hominis!='' %}
+          <tr><th>Roseburia_hominis</th>
+          <td>{{ i.Roseburia_hominis }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Roseburia hominis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Roseburia hominis' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Roseburia_intestinalis!='' %}
+          <tr><th>Roseburia_intestinalis</th>
+          <td>{{ i.Roseburia_intestinalis }}</td>
+         
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Roseburia intestinalis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Roseburia intestinalis' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+          {% if i.Rubinisphaera_brasiliensis!='' %}
+          <tr><th>Rubinisphaera_brasiliensis</th>
+          <td>{{ i.Rubinisphaera_brasiliensis }}</td></tr>
+          {% endif%}
+          {% if i.Ruminococcus_bicirculans!='' %}
+          <tr><th>Ruminococcus_bicirculans</th>
+          <td>{{ i.Ruminococcus_bicirculans }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Ruminococcus bicirculans' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Ruminococcus bicirculans' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i.Ruminococcus_bromii!='' %}
+          <tr><th>Ruminococcus_bromii</th>
+          <td>{{ i.Ruminococcus_bromii }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Ruminococcus bromii' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Ruminococcus bromii' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i.Ruminococcus_champanellensis!='' %}
+          <tr><th>Ruminococcus_champanellensis</th>
+          <td>{{ i.Ruminococcus_champanellensis }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Ruminococcus champanellensis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Ruminococcus champanellensis' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i['Ruminococcus_sp._SR1/5']!='' %}
+          <tr><th>Ruminococcus_sp._SR1/5</th>
+          <td>{{ i['Ruminococcus_sp._SR1/5'] }}</td></tr>
+          {% endif%}
+          {% if i.Sphingobacterium_faecium!='' %}
+          <tr><th>Sphingobacterium_faecium</th>
+          <td>{{ i.Sphingobacterium_faecium }}</td></tr>
+          {% endif%}
+          {% if i.Streptococcus_mitis!='' %}
+          <tr><th>Streptococcus_mitis</th>
+          <td>{{ i.Streptococcus_mitis }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Streptococcus mitis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Streptococcus mitis' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i.Streptococcus_parasanguinis!='' %}
+          <tr><th>Streptococcus_parasanguinis</th>
+          <td>{{ i.Streptococcus_parasanguinis }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Streptococcus parasanguinis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Streptococcus parasanguinis' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i.Streptococcus_pasteurianus!='' %}
+          <tr><th>Streptococcus_pasteurianus</th>
+          <td>{{ i.Streptococcus_pasteurianus }}</td></tr>
+          {% endif%}
+          {% if i.Streptococcus_salivarius!='' %}
+          <tr><th>Streptococcus_salivarius</th>
+          <td>{{ i.Streptococcus_salivarius }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Streptococcus salivarius' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Streptococcus salivarius' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+          {% if i['Streptococcus_sp._I-P16']!='' %}
+          <tr><th>Streptococcus_sp._I-P16</th>
+          <td>{{ i['Streptococcus_sp._I-P16'] }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Streptococcus sp' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Streptococcus sp' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i.Streptococcus_suis!='' %}
+          <tr><th>Streptococcus_suis</th>
+          <td>{{ i.Streptococcus_suis }}</td></tr>
+          {% endif%}
+          {% if i.Tannerella_forsythia!='' %}
+          <tr><th>Tannerella_forsythia</th>
+          <td>{{ i.Tannerella_forsythia }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Tannerella forsythia' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Tannerella forsythia' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% if i.Treponema_succinifaciens!='' %}
+          <tr><th>Treponema_succinifaciens</th>
+          <td>{{ i['Treponema_succinifaciens'] }}</td></tr>
+          {% endif%}
+          {% if i.Veillonella_parvula!='' %}
+          <tr><th>Veillonella_parvula</th>
+          <td>{{ i.Veillonella_parvula }}</td>
+          {% endif%}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Veillonella parvula' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Veillonella parvula' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+          {% endfor %}
+          
+            
+        </tr>
+    </table>
+
+    <h2 style="color: red;">Probiotic</h2>
+    
+      <table border="border-box">
+       
+            <tr>
+              <th style="color:rgb(0, 40, 100);font-size:large;">Bacteria</th>
+              <th style="color:rgb(40, 0, 100);font-size:large;">Abundance</th>
+            <th style="color:rgb(40, 0, 100);font-size:large;">Interpretation</th>
+            <th style="color: rgb(40, 0, 100);font-size: large;">Recommendation</th>
+            
+        </tr>
+              <tr>
+                {% for i in cb  %}
+          {% if i.Bifidobacterium_animalis!="" %}
+          <tr><th>Bifidobacterium_animalis</th>
+          <td>{{ i.Bifidobacterium_animalis }}</td>
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bifidobacterium Bifidobacterium animalis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Bifidobacterium animalis' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+                
+          {% endif %}
+          {% if i.Bifidobacterium_bifidum!="" %}
+      
+          <tr><th>Bifidobacterium_bifidum</th>
+          <td>{{ i.Bifidobacterium_bifidum }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bifidobacterium bifidum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Bifidobacterium bifidum' in row[0]  %}
+                  {{row[2]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif %}
+          {% if i.Bifidobacterium_breve!="" %}
+          <tr><th>Bifidobacterium_breve</th>
+          <td>{{ i.Bifidobacterium_breve }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Bifidobacterium breve' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bifidobacterium breve' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Saccharomyces_boulardi!="" %}
+          <tr><th>Saccharomyces_boulardi</th>
+          <td>{{ i.Saccharomyces_boulardi }}</td>
+          {% endif %}</tr>
+          {% if i.Bifidobacterium_longum!="" %}
+          <tr><th>Bifidobacterium_longum</th>
+          <td>{{ i.Bifidobacterium_longum }}</td>
+          {% endif %}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Bifidobacterium longum' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Bifidobacterium longum' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+          {% if i.Lactobacillus_acidophilus!="" %}
+          <tr><th>Lactobacillus_acidophilus</th>
+          <td>{{ i.Lactobacillus_acidophilus }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_fermentum!="" %}
+          <tr><th>Lactobacillus_fermentum</th>
+          <td>{{ i.Lactobacillus_fermentum }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_gasseri!="" %}
+          <tr><th>Lactobacillus_gasseri</th>
+          <td>{{ i.Lactobacillus_gasseri }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Lactobacillus gasseri' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Lactobacillus gasseri' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Lactobacillus_helveticus!="" %}
+          <tr><th>Lactobacillus_helveticus</th>
+          <td>{{ i.Lactobacillus_helveticus }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Lactobacillus helveticus' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Lactobacillus helveticus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Lactobacillus_paracasei!="" %}
+          <tr><th>Lactobacillus_paracasei</th>
+          <td>{{ i.Lactobacillus_paracasei }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_delbrueckii_!="" %}
+          <tr><th>Lactobacillus_delbrueckii_</th>
+          <td>{{ i.Lactobacillus_delbrueckii_ }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_plantarum!="" %}
+          <tr><th>Lactobacillus_plantarum</th>
+          <td>{{ i.Lactobacillus_plantarum }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_johnsonii!="" %}
+          <tr><th>Lactobacillus_johnsonii</th>
+          <td>{{ i.Lactobacillus_johnsonii }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Lactobacillus johnsonii' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Lactobacillus johnsonii' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Lactobacillus_reuteri!="" %}
+          <tr><th>Lactobacillus_reuteri</th>
+          <td>{{ i.Lactobacillus_reuteri }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_casei!="" %}
+          <tr><th>Lactobacillus_casei</th>
+          <td>{{ i.Lactobacillus_casei }}</td></tr>
+          
+          {% if i.Lactobacillus_rhamnosus!="" %}
+          <tr><th>Lactobacillus_rhamnosus</th>
+          <td>{{ i.Lactobacillus_rhamnosus }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_salivarius!="" %}
+          <tr><th>Lactobacillus_salivarius</th>
+          <td>{{ i.Lactobacillus_salivarius }}</td></tr>{% endif %}
+          {% endif %}
+          {% if i.Lactococcus_lactis!="" %}
+          <tr><th>Lactococcus_lactis</th>
+          <td>{{ i.Lactococcus_lactis }}</td>
+          {% endif %}
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Lactococcus lactis' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Lactococcus lactis' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+          {% if i.Streptococcus_thermophilus!="" %}
+          <tr><th>Streptococcus_thermophilus</th>
+          <td>{{ i.Streptococcus_thermophilus }}</td>
+        
+         <td> {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Streptococcus thermophilus' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Streptococcus thermophilus' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Enterococcus_durans!="" %}
+          <tr><th>Enterococcus_durans</th>
+          <td>{{ i.Enterococcus_durans }}</td>
+          
+         <td> {% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Enterococcus durans' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Enterococcus durans' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Enterococcus_faecium!="" %}
+          <tr><th>Enterococcus_faecium</th>
+          <td>{{ i.Enterococcus_faecium }}</td></tr>
+          {% endif %}
+          {% if i.Pediococcus_acidilactici!="" %}
+          <tr><th>Pediococcus_acidilactici</th>
+          <td>{{ i.Pediococcus_acidilactici }}</td>
+          
+          <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Pediococcus acidilactici' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Pediococcus acidilactici' in row[0]  %}
+                {{row[2]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+          {% if i.Leuconostoc_mesenteroides!="" %}
+          <tr><th>Leuconostoc_mesenteroides</th>
+          <td>{{ i.Leuconostoc_mesenteroides }}</td></tr>
+          {% endif %}
+          {% if i.Bacillus_coagulans!="" %}
+          <tr><th>Bacillus_coagulans</th>
+          <td>{{ i.Bacillus_coagulans }}</td></tr>
+          {% endif %}
+          {% if i.Bacillus_subtilis!="" %}
+          <tr><th>Bacillus_subtilis</th>
+          <td>{{ i.Bacillus_subtilis }}</td></tr>
+          {% endif %}
+          {% if i.Bacillus_cereus!="" %}
+          <tr><th>Bacillus_cereus</th>
+          <td>{{ i.Bacillus_cereus }}</td></tr>
+          {% endif %}
+          
+          {% endfor %}
+          
+            
+              </tr>
+          </table>
+
+
+          <h2 style="color: red;">Pathogen</h2>
+          
+            <table border="border-box">
+              <tr>
+                <th style="color:rgb(0, 40, 100);font-size:large;">Bacteria</th>
+                <th style="color:rgb(40, 0, 100);font-size:large;">Abundance</th>
+                <th style="color:rgb(40, 0, 100);font-size:large;">Interpretation</th>
+                <th style="color:rgb(40, 0, 100);font-size: large;">Recommendation</th>
+            </tr>
+                <tr>
+                  {% for i in cp %}
+                
+        {% if i['Helicobacter_pylori'] !='' %}
+        <tr><th>Helicobacter_pylori</th>
+        <td>{{ i['Helicobacter_pylori'] }}</td></tr>
+        {% endif%}
+        {% if i['Escherichia_coli'] !='' %}
+        <tr><th>Escherichia_coli</th>
+        <td>{{ i['Escherichia_coli'] }}</td>
+        {% endif%}
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+          {% if 'Escherichia coli' in row[0]  %}
+            {{row[2]+row[3]+row[4]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+              {% if 'Escherichia coli' in row[0]  %}
+                {{row[3]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% if i['Salmonella_enterica'] !='' %}
+        <tr><th>Salmonella_enterica</th>
+        <td>{{ i['Salmonella_enterica'] }}</td></tr>
+        {% endif%}
+        {% if i['Yersinia_enterocolitica'] !='' %}
+        <tr><th>Yersinia_enterocolitica</th>
+        <td>{{ i['Yersinia_enterocolitica'] }}</td></tr>
+        {% endif%}
+        {% if i['Citrobacter_freundii'] !='' %}
+        <tr><th>Citrobacter_freundii</th>
+        <td>{{ i['Citrobacter_freundii'] }}</td>
+        {% endif%}
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Citrobacter freundii' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Citrobacter freundii' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+        {% if i['Raoutella_ornithinolytica'] !='' %}
+        <tr><th>Raoutella_ornithinolytica</th>
+        <td>{{ i['Raoutella_ornithinolytica'] }}</td></tr>
+        {% endif%}
+        {% if i['Blastocystis_hominis'] !='' %}
+        <tr><th>Blastocystis_hominis</th>
+        <td>{{ i['Blastocystis_hominis'] }}</td></tr>
+        {% endif%}
+        {% if i['Cyclospora_cayetanensis'] !='' %}
+        <tr><th>Cyclospora_cayetanensis</th>
+        <td>{{ i['Cyclospora_cayetanensis'] }}</td></tr>
+        {% endif%}
+        {% if i['Bilophila_wadsworthia'] !='' %}
+        <tr><th>Bilophila_wadsworthia</th>
+        <td>{{ i['Bilophila_wadsworthia'] }}</td></tr>
+        {% endif%}
+        {% if i['Entamoeba_histolytica'] !='' %}
+        <tr><th>Entamoeba_histolytica</th>
+        <td>{{ i['Entamoeba_histolytica'] }}</td></tr>
+        {% endif%}
+        {% if i['Klesbsiella_pneumoniae'] !='' %}
+        <tr><th>Klesbsiella_pneumoniae</th>
+        <td>{{ i['Klesbsiella_pneumoniae'] }}</td></tr>
+        {% endif%}
+        {% if i['Vibrio_cholerae'] !='' %}
+        <tr><th>Vibrio_cholerae</th>
+        <td>{{ i['Vibrio_cholerae'] }}</td></tr>
+        {% endif%}
+        {% if i['Clostridioides_difficile'] !='' %}
+        <tr><th>Clostridioides_difficile</th>
+        <td>{{ i['Clostridioides_difficile'] }}</td>
+        {% endif%}
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Clostridioides difficile' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Clostridioides difficile' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+        {% if i['Hafnia_alvei'] !='' %}
+        <tr><th>Hafnia_alvei</th>
+        <td>{{ i['Hafnia_alvei'] }}</td></tr>
+        {% endif%}
+        {% if i['Giardia_lamblia'] !='' %}
+        <tr><th>Giardia_lamblia</th>
+        <td>{{ i['Giardia_lamblia'] }}</td></tr>
+        {% endif%}
+        {% if i['Clostridium_bolteae'] !='' %}
+        <tr><th>Clostridium_bolteae</th>
+        <td>{{ i['Clostridium_bolteae'] }}</td></tr>
+        {% endif%}
+        {% if i['Bacteroides_fragilis'] !='' %}
+        <tr><th>Bacteroides_fragilis</th>
+        <td>{{ i['Bacteroides_fragilis'] }}</td>
+        {% endif%}
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Bacteroides fragilis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Bacteroides fragilis' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+        {% if i['Klebsiella_pneumoniae'] !='' %}
+        <tr><th>Klebsiella_pneumoniae</th>
+        <td>{{ i['Klebsiella_pneumoniae'] }}</td>
+        {% endif%}
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Klesbsiella pneumoniae' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Klebsiella pneumoniae' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+        {% if i['Bacillus_cereus'] !='' %}
+        <tr><th>Bacillus_cereus</th>
+        <td>{{ i['Bacillus_cereus'] }}</td></tr>
+        {% endif%}
+        {% if i['Shigella_dysenteriae'] !='' %}
+        <tr><th>Shigella_dysenteriae</th>
+        <td>{{ i['Shigella_dysenteriae'] }}</td></tr>
+        {% endif%}
+        {% if i['Enterococcus_faecium'] !='' %}
+        <tr><th>Enterococcus_faecium</th>
+        <td>{{ i['Enterococcus_faecium'] }}</td></tr>
+        {% endif%}
+        {% if i['Clostridium_botulinum'] !='' %}
+        <tr><th>Clostridium_botulinum</th>
+        <td>{{ i['Clostridium_botulinum'] }}</td>
+        
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Clostridium botulinum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Clostridium botulinum' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif %}
+        {% if i['Clostridium_perfringens'] !='' %}
+        <tr><th>Clostridium_perfringens</th>
+        <td>{{ i['Clostridium_perfringens'] }}</td>
+        
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Clostridium perfringens' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Clostridium perfringens' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+        {% if i['Clostridium_butyricum'] !='' %}
+        <tr><th>Clostridium_butyricum</th>
+        <td>{{ i['Clostridium_butyricum'] }}</td>
+        
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Clostridium butyricum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Clostridium butyricum' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+        {% if i['Fusobacterium_nucleatum'] !='' %}
+        <tr><th>Fusobacterium_nucleatum</th>
+        <td>{{ i['Fusobacterium_nucleatum'] }}</td>
+       
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Fusobacterium nucleatum' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Fusobacterium nucleatum' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr> {% endif%}
+        {% if i['Streptococcus_agalactiae'] !='' %}
+        <tr><th>Streptococcus_agalactiae</th>
+        <td>{{ i['Streptococcus_agalactiae'] }}</td>
+        
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Streptococcus agalactiae' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Streptococcus agalactiae' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+        {% if i['Leptospira_interrogans'] !='' %}
+        <tr><th>Leptospira_interrogans</th>
+        <td>{{ i['Leptospira_interrogans'] }}</td></tr>
+        {% endif%}
+        {% if i['Yersinia_pestis'] !='' %}
+        <tr><th>Yersinia_pestis</th>
+        <td>{{ i['Yersinia_pestis'] }}</td></tr>
+        {% endif%}
+        {% if i['Staphylococcus_epidermidis'] !='' %}
+        <tr><th>Staphylococcus_epidermidis</th>
+        <td>{{ i['Staphylococcus_epidermidis'] }}</td>
+        
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Staphylococcus_epidermidis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Staphylococcus epidermis' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+        {% if i['Staphylococcus_aureus'] !='' %}
+        <tr><th>Staphylococcus_aureus</th>
+        <td>{{ i['Staphylococcus_aureus'] }}</td></tr>
+        {% endif%}
+        {% if i['Streptococcus_pneumoniae'] !='' %}
+        <tr><th>Streptococcus_pneumoniae</th>
+        <td>{{ i['Streptococcus_pneumoniae'] }}</td></tr>
+        {% endif%}
+        {% if i['Listeria_monocytogenes'] !='' %}
+        <tr><th>Listeria_monocytogenes</th>
+        <td>{{ i['Listeria_monocytogenes'] }}</td></tr>
+        {% endif%}
+        {% if i['Enterococcus_faecalis'] !='' %}
+        <tr><th>Enterococcus_faecalis</th>
+        <td>{{ i['Enterococcus_faecalis'] }}</td>
+        
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Enterococcus faecalis' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Enterococcus faecalis' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>{% endif%}
+        {% if i['Clostridium_tetani'] !='' %}
+        <tr><th>Clostridium_tetani</th>
+        <td>{{ i['Clostridium_tetani'] }}</td></tr>
+        {% endif%}
+        {% if i['Chlamydia_trachomatis'] !='' %}
+        <tr><th>Chlamydia_trachomatis</th>
+        <td>{{ i['Chlamydia_trachomatis'] }}</td></tr>
+        {% endif%}
+        {% if i['Campylobacter_jejuni'] !='' %}
+        <tr><th>Campylobacter_jejuni</th>
+        <td>{{ i['Campylobacter_jejuni'] }}</td>
+        {% endif%}
+        <td>{% for index, row in taxonomy_df.iterrows() %}
+            {% if 'Campylobacter jejuni' in row[0]  %}
+              {{row[2]+row[3]+row[4]}}
+              {% endif %}
+              {% endfor%}</td>
+              <td>{% for index, row in bacteria_keystone_recommendation_df.iterrows() %}
+                {% if 'Campylobacter jejuni' in row[0]  %}
+                  {{row[3]}}
+                  {% endif %}
+                  {% endfor%}</td></tr>
+        {% if i['Yersinia_pseudotuberculosis'] !='' %}
+        <tr><th>Yersinia_pseudotuberculosis</th>
+        <td>{{ i['Yersinia_pseudotuberculosis'] }}</td></tr>
+        {% endif%}
+        {% if i['Treponema_pallidum'] !='' %}
+        <tr><th>Treponema_pallidum</th>
+        <td>{{ i['Treponema_pallidum'] }}</td></tr>
+        {% endif%}
+        {% if i['Staphylococcus_saprophyticus'] !='' %}
+        <tr><th>Staphylococcus_saprophyticus</th>
+        <td>{{ i['Staphylococcus_saprophyticus'] }}</td></tr>
+        {% endif%}
+        {% if i['Rickettsia_rickettsii'] !='' %}
+        <tr><th>Rickettsia_rickettsii</th>
+        <td>{{ i['Rickettsia_rickettsii'] }}</td></tr>
+        {% endif%}
+        {% if i['Proteus_mirabilis'] !='' %}
+        <tr><th>Proteus_mirabilis</th>
+        <td>{{ i['Proteus_mirabilis'] }}</td></tr>
+        {% endif%}
+        {% if i['Mycoplasma_pneumoniae'] !='' %}
+        <tr><th>Mycoplasma_pneumoniae</th>
+        <td>{{ i['Mycoplasma_pneumoniae'] }}</td></tr>
+        {% endif%}
+        {% if i['Haemophilus_influenzae'] !='' %}
+        <tr><th>Haemophilus_influenzae</th>
+        <td>{{ i['Haemophilus_influenzae'] }}</td></tr>
+        {% endif%}
+        {% if i['Brucella_suis'] !='' %}
+        <tr><th>Brucella_suis</th>
+        <td>{{ i['Brucella_suis'] }}</td></tr>
+        {% endif%}
+        {% if i['Brucella_melitensis'] !='' %}
+        <tr><th>Brucella_melitensis</th>
+        <td>{{ i['Brucella_melitensis'] }}</td></tr>
+        {% endif%}
+        {% if i['Brucella_canis'] !='' %}
+        <tr><th>Brucella_canis</th>
+        <td>{{ i['Brucella_canis'] }}</td></tr>
+        {% endif%}
+        {% if i['Brucella_abortus'] !='' %}
+        <tr><th>Brucella_abortus</th>
+        <td>{{ i['Brucella_abortus'] }}</td></tr>
+        {% endif%}
+        {% if i['Bacillus_anthracis'] !='' %}
+        <tr><th>Bacillus_anthracis</th>
+        <td>{{ i['Bacillus_anthracis'] }}</td></tr>
+        {% endif%}
+        {% endfor %}
+           
+                            
+              </tr>
+            </table>
+
+          
+
+
+
+        
+
+
+
+</body>
+</html>

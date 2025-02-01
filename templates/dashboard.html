@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon-16x16.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add this before the closing </body> tag if not included -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Kelly - v4.10.0
+  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <link href="/static/assets/img/Decode_logo_.png" rel="stylesheet">
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <h1 class="logo me-auto me-lg-0"><a href="/dashboard">Decode Biome</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="active" href="/dashboard">Home</a></li>
+          
+          <li><a href="/run status" id="dashboard-link">Dashboard</a></li>
+          
+          <li><a href="/curation"  id="curation-link">Curation</a></li>
+
+          <li>
+            <a href="/report submission">Bioinformatics</a>
+          </li>
+          
+        
+           
+          <li style="font-style:oblique;"><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      
+
+    </div>
+
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Decode Biome</h1>
+      
+      
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      
+      
+    </div>
+  </footer><!-- End  Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+  <div id="loading-screen" style="display: none;">
+    <div class="image-container">
+        <!-- First image (GIF) -->
+        <img class="first-image" src="{{ url_for('static', filename='assets/logo/DECODE AGE to DA1.gif') }}" alt="GIF">
+
+        <!-- Second image -->
+        <img class="second-image" src="{{ url_for('static', filename='assets/logo/StanAge_Pharma_R.png') }}" alt="Second Image">
+
+        <!-- Loading sand clock -->
+        <img class="third-image" src="{{ url_for('static', filename='assets/logo/sand-clock-loading.gif') }}" alt="Loading GIF">
+    </div>
+</div>
+</body>
+<style>
+  /* Apply styles to center the content */
+  
+  /* Container for both images */
+  .image-container {
+      position: relative;
+      width: 20%;
+      height: 10vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  /* Style for the first image (GIF) */
+  .first-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      opacity: 1;
+      transition: opacity 1.1s ease;
+  }
+
+  /* Style for the second image */
+  .second-image {
+      position: absolute;
+      width: 13%;
+      height: auto;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 3s ease;
+  }
+
+  /* Style for the loading sand-clock gif */
+  .third-image {
+      position: absolute;
+      width: 30%;
+      height: 40%;
+      object-fit: contain;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 2s ease;
+      bottom: 24%;
+      right: 28%;
+  }
+
+  /* Loading Screen */
+  #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color:white;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+  }
+</style>
+<script>
+  const dashboardLink = document.getElementById('dashboard-link');
+  const curationLink = document.getElementById('curation-link');
+  const loadingScreen = document.getElementById('loading-screen');
+
+  // Function to handle the click and show the loading screen
+  function handleLinkClick(e, targetUrl) {
+      e.preventDefault(); // Prevent the default link behavior
+
+      // Show the loading screen
+      loadingScreen.style.display = 'flex';
+
+      // Simulate the image transitions
+      setTimeout(function() {
+          // Fade out the first image and fade in the second image
+          document.querySelector('.first-image').style.opacity = '0';
+          document.querySelector('.second-image').style.opacity = '1';
+      }, 2000); // Delay of 2 seconds before starting the transition
+
+      // Show the loading sand-clock GIF after 3 seconds
+      setTimeout(function() {
+          document.querySelector('.third-image').style.opacity = '1';
+      }, 3000); // 3 seconds for transition before showing the loading GIF
+
+      // Simulate page load and redirect to the new page after 5 seconds
+      setTimeout(function() {
+          window.location.href = targetUrl; // Navigate to the target URL
+      }, 5000); // Wait 5 seconds before navigating
+  }
+
+  // Add event listeners to both links
+  dashboardLink.addEventListener('click', function (e) {
+      handleLinkClick(e, '/run status');
+  });
+
+  curationLink.addEventListener('click', function (e) {
+      handleLinkClick(e, '/curation');
+  });
+</script>
+</html>

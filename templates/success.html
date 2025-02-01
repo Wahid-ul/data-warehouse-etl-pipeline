@@ -1,0 +1,64 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Connection Success</title>
+</head>
+<body>
+    <!-- <h1>Production Server Connection Success</h1> -->
+    
+    
+    <div id="display-output">
+        
+        <script>
+            console.log("Here we come again!");
+        </script>
+        
+        <!-- <p>Give the Run and barcode  input:</p> -->
+        <label for="run">Run number:
+        <select name="run" id="run" style="background-color: #f0f0f0; border: 1px solid #ccc; padding: 5px; font-size: 16px; border-radius: 5px;">
+            {% for run_id in output_command.split('\n') %}
+            <option value="{{run_id}}">{{run_id}}</option>
+            {% endfor %}
+        </select>
+    </label>
+        <!-- <label for="barcode">Barcode name: </label>
+    <input type="text" id="barcode" name="barcode"> -->
+    <br><br>
+    <button type="submit" id="nextButton">Next</button>
+        
+            <!-- <pre>{{ output_command }}</pre> -->
+       
+        
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+       console.log("Kuch to print hoja bhai!");
+        $(document).ready(function() {
+            $('#submitButton').click(function() {
+                // Get input values
+                console.log("Function is reachable!");
+                const run = $('#run').val();
+                const barcode = $('#barcode').val();
+                const outputPath = "/media/decodeage/d1672139-af38-4080-8ce9-3acbf29c35a5/Decode_biome/Nanopore_results/RUN_";
+                
+                // Concatinate run number and barcode name
+                const concatenatedValue = run + "Taxonomy/Taxonomy_" + barcode;
+                const new_path=outputPath+concatenatedValue;
+                const ls_command="ls -l "+new_path;
+
+                // Update display-output div content
+                $('#display-output').html(
+                    "<p>Command output:</p>" +
+                    "<p>  {{ls_command}}" + "</p>" +
+                    "<pre>{{ output_command }}</pre>"
+                );
+            });
+        });
+    </script>
+</body>
+</html>

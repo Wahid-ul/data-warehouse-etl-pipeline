@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      
+ 
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/sample_collection_script.js" defer></script>
+    <title>Data Entry form</title>
+
+    
+  </head>
+  <body>
+    
+
+  
+    
+ </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <form action="/sample_collection/{{data1.Barcode}}" method="post" class="form" id="form" enctype="multipart/form-data">
+      <h1 class="text-center">Data submission process</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        
+        <div class="progress" id="progress"></div>
+        
+        <div
+          class="progress-step progress-step-active"
+          data-title="Barcode Generation"
+        ></div>
+        <div class="progress-step" data-title="Sample Collection"></div>
+        <div class="progress-step" data-title="DNA Extraction"></div>
+        <div class="progress-step" data-title="Library Preparation"></div>
+        <div class="progress-step" data-title="CSV file Entry"></div>
+      </div>
+
+      <!-- Steps -->
+      
+        <div class="form-step form-step-active">
+          
+            <div class="input-group">
+              <div style="position: absolute; right: 80px;top: 20px;color: red;" id="exit1"><a href="#"><h1>Exit?</h1></a></div>
+              <label for="Barcode">Barcode</label>
+              <input type="text" name="Barcode" id="Barcode" value="{{data1.Barcode}}" readonly/>
+              <label for="Confirm_Barcode">Confirm Barcode</label>
+              <input type="text" name="Confirm_Barcode" id="Confirm_Barcode" value="{{data1.Barcode}}" readonly/>
+              <script>
+                            
+              </script>
+              
+            
+            
+            
+            
+            </div>
+            <div class="">
+              <a href="#" type="Next" value="Next" id="next1" class="btn btn-next width-50 ml-auto"  >Next</a>
+            </div>
+      
+      
+         
+      </div>
+      <div class="form-step">
+    <center><div id="id_a1" style="color:blue;font-family: verdana;
+      font-size: 200%;" ></div></center>
+        <script></script>
+        <div class="input-group">
+        <div style="position: absolute; right: 80px;top: 20px;color: red;" id="exit2"><a href="/templates/touch.html"><h1>Exit?</h1></a></div>
+               
+          
+          <label for="Initial_weight">Initial_weight</label>
+          <input type="text" name="Initial_weight" id="Initial_weight" placeholder="weight in mg" value="{{data2.Initial_weight}}" />
+          <label for="Texture">Texture</label>
+          <input type="text" name="Texture" id="Texture" value="{{data2.Texture}}"/>
+          <label for="Location">Location</label>
+          <input type="text" name="Location" id="Location" value="{{data2.Location}}"/>
+          <label for="Collection_date">Collection_date</label>
+          <input type="date" name="Collection_date" id="Collection_date" value="{{data2.Collection_date}}"/>
+          <label for="Remarks">Remarks</label>
+          <input type="text" name="Remarks" id="Remarks" value="{{data2.Remarks}}"/>
+          <style>
+            #Initial_weight::-webkit-input-placeholder {
+               color: red;
+            }          
+            #Texture::-webkit-input-placeholder {
+               color: red;
+            }
+            #Location::-webkit-input-placeholder {
+               color: red;
+            }
+            #Collection_date::-webkit-input-placeholder {
+               color: red;
+            }
+            #Remarks::-webkit-input-placeholder {
+               color: red;
+            }
+          </style>
+          
+          
+          </div>
+          
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next"  id="next2">Next</a>
+        </div>
+      </div>
+      
+      <div class="form-step">
+        <center><div id="id_a2" style="color:blue;font-family: verdana;
+          font-size: 200%;" ></div></center>
+        <div class="input-group">
+        <div style="position: absolute; right: 80px;top: 20px;" id="exit3"><a href="/templates/touch.html"><h1>Exit?</h1></a></div>
+                
+          <label for="Kit_name">Kit Name</label>
+          <input type="text" name="Kit_name" id="Kit_name" value="{{data3.Kit_name}}"/>
+          <label for="Lot_no">Lot no.</label>
+          <input type="text" name="Lot_no" id="Lot_no" value="{{data3.Lot_no}}"/>
+          <label for="Quantity">Quantity</label>
+          <input type="text" name="Quantity" placeholder="Quantity in nanogram" id="Quantity" value="{{data3.Quantity}}"/>
+          <!--
+          <label for="Gel_image">Gel_image</label>
+          <input type="file" accept=".jpg" name="Gel_image" id="Gel_image" />
+          -->
+          <label for="Qubit_conc">Qubit conc.</label>
+          <input type="text" name="Qubit_conc" id="Qubit_conc" placeholder="Quantity in nanogram" value="{{data3.Qubit_conc}}"/>
+          <label for="Nanodrop_conc">Nanodrop conc.</label>
+          <input type="text" name="Nanodrop_conc" id="Nanodrop_conc" placeholder="Quantity in nanogram" value="{{data3.Nanodrop_conc}}"/>
+          <label for="Nanodrop_260_280">Nanodrop 260/280</label>
+          <input type="text" name="Nanodrop_260_280" id="Nanodrop_260_280" placeholder="Quantity in nanogram" value="{{data3.Nanodrop_260_280}}"/>
+          <label for="Nanodrop_260_230">Nanodrop 260/230</label>
+          <input type="text" name="Nanodrop_260_230" id="Nanodrop_260_230" placeholder="Quantity in nanogram" value="{{data3.Nanodrop_260_230}}" />
+          <label for="Extraction_date">Extraction Date</label>
+          <input type="date" name="Extraction_date" id="Extraction_date" value="{{data3.Extraction_date}}"/>
+          <label for="Repeat_no">Repeat no.</label>
+          <input type="text" name="Repeat_no" id="Repeat_no" value="{{data3.Repeat_no}}"/>
+          <label for="Remarks">Remarks</label>
+          <input type="text" name="Remarks" id="Remarks" value="{{data3.Remarks}}"/>
+          <style>
+            #Qubit_conc::-webkit-input-placeholder {
+               color: red;
+            }          
+            #Nanodrop_conc::-webkit-input-placeholder {
+               color: red;
+            }
+            #Nanodrop_260_280::-webkit-input-placeholder {
+               color: red;
+            }
+            #Nanodrop_260_230::-webkit-input-placeholder {
+               color: red;
+            }
+            #Extraction_date::-webkit-input-placeholder {
+               color: red;
+            }
+            #Repeat_no::-webkit-input-placeholder {
+               color: red;
+            }
+            #Remarks::-webkit-input-placeholder {
+               color: red;
+            }
+          </style>
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next" id="next3">Next</a>
+        </div>
+        </div>
+        <div class="form-step">
+          <center><div id="id_a3" style="color:blue;font-family: verdana;
+            font-size: 200%;" ></div></center>
+          <div class="input-group">
+          <div style="position: absolute; right: 80px;top: 20px;" id="exit4"><a href="/templates/touch.html"><h1>Exit?</h1></a></div>
+                
+            <label for="Run_ID">Run ID</label>
+            <input type="text" name="Run_ID" id="Run_ID" value="{{data4.Run_ID}}"/>
+           <label for="Extraction_Startdate">Extraction Startdate <span style="color: red;" id="ex_start"></span></label>
+            <input type="date" name="Extraction_Startdate" id="Extraction_Startdate" value="{{data4.Extraction_Startdate}}" />
+            <label for="Extraction_enddate">Extraction enddate <span style="color: red;" id="ex_end"></span></label>
+            <input type="date" name="Extraction_enddate" id="Extraction_enddate" value="{{data4.Extraction_enddate}}"/>
+            <label for="Yield_nanodrop">Yield nanodrop</label>
+            <input type="text" name="Yield_nanodrop" id="Yield_nanodrop" value="{{data4.Yield_nanodrop}}"/>
+            <label for="Yield_qubit">Yield qubit</label>
+            <input type="text" name="Yield_qubit" id="Yield_qubit" value="{{data4.Yield_qubit}}" />
+            <!--
+            <label for="Gel_image">Gel_image</label>
+            <input type="file" accept=".jpg" name="Gel_image" id="Gel_image" />
+            -->
+            <label for="Library_startdate">Library startdate <span style="color: red;" id="lib_start"></span></label>
+            <input type="date" name="Library_startdate" id="Library_startdate" value="{{data4.Library_startdate}}" />
+            <label for="Library_enddate">Library enddate <span style="color: red;" id="lib_end"></span></label>
+            <input type="date" name="Library_enddate" id="Library_enddate" value="{{data4.Library_enddate}}"/>
+            <label for="Flowcell_id">Flowcell id</label>
+            <input type="text" name="Flowcell_id" id="Flowcell_id" value="{{data4.Flowcell_id}}"/>
+            <label for="Native_barcode">Native barcode</label>
+            <input type="text" name="Native_barcode" id="Native_barcode" value="{{data4.Native_barcode}}"/>
+            <label for="Active_pores">Active pores</label>
+            <input type="text" name="Active_pores" id="Active_pores" value="{{data4.Active_pores}}"/>
+            <label for="Pores_remaining">Pores remaining</label>
+            <input type="text" name="Pores_remaining" id="Pores_remaining" value="{{data4.Pores_remaining}}" />
+            <label for="Loading_start">Loading start <span style="color: red;" id="load_start"></span></label>
+            <input type="date" name="Loading_start" id="Loading_start" value="{{data4.Loading_start}}" />
+            <label for="Loading_end">Loading end <span style="color: red;" id="load_end"></span></label>
+            <input type="date" name="Loading_end" id="Loading_end" value="{{data4.Loading_end}}"/>
+            <label for="Sequencing_status">Sequencing status</label>
+            <input type="text" name="Sequencing_status" id="Sequencing_status" value="{{data4.Sequencing_status}}"/>
+            <label for="Sequencing_duration">Sequencing duration</label>
+            <input type="time" name="Sequencing_duration" id="Sequencing_duration" value="{{data4.Sequencing_duration}}" />
+            <label for="Status">Status</label>
+            <input type="text" name="Status" id="Status" value="{{data4.Status}}" />
+            
+          </div>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next" id="next4">Next</a>
+          </div>
+      </div>
+
+      <div class="form-step">
+        <center><div id="id_a4" style="color:blue;font-family: verdana;
+          font-size: 200%;" ></div></center>
+        <div class="input-group">
+          
+          <center><h1>Upload your CSV file</h1></center>
+         
+      <p><input type="file" id="upload_file" name="file" accept=".zip" ></p>
+          
+          
+        </div>
+
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <button  type="submit" id="button" value="Submit" class="btn" >Submit</button>
+      </div>
+    </div>
+    </form>
+	
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+          array2=[];
+          edit_array2=[]; //empty array 
+          console.log("array3.length:"+array2.length)
+          console.log("edit_array2.length"+edit_array2.length)
+          array3=[];
+          array4=[];
+          window.onload = function() {
+      document.getElementById("Kit_name").focus();
+      
+      //array3=[]; //empty array 
+     // console.log("array3.length:"+array3.length)
+    };
+    
+
+
+    </script>
+    <!--
+    <script src="/static/form1.js"></script>
+    -->
+    <script src="/static/form2.js"></script>
+    
+    <script src="/static/form4.js"></script>
+    
+    
+    <script src="/static/form3.js"></script>
+        
+        <script src="/static/upload.js"></script>
+  </body>
+</html>

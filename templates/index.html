@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js" defer></script>
+    <title>Data Entry form</title>
+    
+  </head>
+  <body>
+    <form action="{{url_for('index')}}" method="post" class="form">
+      <h1 class="text-center">Data submission process</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
+        
+        <div
+          class="progress-step progress-step-active"
+          data-title="Info"
+        ></div>
+        <div class="progress-step" data-title="BMI"></div>
+        <div class="progress-step" data-title="Address"></div>
+        <div class="progress-step" data-title="Final"></div>
+      </div>
+
+      <!-- Steps -->
+      <div class="form-step form-step-active">
+        <div class="input-group">
+          <label for="Barcode">Barcode</label>
+          <input type="text" name="Barcode" id="Barcode" required/>
+        </div>
+        <div class="input-group">
+          <label for="position">Name</label>
+          <input type="text" name="Name" id="Name" required/>
+        </div>
+        <div class="">
+          <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+          <label for="Age">Age</label>
+          <input type="text" name="Age" id="Age" required/>
+        </div>
+        <div class="input-group">
+          <label for="Weight">Weight</label>
+          <input type="text" name="Weight" id="Weight" required/>
+        </div>
+        <div class="input-group">
+            <label for="Height">Height</label>
+            <input type="text" name="Height" id="Height" required/>
+          </div>
+
+          <div class="input-group">
+            <label for="BMI">BMI</label>
+            <input type="text" name="BMI" id="BMI" required/>
+          </div>
+          
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+
+            <div class="input-group">
+                <label for="Gender">Gender</label>
+                <input type="text" name="Gender" id="Gender" required/>
+              </div>
+          <label for="Location">Location</label>
+          <input type="text" name="Location" id="Location" required/>
+
+          <div class="input-group">
+            <label for="SRD">SRD</label>
+            <input type="text" name="SRD" id="SRD" required/>
+          </div>
+        </div>
+        
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+          <label for="Antibiotic">Antibiotic</label>
+          <input type="text" name="Antibiotic" id="Antibiotic" required/>
+        </div>
+        <div class="input-group">
+          <label for="Smoking">Smoking</label>
+          <input
+            type="text"
+            name="Smoking"
+            id="Smoking"
+          required/>
+        </div>
+        <div class="input-group">
+            <label for="Drinking">Drinking</label>
+            <input type="text" name="Drinking" id="Drinking" required/>
+          </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <button  type="submit" id="button" value="Submit" class="btn" >Submit</button>
+        </div>
+      </div>
+    </form>
+	
+
+  </body>
+</html>

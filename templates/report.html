@@ -1,0 +1,3947 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taxonomy_report_{{Barcode}}</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: block;
+  margin-left:-5px;
+  margin-right:-5px;
+}
+.column {
+  flex: 50%;
+  padding: 5px;
+}
+
+table {
+    
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+
+
+<p><center><h1 style="color: blue;">Report files of Barcode: {{Barcode}}</h1></center></p>
+
+<p><a href="/taxonomy_file_download/{{Barcode}}" style="display:inline-block; padding: 10px;  text-decoration:none; float: right;"><span style="font-size:xx-large ">&#x1F4E5;</span>Export in csv </a></p>
+<p><a href="/taxonomy_file_download_json/{{Barcode}}" style="display:inline-block; padding: 10px;  text-decoration:none; float: right;"><span style="font-size:xx-large ">&#x1F4E5;</span>Export in JSON </a></p>
+<style>
+  a {
+   text-decoration: none;
+}
+</style>
+<div class="row">
+  <h2 style="color: red;">Top10 species(Bacteria)</h2>
+      <div class="column">
+        <table border="border-box">
+          <tr>
+            
+                        <!--<th>Kingdom</th>
+                        <th>Phylum</th>
+                        <th>Class</th>
+                        <th>Order</th>  
+                        <th>Family</th>-->  
+                        <th style="background-color: bisque;">Genus Species</th>  
+                        
+                        <th style="background-color: bisque;">Abundance</th> 
+                        
+          </tr>
+          
+            {% for i in bacteria1 %}
+                        <tr>
+                          
+                          <!--
+                          <td>{{ i.Kingdom }}</td>
+                          <td>{{ i.Phylum }}</td>
+                          <td>{{ i.Class }}</td>
+                          <td>{{ i.Order }}</td>
+                          <td>{{ i.Family }}</td>-->
+                          <td>{{ i.Genus }} {{ i.Species }}</td>
+                         
+                          <td>{{ i.Abundance | round(2)}}</td>
+                          
+                        </tr>
+                        {% endfor %}   
+          
+        </table> 
+        <h2 style="color: red;">Top10 species(Archaea)</h2>
+      <div class="column">
+      <table border="border-box">
+        <tr>
+         
+         <!--<th>Kingdom</th>
+                        <th>Phylum</th>
+                        <th>Class</th>
+                        <th>Order</th>  
+                        <th>Family</th>-->  
+          <th style="background-color: bisque;">Genus Species</th>
+          
+          <th style="background-color: bisque;">Abundance</th>          
+        </tr>
+        
+          {% for i in archaea1 %}
+                      <tr>
+                        
+                        
+                       <!--
+                          <td>{{ i.Kingdom }}</td>
+                          <td>{{ i.Phylum }}</td>
+                          <td>{{ i.Class }}</td>
+                          <td>{{ i.Order }}</td>
+                          <td>{{ i.Family }}</td>-->
+                          <td>{{ i.Genus }} {{ i.Species }}</td>
+                          <td>{{ i.Abundance |round(2) }}</td>
+                      </tr>
+                      {% endfor %}   
+        
+      </table> 
+      
+        <h2 style="color: red;">Top10 species(Fungi)</h2>
+      <div class="column">
+        <table border="border-box">
+          <tr>
+            <!-- <!--<th>Kingdom</th>
+                        <th>Phylum</th>
+                        <th>Class</th>
+                        <th>Order</th>  
+                        <th>Family</th>
+                        <th>Genus</th>  -->  
+                        <th style="background-color: bisque;">Species</th> 
+                        <th style="background-color: bisque;">Abundance</th> 
+                        
+          </tr>
+          
+            {% for i in fungi1 %}
+                        <tr>
+                          
+                          
+                         <!--
+                          <td>{{ i.Kingdom }}</td>
+                          <td>{{ i.Phylum }}</td>
+                          <td>{{ i.Class }}</td>
+                          <td>{{ i.Order }}</td>
+                          <td>{{ i.Family }}</td>-->
+                          <td>{{ i.Genus }} {{i.Species}}</td>
+                          
+                          <td>{{ i.Abundance |round(2)}}</td>
+                          
+                        </tr>
+                        {% endfor %}   
+          
+        </table> 
+        <h2 style="color: red;">Top10 species(Virus)</h2>
+      <div class="column">
+        <table border="border-box">
+          <tr>
+             <!--<th>Kingdom</th>
+                        <th>Phylum</th>
+                        <th>Class</th>
+                        <th>Order</th>  
+                        <th>Family</th>  
+                        <th>Genus</th>  -->
+                        <th style="background-color: bisque;"> Genus Species</th> 
+                        <th style="background-color: bisque;">Abundance</th> 
+                        
+          </tr>
+          
+            {% for i in virus1 %}
+                        <tr>
+                          
+                          
+                        <!--
+                          <td>{{ i.Kingdom }}</td>
+                          <td>{{ i.Phylum }}</td>
+                          <td>{{ i.Class }}</td>
+                          <td>{{ i.Order }}</td>
+                          <td>{{ i.Family }}</td>-->
+                          <td>{{ i.Genus }} {{i.species}}</td>
+                          
+                          <td>{{ i.Abundance |round(2)}}</td>
+                          
+                        </tr>
+                        {% endfor %}   
+          
+        </table> 
+      
+    <h2 style="color: red;">Composition</h2>
+  <div class="column">
+    <table border="border-box">
+      <tr>
+        <th style="color:rgb(0, 40, 100);background-color: bisque;">Kingdom</th>
+        <th style="color:rgb(40, 0, 100);background-color: bisque;">Percentage</th>
+       
+      </tr>
+      
+        {% for i in compositon1 %}
+            
+              
+              {% if i['Bacteria'] !='' %}
+              <tr><td>Bacteria</td>
+              <td>{{ i['Bacteria'] |round(2)}}</td></tr>
+              {% endif%}
+              {% if i['archaea'] !='' %}
+              <tr><td>Archaea</td>
+              <td>{{ i['archaea'] |round(2)}}</td></tr>
+              {% endif%}
+              {% if i['Fungi'] !='' %}
+              <tr><td>Fungi</td>
+              <td>{{ i['Fungi'] |round(2)}}</td></tr>
+              {% endif%}
+              {% if i['virus'] !='' %}
+              <tr><td>Virus</td>
+              <td>{{ i['virus'] |round(2)}}</td></tr>
+              {% endif%}
+             
+              
+            
+            {% endfor %}    
+      
+    </table>
+  </div>
+  <h2 style="color: red;">Diversity indeces</h2>
+  <div class="column">
+    <table border="border-box">
+      <tr>
+        <th style="color:rgb(0, 40, 100);background-color: bisque;">Alpha Diversity indeces</th>
+        <th style="color:rgb(40, 0, 100);;background-color: bisque;">Score</th>
+        <th style="color:rgb(40, 0, 100);background-color: bisque;">Remarks</th>
+       
+      </tr>
+      
+        {% for i in score1 %}
+                
+                     
+                     
+                      <tr><td>Shannon index</td>
+                      <td>{{ i.Shannon_score |round(2) }}</td>
+                      {% if i.Shannon_score>1.75 %}
+                      <td>Score of  <b style="color: red;">{{ i.Shannon_score|round(2)}}</b> indicates high bacterial richness in your gut microbiome</td></tr>
+                     {% else %}
+                     <td>Score of <b style="color: red;">{{ i.Shannon_score|round(2)}}</b> indicates low bacterial richness in your gut microbiome</td></tr>
+                        {% endif %}
+                      <tr><td>Simpson index</td>
+                      <td>{{ i['Simpson_score'] |round(2)}}</td>
+                      {% if i.Simpson_score ==0 %}
+                      <td>Simpson index of <b style="color: red;">{{ i['Simpson_score'] |round(2)}}</b>  represents absence of diversity</td></tr>
+                      {% elif i.Simpson_score >0.1 and i.Simpson_score < 0.40  %}
+                      <td>Simpson index of <b style="color: red;">{{ i['Simpson_score'] |round(2)}}</b>  represents low degree of diversity</td></tr>
+                      {% elif i.Simpson_score >0.41 and i.Simpson_score < 0.60  %}
+                      <td>Simpson index of <b style="color: red;">{{ i['Simpson_score'] |round(2)}}</b>  represents moderate degree of diversity</td></tr>
+                      {% elif i.Simpson_score >0.61 and i.Simpson_score < 0.80  %}
+                      <td>Simpson index of <b style="color: red;">{{ i['Simpson_score'] |round(2)}}</b>  represents moderately high degree of diversity</td></tr>
+                     {% else %}
+                     <td>Simpson index of <b style="color: red;">{{ i['Simpson_score'] |round(2)}}</b>  represents absolute (perfect) diversity</td></tr>
+                     {%endif%}
+                      <tr><td>Pielou index</td>
+                      <td>{{ i['Pielou_score'] |round(2)}}</td>
+                      {% if i.Pielou_score >0.5 %}
+                      <td>Pielou index of <b style="color: red;">{{i.Pielou_score|round(2)}}</b> indicates a moderately even gut diversity with dominance of certain species </td></tr>
+                      {% else %}
+                      <td>Pielou index of <b style="color: red;">{{i.Pielou_score|round(2)}}</b> indicates a moderately odd gut diversity with dominance of certain species </td></tr>
+                      {% endif %}
+                      
+                      
+                   
+                    {% endfor %}   
+      
+      </table>
+      <h2 style="color:red;">Biome Score</h2>
+      <div class="column">
+        <table border="border-box">
+          <tr>
+              <th style="color:rgb(0, 40, 100);background-color: bisque;">GMHI </th>
+            <th style="color:rgb(40, 0, 100);background-color: bisque;">Score</th>
+            <th style="color:rgb(40, 0, 100);background-color: bisque;">Remarks</th>
+           
+            </tr>
+            {% for i in score1 %}
+            
+            <tr><td>GMHI Score</td>
+              <td>{{ i['GMHI_Score'] |round(2)}}</td>
+              {% if i.GMHI_Score <= 4 and i.GMHI_Score> 1 %}
+              <td>Your gut biome score is 'Positive', which indicates that the microbiome is functioning well and is able to perform important roles such as aiding in digestion, producing vitamins and other nutrients, regulating the immune system, and protecting against harmful pathogens.</td></tr>
+              {% elif i.GMHI_Score <= 1 and i.GMHI_Score> 0 %}
+              <td>Your gut biome score is 'Slightly Positive ', this indicates that the microbiome is functioning well and is able to perform important roles such as aiding in digestion, producing vitamins and other nutrients, regulating the immune system, and protecting against harmful pathogens. However, this score can still be improved further.</td></tr>
+              {% elif i.GMHI_Score <= 0 and i.GMHI_Score> -1 %}
+              <td>Your gut biome score is "Slightly Negative", which means that the balance of microorganisms in your digestive tract may not be as healthy as it should be. This imbalance could be caused by factors such as poor diet, stress or antibiotic use.</td></tr>
+              {% elif i.GMHI_Score <= -1 %}
+              <td>Your gut biome score is "Negative", which means that the balance of microorganisms in your digestive tract needs to be improved. This imbalance could be caused by factors such as poor diet, stress or antibiotic use.</td></tr>
+              {% endif %}
+              {% else %}
+              <td>Beyond the range</td>
+              
+            {% endfor %}        
+
+          </table>
+    
+        </div>
+      <h2 style="color: red;">Enterotype</h2>
+  <div class="column">
+    <table border="border-box">
+      <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;font-size:large;background-color: bisque;">Enterotype</th>
+        <th style="color:rgb(40, 0, 100);font-size:large;font-size:large;background-color: bisque;">Score</th>
+        <th style="color:rgb(40, 0, 100);font-size:large;font-size:large;background-color: bisque;">Remarks</th>
+       
+        </tr>
+        {% for i in score1 %}
+        
+        
+        <tr><th>Bacteroides</th>
+        <td>{{ i['Bacteroides'] |round(2)}}</td>
+        {% if i.Bacteroides >i.Prevotella  and i.Bacteroides > i.Ruminococcus %}
+        <td>If you are Type 1 Bacteroides, it is very possible that you eat a high protein diet. Bacteroides helps break complex carbohydrates and produce SCFAs. This enterotype is linked with lower risk of metabolic disorders and obesity. However, the Bacteroides type has  a high vulnerability towards inflammation and IBD.</td></tr>
+        {% else %}
+        <td> </td></tr>
+        {% endif %}
+        <tr><th>Prevotella</th>
+          <td>{{ i['Prevotella'] |round(2)}}</td>
+          {% if i.Prevotella > i.Bacteroides and i.Prevotella > i.Ruminococcus %}
+          <td>If you are Type 2 Prevotella, it is very possible that you eat more dietary fibre with a vegetable diet and less meat. Prevotella helps synthesize thiamine, a vital vitamin leading to a relatively low chance of discomfort caused by chronic fatigue or poor concentration. However, the Prevotella type has a high chance of stomach ache, should be careful about daily food intake.</td></tr>
+          {% else %}
+          <td> </td></tr>
+          {% endif %}
+        <tr><th>Ruminococcus</th>
+        <td>{{ i['Ruminococcus'] |round(2)}}</td>
+        {% if i.Ruminococcus >i.Bacteroides  and  i.Ruminococcus> i.Prevotella %}
+        <td>If you are Type 3 Ruminococcus, it is possible that you prefer a balanced diet. Ruminococcus plays an important role in the degaradation of complex carbohydrates and the production of beneficial SCFAs in the human gut microbiome. Alterations in its abundance may have implications for human health. Maintain a balanced and varied diet that supports the growth and activity of a diverse range of beneficial bacteria in the gut microbiome.</td></tr>
+        {% else %}
+        <td></td></tr>
+        {% endif %}
+        
+        {% endfor %}        
+
+      </table>
+
+    </div>
+     <!-- 
+      <h2 style="color: red;">Pathogen</h2>
+    <div class="column">
+      <table border="border-box">
+        <tr>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Bacteria</th>
+          <th style="color:rgb(40, 0, 100);background-color: bisque;">Abundance</th>
+        </tr>
+          <tr>
+            {% for i in cp %}
+          
+  {% if i['Helicobacter_pylori'] !='' %}
+  <tr><th>Helicobacter_pylori</th>
+  <td>{{ i['Helicobacter_pylori'] }}</td></tr>
+  {% endif%}
+  {% if i['Escherichia_coli'] !='' %}
+  <tr><th>Escherichia_coli</th>
+  <td>{{ i['Escherichia_coli'] }}</td></tr>
+  {% endif%}
+  {% if i['Salmonella_enterica'] !='' %}
+  <tr><th>Salmonella_enterica</th>
+  <td>{{ i['Salmonella_enterica'] }}</td></tr>
+  {% endif%}
+  {% if i['Yersinia_enterocolitica'] !='' %}
+  <tr><th>Yersinia_enterocolitica</th>
+  <td>{{ i['Yersinia_enterocolitica'] }}</td></tr>
+  {% endif%}
+  {% if i['Citrobacter_freundii'] !='' %}
+  <tr><th>Citrobacter_freundii</th>
+  <td>{{ i['Citrobacter_freundii'] }}</td></tr>
+  {% endif%}
+  {% if i['Raoutella_ornithinolytica'] !='' %}
+  <tr><th>Raoutella_ornithinolytica</th>
+  <td>{{ i['Raoutella_ornithinolytica'] }}</td></tr>
+  {% endif%}
+  {% if i['Blastocystis_hominis'] !='' %}
+  <tr><th>Blastocystis_hominis</th>
+  <td>{{ i['Blastocystis_hominis'] }}</td></tr>
+  {% endif%}
+  {% if i['Cyclospora_cayetanensis'] !='' %}
+  <tr><th>Cyclospora_cayetanensis</th>
+  <td>{{ i['Cyclospora_cayetanensis'] }}</td></tr>
+  {% endif%}
+  {% if i['Bilophila_wadsworthia'] !='' %}
+  <tr><th>Bilophila_wadsworthia</th>
+  <td>{{ i['Bilophila_wadsworthia'] }}</td></tr>
+  {% endif%}
+  {% if i['Entamoeba_histolytica'] !='' %}
+  <tr><th>Entamoeba_histolytica</th>
+  <td>{{ i['Entamoeba_histolytica'] }}</td></tr>
+  {% endif%}
+  {% if i['Klesbsiella_pneumoniae'] !='' %}
+  <tr><th>Klesbsiella_pneumoniae</th>
+  <td>{{ i['Klesbsiella_pneumoniae'] }}</td></tr>
+  {% endif%}
+  {% if i['Vibrio_cholerae'] !='' %}
+  <tr><th>Vibrio_cholerae</th>
+  <td>{{ i['Vibrio_cholerae'] }}</td></tr>
+  {% endif%}
+  {% if i['Clostridioides_difficile'] !='' %}
+  <tr><th>Clostridioides_difficile</th>
+  <td>{{ i['Clostridioides_difficile'] }}</td></tr>
+  {% endif%}
+  {% if i['Hafnia_alvei'] !='' %}
+  <tr><th>Hafnia_alvei</th>
+  <td>{{ i['Hafnia_alvei'] }}</td></tr>
+  {% endif%}
+  {% if i['Giardia_lamblia'] !='' %}
+  <tr><th>Giardia_lamblia</th>
+  <td>{{ i['Giardia_lamblia'] }}</td></tr>
+  {% endif%}
+  {% if i['Clostridium_bolteae'] !='' %}
+  <tr><th>Clostridium_bolteae</th>
+  <td>{{ i['Clostridium_bolteae'] }}</td></tr>
+  {% endif%}
+  {% if i['Bacteroides_fragilis'] !='' %}
+  <tr><th>Bacteroides_fragilis</th>
+  <td>{{ i['Bacteroides_fragilis'] }}</td></tr>
+  {% endif%}
+  {% if i['Klebsiella_pneumoniae'] !='' %}
+  <tr><th>Klebsiella_pneumoniae</th>
+  <td>{{ i['Klebsiella_pneumoniae'] }}</td></tr>
+  {% endif%}
+  {% if i['Bacillus_cereus'] !='' %}
+  <tr><th>Bacillus_cereus</th>
+  <td>{{ i['Bacillus_cereus'] }}</td></tr>
+  {% endif%}
+  {% if i['Shigella_dysenteriae'] !='' %}
+  <tr><th>Shigella_dysenteriae</th>
+  <td>{{ i['Shigella_dysenteriae'] }}</td></tr>
+  {% endif%}
+  {% if i['Enterococcus_faecium'] !='' %}
+  <tr><th>Enterococcus_faecium</th>
+  <td>{{ i['Enterococcus_faecium'] }}</td></tr>
+  {% endif%}
+  {% if i['Clostridium_botulinum'] !='' %}
+  <tr><th>Clostridium_botulinum</th>
+  <td>{{ i['Clostridium_botulinum'] }}</td></tr>
+  {% endif%}
+  {% if i['Clostridium_perfringens'] !='' %}
+  <tr><th>Clostridium_perfringens</th>
+  <td>{{ i['Clostridium_perfringens'] }}</td></tr>
+  {% endif%}
+  {% if i['Clostridium_butyricum'] !='' %}
+  <tr><th>Clostridium_butyricum</th>
+  <td>{{ i['Clostridium_butyricum'] }}</td></tr>
+  {% endif%}
+  {% if i['Fusobacterium_nucleatum'] !='' %}
+  <tr><th>Fusobacterium_nucleatum</th>
+  <td>{{ i['Fusobacterium_nucleatum'] }}</td></tr>
+  {% endif%}
+  {% if i['Streptococcus_agalactiae'] !='' %}
+  <tr><th>Streptococcus_agalactiae</th>
+  <td>{{ i['Streptococcus_agalactiae'] }}</td></tr>
+  {% endif%}
+  {% if i['Leptospira_interrogans'] !='' %}
+  <tr><th>Leptospira_interrogans</th>
+  <td>{{ i['Leptospira_interrogans'] }}</td></tr>
+  {% endif%}
+  {% if i['Yersinia_pestis'] !='' %}
+  <tr><th>Yersinia_pestis</th>
+  <td>{{ i['Yersinia_pestis'] }}</td></tr>
+  {% endif%}
+  {% if i['Staphylococcus_epidermidis'] !='' %}
+  <tr><th>Staphylococcus_epidermidis</th>
+  <td>{{ i['Staphylococcus_epidermidis'] }}</td></tr>
+  {% endif%}
+  {% if i['Staphylococcus_aureus'] !='' %}
+  <tr><th>Staphylococcus_aureus</th>
+  <td>{{ i['Staphylococcus_aureus'] }}</td></tr>
+  {% endif%}
+  {% if i['Streptococcus_pneumoniae'] !='' %}
+  <tr><th>Streptococcus_pneumoniae</th>
+  <td>{{ i['Streptococcus_pneumoniae'] }}</td></tr>
+  {% endif%}
+  {% if i['Listeria_monocytogenes'] !='' %}
+  <tr><th>Listeria_monocytogenes</th>
+  <td>{{ i['Listeria_monocytogenes'] }}</td></tr>
+  {% endif%}
+  {% if i['Enterococcus_faecalis'] !='' %}
+  <tr><th>Enterococcus_faecalis</th>
+  <td>{{ i['Enterococcus_faecalis'] }}</td></tr>
+  {% endif%}
+  {% if i['Clostridium_tetani'] !='' %}
+  <tr><th>Clostridium_tetani</th>
+  <td>{{ i['Clostridium_tetani'] }}</td></tr>
+  {% endif%}
+  {% if i['Chlamydia_trachomatis'] !='' %}
+  <tr><th>Chlamydia_trachomatis</th>
+  <td>{{ i['Chlamydia_trachomatis'] }}</td></tr>
+  {% endif%}
+  {% if i['Campylobacter_jejuni'] !='' %}
+  <tr><th>Campylobacter_jejuni</th>
+  <td>{{ i['Campylobacter_jejuni'] }}</td></tr>
+  {% endif%}
+  {% if i['Yersinia_pseudotuberculosis'] !='' %}
+  <tr><th>Yersinia_pseudotuberculosis</th>
+  <td>{{ i['Yersinia_pseudotuberculosis'] }}</td></tr>
+  {% endif%}
+  {% if i['Treponema_pallidum'] !='' %}
+  <tr><th>Treponema_pallidum</th>
+  <td>{{ i['Treponema_pallidum'] }}</td></tr>
+  {% endif%}
+  {% if i['Staphylococcus_saprophyticus'] !='' %}
+  <tr><th>Staphylococcus_saprophyticus</th>
+  <td>{{ i['Staphylococcus_saprophyticus'] }}</td></tr>
+  {% endif%}
+  {% if i['Rickettsia_rickettsii'] !='' %}
+  <tr><th>Rickettsia_rickettsii</th>
+  <td>{{ i['Rickettsia_rickettsii'] }}</td></tr>
+  {% endif%}
+  {% if i['Proteus_mirabilis'] !='' %}
+  <tr><th>Proteus_mirabilis</th>
+  <td>{{ i['Proteus_mirabilis'] }}</td></tr>
+  {% endif%}
+  {% if i['Mycoplasma_pneumoniae'] !='' %}
+  <tr><th>Mycoplasma_pneumoniae</th>
+  <td>{{ i['Mycoplasma_pneumoniae'] }}</td></tr>
+  {% endif%}
+  {% if i['Haemophilus_influenzae'] !='' %}
+  <tr><th>Haemophilus_influenzae</th>
+  <td>{{ i['Haemophilus_influenzae'] }}</td></tr>
+  {% endif%}
+  {% if i['Brucella_suis'] !='' %}
+  <tr><th>Brucella_suis</th>
+  <td>{{ i['Brucella_suis'] }}</td></tr>
+  {% endif%}
+  {% if i['Brucella_melitensis'] !='' %}
+  <tr><th>Brucella_melitensis</th>
+  <td>{{ i['Brucella_melitensis'] }}</td></tr>
+  {% endif%}
+  {% if i['Brucella_canis'] !='' %}
+  <tr><th>Brucella_canis</th>
+  <td>{{ i['Brucella_canis'] }}</td></tr>
+  {% endif%}
+  {% if i['Brucella_abortus'] !='' %}
+  <tr><th>Brucella_abortus</th>
+  <td>{{ i['Brucella_abortus'] }}</td></tr>
+  {% endif%}
+  {% if i['Bacillus_anthracis'] !='' %}
+  <tr><th>Bacillus_anthracis</th>
+  <td>{{ i['Bacillus_anthracis'] }}</td></tr>
+  {% endif%}
+  {% endfor %}
+      </table>
+          
+                      
+        </tr>
+        
+                       
+                       
+        </tr>
+      </table> 
+</div>
+<h2 style="color: red;">Probiotic</h2>
+    <div class="column">
+      <table border="border-box">
+       
+            <tr>
+              <th style="color:rgb(0, 40, 100);background-color: bisque;">Bacteria</th>
+              <th style="color:rgb(40, 0, 100);background-color: bisque;">Abundance</th>
+            </tr>
+              <tr>
+                {% for i in cb  %}
+          {% if i.Bifidobacterium_animalis!="" %}
+          <tr><th>Bifidobacterium_animalis</th>
+          <td>{{ i.Bifidobacterium_animalis }}</td></tr>
+                
+          {% endif %}
+          {% if i.Bifidobacterium_bifidum!="" %}
+      
+          <tr><th>Bifidobacterium_bifidum</th>
+          <td>{{ i.Bifidobacterium_bifidum }}</td></tr>
+          {% endif %}
+          {% if i.Bifidobacterium_breve!="" %}
+          <tr><th>Bifidobacterium_breve</th>
+          <td>{{ i.Bifidobacterium_breve }}</td></tr>
+          {% endif %}
+          {% if i.Saccharomyces_boulardi!="" %}
+          <tr><th>Saccharomyces_boulardi</th>
+          <td>{{ i.Saccharomyces_boulardi }}</td></tr>
+          {% endif %}
+          {% if i.Bifidobacterium_longum!="" %}
+          <tr><th>Bifidobacterium_longum</th>
+          <td>{{ i.Bifidobacterium_longum }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_acidophilus!="" %}
+          <tr><th>Lactobacillus_acidophilus</th>
+          <td>{{ i.Lactobacillus_acidophilus }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_fermentum!="" %}
+          <tr><th>Lactobacillus_fermentum</th>
+          <td>{{ i.Lactobacillus_fermentum }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_gasseri!="" %}
+          <tr><th>Lactobacillus_gasseri</th>
+          <td>{{ i.Lactobacillus_gasseri }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_helveticus!="" %}
+          <tr><th>Lactobacillus_helveticus</th>
+          <td>{{ i.Lactobacillus_helveticus }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_paracasei!="" %}
+          <tr><th>Lactobacillus_paracasei</th>
+          <td>{{ i.Lactobacillus_paracasei }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_delbrueckii_!="" %}
+          <tr><th>Lactobacillus_delbrueckii_</th>
+          <td>{{ i.Lactobacillus_delbrueckii_ }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_plantarum!="" %}
+          <tr><th>Lactobacillus_plantarum</th>
+          <td>{{ i.Lactobacillus_plantarum }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_johnsonii!="" %}
+          <tr><th>Lactobacillus_johnsonii</th>
+          <td>{{ i.Lactobacillus_johnsonii }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_reuteri!="" %}
+          <tr><th>Lactobacillus_reuteri</th>
+          <td>{{ i.Lactobacillus_reuteri }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_casei!="" %}
+          <tr><th>Lactobacillus_casei</th>
+          <td>{{ i.Lactobacillus_casei }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_rhamnosus!="" %}
+          <tr><th>Lactobacillus_rhamnosus</th>
+          <td>{{ i.Lactobacillus_rhamnosus }}</td></tr>
+          {% endif %}
+          {% if i.Lactobacillus_salivarius!="" %}
+          <tr><th>Lactobacillus_salivarius</th>
+          <td>{{ i.Lactobacillus_salivarius }}</td></tr>
+          {% endif %}
+          {% if i.Lactococcus_lactis!="" %}
+          <tr><th>Lactococcus_lactis</th>
+          <td>{{ i.Lactococcus_lactis }}</td></tr>
+          {% endif %}
+          {% if i.Streptococcus_thermophilus!="" %}
+          <tr><th>Streptococcus_thermophilus</th>
+          <td>{{ i.Streptococcus_thermophilus }}</td></tr>
+          {% endif %}
+          {% if i.Enterococcus_durans!="" %}
+          <tr><th>Enterococcus_durans</th>
+          <td>{{ i.Enterococcus_durans }}</td></tr>
+          {% endif %}
+          {% if i.Enterococcus_faecium!="" %}
+          <tr><th>Enterococcus_faecium</th>
+          <td>{{ i.Enterococcus_faecium }}</td></tr>
+          {% endif %}
+          {% if i.Pediococcus_acidilactici!="" %}
+          <tr><th>Pediococcus_acidilactici</th>
+          <td>{{ i.Pediococcus_acidilactici }}</td></tr>
+          {% endif %}
+          {% if i.Leuconostoc_mesenteroides!="" %}
+          <tr><th>Leuconostoc_mesenteroides</th>
+          <td>{{ i.Leuconostoc_mesenteroides }}</td></tr>
+          {% endif %}
+          {% if i.Bacillus_coagulans!="" %}
+          <tr><th>Bacillus_coagulans</th>
+          <td>{{ i.Bacillus_coagulans }}</td></tr>
+          {% endif %}
+          {% if i.Bacillus_subtilis!="" %}
+          <tr><th>Bacillus_subtilis</th>
+          <td>{{ i.Bacillus_subtilis }}</td></tr>
+          {% endif %}
+          {% if i.Bacillus_cereus!="" %}
+          <tr><th>Bacillus_cereus</th>
+          <td>{{ i.Bacillus_cereus }}</td></tr>
+          {% endif %}
+          
+          {% endfor %}
+          
+            
+              </tr>
+          </table>
+           </tr>
+      </table> -->
+      <h2 style="color: red;">Keystone species</h2>
+      <div class="column">
+        <table border="border-box">
+          
+          <tr>
+            <th style="color:rgb(0, 40, 100);background-color: bisque;">Bacteria</th>
+            <th style="color:rgb(40, 0, 100);background-color: bisque;">Abundance</th>
+            <th style="color:rgb(40, 0, 100);background-color: bisque;">Range</th>
+            <th style="color:rgb(40, 0, 100);background-color: bisque;">Recommendation (Low/High)</th>
+          </tr>
+            
+             
+          {% for i in kstone1 %} 
+         
+          {% if i['[Clostridium]_saccharolyticum']!='' %}
+          <tr><th>[Clostridium]_saccharolyticum</th>
+          <td>{{ i['[Clostridium]_saccharolyticum'] |float|round(5)}}</td>
+          
+          {% if i['[Clostridium]_saccharolyticum'] | float > 0 and i['[Clostridium]_saccharolyticum'] | float <= 0.67 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['[Clostridium]_saccharolyticum'] | float > 0.67 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Clostridium saccharolyticum' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% elif i['[Clostridium]_saccharolyticum'] | float <= 0 %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Clostridium saccharolyticum' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif%}
+          
+          {% if i['[Ruminococcus]_torques']!='' %}
+          <tr><th>[Ruminococcus]_torques</th>
+          <td>{{ i['[Ruminococcus]_torques'] |float|round(5) }}</td>
+          
+          {% if i['[Ruminococcus]_torques'] | float > 0 and i['[Ruminococcus]_torques'] | float <= 10.19 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['[Ruminococcus]_torques'] | float > 10.19 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus torques' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus torques' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif%}
+          {% if i.Acidaminococcus_fermentans!='' %}
+          <tr><th>Acidaminococcus_fermentans</th>
+          <td>{{ i.Acidaminococcus_fermentans |float|round(5)}}</td>
+          
+          
+          {% if i.Acidaminococcus_fermentans | float > 0 and i.Acidaminococcus_fermentans | float <= 0.18 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Acidaminococcus_fermentans | float > 0.18 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Acidaminococcus fermentans' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Acidaminococcus fermentans' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif%}
+          {% if i.Acidaminococcus_intestini!='' %}
+          <tr><th>Acidaminococcus_intestini</th>
+          <td>{{ i.Acidaminococcus_intestini |float|round(5)}}</td>
+          
+          {% if i.Acidaminococcus_intestini | float > 0 and i.Acidaminococcus_intestini | float <= 2.66 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Acidaminococcus_intestini | float > 2.66 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Acidaminococcus intestini' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Acidaminococcus intestini' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif%}
+          {% endif %}
+          {% if i['Acidovorax_sp._KKS102']!='' %}
+          <tr><th>Acidovorax_sp._KKS102</th>
+          <td>{{ i['Acidovorax_sp._KKS102'] |float|round(5)}}</td>
+          
+          {% if i['Acidovorax_sp._KKS102'] | float > 0 and i['Acidovorax_sp._KKS102'] | float <= 0.04 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Acidovorax_sp._KKS102'] | float > 0.04 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Acidovorax sp. KKS102' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Acidovorax sp. KKS102' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Adlercreutzia_equolifaciens!='' %}
+          <tr><th>Adlercreutzia_equolifaciens</th>
+          <td>{{ i.Adlercreutzia_equolifaciens |float|round(5)}}</td>
+          
+          {% if i.Adlercreutzia_equolifaciens | float > 0 and i.Adlercreutzia_equolifaciens | float <= 0.64 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Adlercreutzia_equolifaciens | float > 0.64 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Adlercreutzia equolifaciens' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Adlercreutzia equolifaciens' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Akkermansia_muciniphila!='' %}
+          <tr><th>Akkermansia_muciniphila</th>
+          <td>{{ i.Akkermansia_muciniphila |float|round(5)}}</td>
+          
+          {% if i.Akkermansia_muciniphila | float > 0 and i.Akkermansia_muciniphila | float <= 9.21 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Akkermansia_muciniphila | float > 9.21 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Akkermansia muciniphila' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Akkermansia muciniphila' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Alistipes_finegoldii!='' %}
+          <tr><th>Alistipes_finegoldii</th>
+          <td>{{ i.Alistipes_finegoldii |float|round(5)}}</td>
+          
+          {% if i.Alistipes_finegoldii | float > 0 and i.Alistipes_finegoldii | float <= 7.25 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Alistipes_finegoldii | float > 7.25 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Alistipes finegoldii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Alistipes finegoldii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {%endif %}
+          {% if i.Alistipes_shahii!='' %}
+          <tr><th>Alistipes_shahii</th>
+          <td>{{ i.Alistipes_shahii |float|round(5)}}</td>
+          
+          {% if i.Alistipes_shahii | float > 0 and i.Alistipes_shahii | float <= 8.22 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Alistipes_shahii | float > 8.22 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Alistipes shahii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Alistipes shahii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Anaerococcus_prevotii!='' %}
+          <tr><th>Anaerococcus_prevotii</th>
+          <td>{{ i.Anaerococcus_prevotii |float|round(5)}}</td>
+          
+          {% if i.Anaerococcus_prevotii | float > 0 and i.Anaerococcus_prevotii | float <= 0.02 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Anaerococcus_prevotii | float > 0.02 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Anaerococcus prevotii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Anaerococcus prevotii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Anaerostipes_hadrus!='' %}
+          <tr><th>Anaerostipes_hadrus</th>
+          <td>{{ i.Anaerostipes_hadrus |float|round(5)}}</td>
+         
+          {% if i.Anaerostipes_hadrus | float > 0 and i.Anaerostipes_hadrus | float <= 3.20 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Anaerostipes_hadrus | float > 3.2 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Anaerostipes hadrus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Anaerostipes hadrus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacillus_methanolicus!='' %}
+          <tr><th>Bacillus_methanolicus</th>
+          <td>{{ i.Bacillus_methanolicus |float|round(5)}}</td>
+          
+          {% if i.Bacillus_methanolicus | float > 0 and i.Bacillus_methanolicus | float <= 0.13 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacillus_methanolicus | float > 0.13 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacillus methanolicus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacillus methanolicus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_cellulosilyticus!='' %}
+          <tr><th>Bacteroides_cellulosilyticus</th>
+          <td>{{ i.Bacteroides_cellulosilyticus |float|round(5)}}</td>
+         
+          {% if i.Bacteroides_cellulosilyticus | float > 0.01 and i.Bacteroides_cellulosilyticus | float <= 19.05 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_cellulosilyticus | float > 19.05 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides cellulosilyticus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides cellulosilyticus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_dorei!='' %}
+          <tr><th>Bacteroides_dorei</th>
+          <td>{{ i.Bacteroides_dorei |float|round(5)}}</td>
+          
+          {% if i.Bacteroides_dorei | float > 0.08 and i.Bacteroides_dorei | float <= 24.74 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_dorei | float > 24.74 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides dorei' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides dorei' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {%endif %}
+          {% if i.Bacteroides_helcogenes!='' %}
+          <tr><th>Bacteroides_helcogenes</th>
+          <td>{{ i.Bacteroides_helcogenes |float|round(5)}}</td>
+          
+          {% if i.Bacteroides_helcogenes | float > 0 and i.Bacteroides_helcogenes | float <= 2.78 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_helcogenes | float > 2.78 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides helcogenes' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides helcogenes' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_ovatus!='' %}
+          <tr><th>Bacteroides_ovatus</th>
+          <td>{{ i.Bacteroides_ovatus |float|round(5)}}</td>
+          
+          {% if i.Bacteroides_ovatus | float > 0.03 and i.Bacteroides_ovatus | float <= 46.70 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_ovatus | float > 46.70 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides ovatus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides ovatus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_salanitronis!='' %}
+          <tr><th>Bacteroides_salanitronis</th>
+          <td>{{ i.Bacteroides_salanitronis |float|round(5)}}</td>
+          
+          {% if i.Bacteroides_salanitronis | float > 0.01 and i.Bacteroides_salanitronis | float <= 1.59 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_salanitronis | float > 1.59 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides salanitronis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides salanitronis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Bacteroides_sp._CAG:98']!='' %}
+          <tr><th>Bacteroides_sp._CAG:98</th>
+          <td>{{ i['Bacteroides_sp._CAG:98'] |float|round(5)}}</td>
+          
+          {% if i['Bacteroides_sp._CAG:98'] | float > 0.06 and i['Bacteroides_sp._CAG:98'] | float <= 15.49 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Bacteroides_sp._CAG:98'] | float > 15.49 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides sp. CAG:98' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides sp. CAG:98' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_thetaiotaomicron!='' %}
+          <tr><th>Bacteroides_thetaiotaomicron</th>
+          <td>{{ i.Bacteroides_thetaiotaomicron |float|round(5) }}</td>
+          
+          {% if i.Bacteroides_thetaiotaomicron | float > 0.01 and i.Bacteroides_thetaiotaomicron | float <= 23.14 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_thetaiotaomicron | float > 23.14 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides thetaiotaomicron' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides thetaiotaomicron' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_vulgatus!='' %}
+          <tr><th>Bacteroides_vulgatus</th>
+          <td>{{ i.Bacteroides_vulgatus |float|round(5)}}</td>
+          
+          {% if i.Bacteroides_vulgatus | float > 0.12 and i.Bacteroides_vulgatus | float <= 30.82 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_vulgatus | float > 0 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides vulgatus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides vulgatus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bacteroides_xylanisolvens!='' %}
+          <tr><th>Bacteroides_xylanisolvens</th>
+          <td>{{ i.Bacteroides_xylanisolvens |float|round(5)}}</td>
+          
+          {% if i.Bacteroides_xylanisolvens | float > 0.02 and i.Bacteroides_xylanisolvens | float <= 25.63 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bacteroides_xylanisolvens | float > 25.63 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides xylanisolvens' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bacteroides xylanisolvens' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Barnesiella_viscericola!='' %}
+          <tr><th>Barnesiella_viscericola</th>
+          <td>{{ i.Barnesiella_viscericola |float|round(5)}}</td>
+          
+          {% if i.Barnesiella_viscericola | float > 0.01 and i.Barnesiella_viscericola | float <= 0.98 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Barnesiella_viscericola | float > 0.98 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Barnesiella viscericola' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Barnesiella viscericola' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bifidobacterium_adolescentis!='' %}
+          <tr><th>Bifidobacterium_adolescentis</th>
+          <td>{{ i.Bifidobacterium_adolescentis |float|round(5)}}</td>
+          
+          {% if i.Bifidobacterium_adolescentis | float > 0 and i.Bifidobacterium_adolescentis | float <= 2.20 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bifidobacterium_adolescentis | float > 2.20 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium adolescentis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium adolescentis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bifidobacterium_dentium!='' %}
+          <tr><th>Bifidobacterium_dentium</th>
+          <td>{{ i.Bifidobacterium_dentium |float|round(5) }}</td>
+          
+          {% if i.Bifidobacterium_dentium | float > 0 and i.Bifidobacterium_dentium | float <= 0.09 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bifidobacterium_dentium | float > 0.09 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium dentium' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium dentium' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bifidobacterium_kashiwanohense!='' %}
+          <tr><th>Bifidobacterium_kashiwanohense</th>
+          <td>{{ i.Bifidobacterium_kashiwanohense |float|round(5)}}</td>
+          
+          {% if i.Bifidobacterium_kashiwanohense | float > 0 and i.Bifidobacterium_kashiwanohense | float <= 1.31 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bifidobacterium_kashiwanohense | float > 1.31 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium kashiwanohense' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium kashiwanohense' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Bifidobacterium_thermophilum!='' %}
+          <tr><th>Bifidobacterium_thermophilum</th>
+          <td>{{ i.Bifidobacterium_thermophilum |float|round(5)}}</td>
+          
+          {% if i.Bifidobacterium_thermophilum | float > 0 and i.Bifidobacterium_thermophilum | float <= 0.03 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Bifidobacterium_thermophilum | float > 0.03 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium thermophilum' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Bifidobacterium thermophilum' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Blautia_obeum!='' %}
+          <tr><th>Blautia_obeum</th>
+          <td>{{ i.Blautia_obeum |float|round(5)}}</td>
+          
+          {% if i.Blautia_obeum | float > 0 and i.Blautia_obeum | float <= 2.64 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Blautia_obeum | float > 2.64 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Blautia obeum' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Blautia obeum' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['butyrate-producing_bacterium_SM4/1']!='' %}
+          <tr><th>butyrate-producing_bacterium_SM4/1</th>
+          <td>{{ i['butyrate-producing_bacterium_SM4/1'] |float|round(5)}}</td>
+          
+          {% if i['butyrate-producing_bacterium_SM4/1'] | float > 0 and i['butyrate-producing_bacterium_SM4/1'] | float <= 0.54 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['butyrate-producing_bacterium_SM4/1'] | float > 0.54 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'butyrate-producing bacterium SM4/1' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'butyrate-producing bacterium SM4/1' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['butyrate-producing_bacterium_SS3/4'] !='' %}
+          <tr><th>butyrate-producing_bacterium_SS3/4</th>
+          <td>{{ i['butyrate-producing_bacterium_SS3/4'] |float|round(5)}}</td>
+          
+          {% if i['butyrate-producing_bacterium_SS3/4'] | float > 0 and i['butyrate-producing_bacterium_SS3/4'] | float <= 1.04 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['butyrate-producing_bacterium_SS3/4'] | float > 1.04 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'butyrate-producing bacterium SS3/4' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'butyrate-producing bacterium SS3/4' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Campylobacter_coli!='' %}
+          <tr><th>Campylobacter_coli</th>
+          <td>{{ i.Campylobacter_coli |float|round(5)}}</td>
+          
+          {% if i.Campylobacter_coli | float > 0 and i.Campylobacter_coli | float <= 0.08 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Campylobacter_coli | float > 0.08 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Campylobacter coli' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Campylobacter coli' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Campylobacter_hominis!='' %}
+          <tr><th>Campylobacter_hominis</th>
+          <td>{{ i.Campylobacter_hominis |float|round(5)}}</td>
+          
+          {% if i.Campylobacter_hominis | float > 0 and i.Campylobacter_hominis | float <= 0.10 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Campylobacter_hominis | float > 0.10 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Campylobacter hominis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Campylobacter hominis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Candidatus_Methanomassiliicoccus_intestinalis!='' %}
+          <tr><th>Candidatus_Methanomassiliicoccus_intestinalis</th>
+          <td>{{ i.Candidatus_Methanomassiliicoccus_intestinalis |float|round(5)}}</td>
+         
+          {% if i.Candidatus_Methanomassiliicoccus_intestinalis | float > 0 and i.Candidatus_Methanomassiliicoccus_intestinalis | float <= 0.20 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Candidatus_Methanomassiliicoccus_intestinalis | float > 0.20 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Candidatus Methanomassiliicoccus intestinalis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Candidatus Methanomassiliicoccus intestinalis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Coprococcus_catus!='' %}
+          <tr><th>Coprococcus_catus</th>
+          <td>{{ i.Coprococcus_catus |float|round(5)}}</td>
+          
+          {% if i.Coprococcus_catus | float > 0 and i.Coprococcus_catus | float <= 1.63 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Coprococcus_catus | float > 1.63 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Coprococcus catus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Coprococcus catus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Coprococcus_sp._ART55/1']!='' %}
+          <tr><th>Coprococcus_sp._ART55/1</th>
+          <td>{{ i['Coprococcus_sp._ART55/1'] |float|round(5)}}</td>
+          
+          {% if i['Coprococcus_sp._ART55/1'] | float > 0 and i['Coprococcus_sp._ART55/1'] | float <= 10.70 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Coprococcus_sp._ART55/1'] | float > 10.70 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Coprococcus sp. ART55/1' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Coprococcus sp. ART55/1' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Cutibacterium_acnes!='' %}
+          <tr><th>Cutibacterium_acnes</th>
+          <td>{{ i.Cutibacterium_acnes |float|round(5)}}</td>
+          
+          {% if i.Cutibacterium_acnes | float > 0 and i.Cutibacterium_acnes | float <= 0.05 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Cutibacterium_acnes | float > 0.05 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Cutibacterium acnes' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Cutibacterium acnes' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Eggerthella_lenta!='' %}
+          <tr><th>Eggerthella_lenta</th>
+          <td>{{ i.Eggerthella_lenta |float|round(5)}}</td>
+          
+          {% if i.Eggerthella_lenta | float > 0 and i.Eggerthella_lenta | float <= 0.25 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Eggerthella_lenta | float > 0.25 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eggerthella lenta' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eggerthella lenta' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Eggerthella_sp._YY7918'] !='' %}
+          <tr><th>Eggerthella_sp._YY7918</th>
+          <td>{{ i['Eggerthella_sp._YY7918'] |float|round(5)}}</td>
+          
+          {% if i['Eggerthella_sp._YY7918'] | float > 0 and i['Eggerthella_sp._YY7918'] | float <= 0.04 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Eggerthella_sp._YY7918'] | float > 0.04 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eggerthella sp. YY7918' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eggerthella sp. YY7918' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Enterococcus_hirae!='' %}
+          <tr><th>Enterococcus_hirae</th>
+          <td>{{ i.Enterococcus_hirae |float|round(5)}}</td>
+          
+          {% if i.Enterococcus_hirae | float > 0 and i.Enterococcus_hirae | float <= 0.07 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Enterococcus_hirae | float > 0.07 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Enterococcus hirae' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Enterococcus hirae' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Ethanoligenens_harbinense!='' %}
+          <tr><th>Ethanoligenens_harbinense</th>
+          <td>{{ i.Ethanoligenens_harbinense |float|round(5)}}</td>
+          
+          {% if i.Ethanoligenens_harbinense | float > 0 and i.Ethanoligenens_harbinense | float <= 0.06 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Ethanoligenens_harbinense | float > 0.06 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ethanoligenens harbinense' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ethanoligenens harbinense' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Eubacterium_eligens!='' %}
+          <tr><th>Eubacterium_eligens</th>
+          <td>{{ i.Eubacterium_eligens |float|round(5)}}</td>
+          
+          {% if i.Eubacterium_eligens | float > 0 and i.Eubacterium_eligens | float <= 3.53 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Eubacterium_eligens | float > 3.53 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eubacterium eligens' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eubacterium eligens' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Eubacterium_limosum!='' %}
+          <tr><th>Eubacterium_limosum</th>
+          <td>{{ i.Eubacterium_limosum |float|round(5)}}</td>
+          
+          {% if i.Eubacterium_limosum | float > 0 and i.Eubacterium_limosum | float <= 0.11 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Eubacterium_limosum | float > 0.11 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eubacterium limosum' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eubacterium limosum' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Eubacterium_rectale!='' %}
+          <tr><th>Eubacterium_rectale</th>
+          <td>{{ i.Eubacterium_rectale |float|round(5) }}</td>
+          
+          {% if i.Eubacterium_rectale | float > 0 and i.Eubacterium_rectale | float <= 17.85 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Eubacterium_rectale | float > 17.85 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eubacterium rectale' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Eubacterium rectale' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Faecalibacterium_prausnitzii!='' %}
+          <tr><th>Faecalibacterium_prausnitzii</th>
+          <td>{{ i.Faecalibacterium_prausnitzii |float|round(5) }}</td>
+          
+          {% if i.Faecalibacterium_prausnitzii | float > 0 and i.Faecalibacterium_prausnitzii | float <= 9.05 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Faecalibacterium_prausnitzii | float > 9.05 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Faecalibacterium prausnitzii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Faecalibacterium prausnitzii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Faecalitalea_cylindroides!='' %}
+          <tr><th>Faecalitalea_cylindroides</th>
+          <td>{{ i.Faecalitalea_cylindroides |float|round(5)}}</td>
+          
+          {% if i.Faecalitalea_cylindroides | float > 0 and i.Faecalitalea_cylindroides | float <= 0.88 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Faecalitalea_cylindroides | float > 0.88 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Faecalitalea cylindroides' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Faecalitalea cylindroides' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Fermentimonas_caenicola!='' %}
+          <tr><th>Fermentimonas_caenicola</th>
+          <td>{{ i.Fermentimonas_caenicola |float|round(5)}}</td>
+          
+          {% if i.Fermentimonas_caenicola | float > 0 and i.Fermentimonas_caenicola | float <= 0.08 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Fermentimonas_caenicola | float > 0.08 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Fermentimonas caenicola' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Fermentimonas caenicola' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Gardnerella_vaginalis!='' %}
+          <tr><th>Gardnerella_vaginalis</th>
+          <td>{{ i.Gardnerella_vaginalis |float|round(5)}}</td>
+          
+          {% if i.Gardnerella_vaginalis | float > 0 and i.Gardnerella_vaginalis | float <= 0.05 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Gardnerella_vaginalis | float > 0.05 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Gardnerella vaginalis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Gardnerella vaginalis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Gordonibacter_pamelaeae!='' %}
+          <tr><th>Gordonibacter_pamelaeae</th>
+          <td>{{ i.Gordonibacter_pamelaeae |float|round(5)}}</td>
+          
+          {% if i.Gordonibacter_pamelaeae | float > 0 and i.Gordonibacter_pamelaeae | float <= 0.32 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Gordonibacter_pamelaeae | float > 0.32 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Gordonibacter pamelaeae' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Gordonibacter pamelaeae' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Haemophilus_parainfluenzae!='' %}
+          <tr><th>Haemophilus_parainfluenzae</th>
+          <td>{{ i.Haemophilus_parainfluenzae |float|round(5)}}</td>
+         
+          {% if i.Haemophilus_parainfluenzae | float > 0 and i.Haemophilus_parainfluenzae | float <= 4.10 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Haemophilus_parainfluenzae | float > 4.10 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Haemophilus parainfluenzae' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Haemophilus parainfluenzae' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Intestinimonas_butyriciproducens!='' %}
+          <tr><th>Intestinimonas_butyriciproducens</th>
+          <td>{{ i.Intestinimonas_butyriciproducens |float|round(5)}}</td>
+          
+          {% if i.Intestinimonas_butyriciproducens | float > 0 and i.Intestinimonas_butyriciproducens | float <= 5.88 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Intestinimonas_butyriciproducens | float > 5.88 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Intestinimonas butyriciproducens' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Intestinimonas butyriciproducens' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Klebsiella_aerogenes!='' %}
+          <tr><th>Klebsiella_aerogenes</th>
+          <td>{{ i.Klebsiella_aerogenes |float|round(5)}}</td>
+          
+          {% if i.Klebsiella_aerogenes | float > 0 and i.Klebsiella_aerogenes | float <= 0.36 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Klebsiella_aerogenes | float > 0.36 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Klebsiella aerogenes' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Klebsiella aerogenes' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Klebsiella_michiganensis!='' %}
+          <tr><th>Klebsiella_michiganensis</th>
+          <td>{{ i.Klebsiella_michiganensis |float|round(5)}}</td>
+          
+          {% if i.Klebsiella_michiganensis | float > 0 and i.Klebsiella_michiganensis | float <= 0.01 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Klebsiella_michiganensis | float > 0.01 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Klebsiella michiganensis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Klebsiella michiganensis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Klebsiella_variicola!='' %}
+          <tr><th>Klebsiella_variicola</th>
+          <td>{{ i.Klebsiella_variicola |float|round(5)}}</td>
+          
+          {% if i.Klebsiella_variicola | float > 0 and i.Klebsiella_variicola | float <= 0.21 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Klebsiella_variicola | float > 0.21 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Klebsiella variicola' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Klebsiella variicola' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Lachnoclostridium_phytofermentans!='' %}
+          <tr><th>Lachnoclostridium_phytofermentans</th>
+          <td>{{ i.Lachnoclostridium_phytofermentans |float|round(5)}}</td>
+          
+          {% if i.Lachnoclostridium_phytofermentans | float > 0 and i.Lachnoclostridium_phytofermentans | float <= 0.34 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Lachnoclostridium_phytofermentans | float > 0.34 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Lachnoclostridium phytofermentans' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Lachnoclostridium phytofermentans' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Lactobacillus_ruminis!='' %}
+          <tr><th>Lactobacillus_ruminis</th>
+          <td>{{ i.Lactobacillus_ruminis |float|round(5)}}</td>
+          
+          {% if i.Lactobacillus_ruminis | float > 0 and i.Lactobacillus_ruminis | float <= 9.03 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Lactobacillus_ruminis | float > 9.03 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Lactobacillus ruminis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Lactobacillus ruminis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Leuconostoc_citreum!='' %}
+          <tr><th>Leuconostoc_citreum</th>
+          <td>{{ i.Leuconostoc_citreum |float|round(5)}}</td>
+          
+          {% if i.Leuconostoc_citreum | float > 0 and i.Leuconostoc_citreum | float <= 0.12 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Leuconostoc_citreum | float > 0.12 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Leuconostoc citreum' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Leuconostoc citreum' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Mageeibacillus_indolicus!='' %}
+          <tr><th>Mageeibacillus_indolicus</th>
+          <td>{{ i.Mageeibacillus_indolicus |float|round(5)}}</td>
+          
+          {% if i.Mageeibacillus_indolicus | float > 0 and i.Mageeibacillus_indolicus | float <= 0.03 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Mageeibacillus_indolicus | float > 0.03 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Mageeibacillus indolicus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Mageeibacillus indolicus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Megamonas_sp._Calf98-2']!='' %}
+          <tr><th>Megamonas_sp._Calf98-2</th>
+          <td>{{ i['Megamonas_sp._Calf98-2'] |float|round(5)}}</td>
+          
+          {% if i['Megamonas_sp._Calf98-2'] | float > 0 and i['Megamonas_sp._Calf98-2'] | float <= 1.09 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Megamonas_sp._Calf98-2'] | float > 1.09 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Megamonas sp. Calf98-2' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Megamonas sp. Calf98-2' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Methanobrevibacter_smithii!='' %}
+          <tr><th>Methanobrevibacter_smithii</th>
+          <td>{{ i.Methanobrevibacter_smithii |float|round(5)}}</td>
+          
+          {% if i.Methanobrevibacter_smithii | float > 0 and i.Methanobrevibacter_smithii | float <= 0.64 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Methanobrevibacter_smithii | float > 0.64 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Methanobrevibacter smithii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Methanobrevibacter smithii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Odoribacter_splanchnicus!='' %}
+          <tr><th>Odoribacter_splanchnicus</th>
+          <td>{{ i.Odoribacter_splanchnicus |float|round(5) }}</td>
+          
+          {% if i.Odoribacter_splanchnicus | float > 0 and i.Odoribacter_splanchnicus | float <= 4.82 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Odoribacter_splanchnicus | float > 4.82 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Odoribacter splanchnicus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Odoribacter splanchnicus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Ornithobacterium_rhinotracheale!='' %}
+          <tr><th>Ornithobacterium_rhinotracheale</th>
+          <td>{{ i.Ornithobacterium_rhinotracheale |float|round(5)}}</td>
+          
+          {% if i.Ornithobacterium_rhinotracheale | float > 0 and i.Ornithobacterium_rhinotracheale | float <= 0.55 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Ornithobacterium_rhinotracheale | float > 0.55 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ornithobacterium rhinotracheale' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ornithobacterium rhinotracheale' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Oscillibacter_valericigenes!='' %}
+          <tr><th>Oscillibacter_valericigenes</th>
+          <td>{{ i.Oscillibacter_valericigenes |float|round(5)}}</td>
+          
+          {% if i.Oscillibacter_valericigenes | float > 0 and i.Oscillibacter_valericigenes | float <= 0.29 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Oscillibacter_valericigenes | float > 0.29 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Oscillibacter valericigenes' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Oscillibacter valericigenes' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Paenibacillus_sabinae!='' %}
+          <tr><th>Paenibacillus_sabinae</th>
+          <td>{{ i.Paenibacillus_sabinae |float|round(5)}}</td>
+          
+          {% if i.Paenibacillus_sabinae | float > 0 and i.Paenibacillus_sabinae | float <= 0.04 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Paenibacillus_sabinae | float > 0.04 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Paenibacillus sabinae' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Paenibacillus sabinae' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Paeniclostridium_sordellii!='' %}
+          <tr><th>Paeniclostridium_sordellii</th>
+          <td>{{ i.Paeniclostridium_sordellii |float|round(5) }}</td>
+          
+          {% if i.Paeniclostridium_sordellii | float > 0 and i.Paeniclostridium_sordellii | float <= 1.01 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Paeniclostridium_sordellii | float > 1.01 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Paeniclostridium sordellii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Paeniclostridium sordellii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Parabacteroides_distasonis!='' %}
+          <tr><th>Parabacteroides_distasonis</th>
+          <td>{{ i.Parabacteroides_distasonis |float|round(5)}}</td>
+          
+          {% if i.Parabacteroides_distasonis | float > 0.01 and i.Parabacteroides_distasonis | float <= 14.72 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Parabacteroides_distasonis | float > 14.72 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Parabacteroides distasonis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Parabacteroides distasonis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Parvimonas_micra!='' %}
+          <tr><th>Parvimonas_micra</th>
+          <td>{{ i.Parvimonas_micra |float|round(5) }}</td>
+          
+          {% if i.Parvimonas_micra | float > 0 and i.Parvimonas_micra | float <= 0.24 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Parvimonas_micra | float > 0.24 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Parvimonas micra' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Parvimonas micra' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Porphyromonas_asaccharolytica!='' %}
+          <tr><th>Porphyromonas_asaccharolytica</th>
+          <td>{{ i.Porphyromonas_asaccharolytica |float|round(5)}}</td>
+          
+          {% if i.Porphyromonas_asaccharolytica | float > 0 and i.Porphyromonas_asaccharolytica | float <= 0.14 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Porphyromonas_asaccharolytica | float > 0.14 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Porphyromonas asaccharolytica' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Porphyromonas asaccharolytica' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Porphyromonas_gingivalis!='' %}
+          <tr><th>Porphyromonas_gingivalis</th>
+          <td>{{ i.Porphyromonas_gingivalis |float|round(5)}}</td>
+          
+          {% if i.Porphyromonas_gingivalis | float > 0 and i.Porphyromonas_gingivalis | float <= 0.06 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Porphyromonas_gingivalis | float > 0.06 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Porphyromonas gingivalis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Porphyromonas gingivalis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Prevotella_dentalis!='' %}
+          <tr><th>Prevotella_dentalis</th>
+          <td>{{ i.Prevotella_dentalis |float|round(5)}}</td>
+          
+          {% if i.Prevotella_dentalis | float > 0 and i.Prevotella_dentalis | float <= 1.50 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Prevotella_dentalis | float > 1.50 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella dentalis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella dentalis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Prevotella_denticola!='' %}
+          <tr><th>Prevotella_denticola</th>
+          <td>{{ i.Prevotella_denticola |float|round(5)}}</td>
+          
+          {% if i.Prevotella_denticola | float > 0 and i.Prevotella_denticola | float <= 0.69 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Prevotella_denticola | float > 0.69 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella denticola' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella denticola' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Prevotella_intermedia!='' %}
+          <tr><th>Prevotella_intermedia</th>
+          <td>{{ i.Prevotella_intermedia |float|round(5)}}</td>
+          
+          
+          {% if i.Prevotella_intermedia | float > 0 and i.Prevotella_intermedia | float <= 0.44 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Prevotella_intermedia | float > 0.44 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella intermedia' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella intermedia' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Prevotella_melaninogenica!='' %}
+          <tr><th>Prevotella_melaninogenica</th>
+          <td>{{ i.Prevotella_melaninogenica |float|round(5)}}</td>
+          
+          
+          {% if i.Prevotella_melaninogenica | float > 0 and i.Prevotella_melaninogenica | float <= 5.70 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Prevotella_melaninogenica | float > 5.70 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella melaninogenica' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella melaninogenica' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Prevotella_ruminicola!='' %}
+          <tr><th>Prevotella_ruminicola</th>
+          <td>{{ i.Prevotella_ruminicola |float|round(5)}}</td>
+          
+          
+          {% if i.Prevotella_ruminicola | float > 0 and i.Prevotella_ruminicola | float <= 1.14 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Prevotella_ruminicola | float > 1.14 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella ruminicola' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella ruminicola' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Prevotella_sp._oral_taxon_299']!='' %}
+          <tr><th>Prevotella_sp._oral_taxon_299</th>
+          <td>{{ i['Prevotella_sp._oral_taxon_299'] |float|round(5)}}</td>
+          
+          {% if i['Prevotella_sp._oral_taxon_299'] | float > 0 and i['Prevotella_sp._oral_taxon_299'] | float <= 1.56 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Prevotella_sp._oral_taxon_299'] | float > 1.56 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella sp. oral taxon 299' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Prevotella sp. oral taxon 299' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Raoultella_ornithinolytica!='' %}
+          <tr><th>Raoultella_ornithinolytica</th>
+          <td>{{ i.Raoultella_ornithinolytica |float|round(5)}}</td>
+          
+          
+          {% if i.Raoultella_ornithinolytica | float > 0 and i.Raoultella_ornithinolytica | float <= 0.08 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Raoultella_ornithinolytica | float > 0.08 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Raoultella ornithinolytica' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Raoultella ornithinolytica' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Roseburia_hominis!='' %}
+          <tr><th>Roseburia_hominis</th>
+          <td>{{ i.Roseburia_hominis |float|round(5)}}</td>
+          
+          
+          {% if i.Roseburia_hominis | float > 0 and i.Roseburia_hominis | float <= 3.55 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Roseburia_hominis | float > 3.55 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Roseburia hominis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Roseburia hominis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Roseburia_intestinalis!='' %}
+          <tr><th>Roseburia_intestinalis</th>
+          <td>{{ i.Roseburia_intestinalis |float|round(5)}}</td>
+          
+          
+          {% if i.Roseburia_intestinalis | float > 0 and i.Roseburia_intestinalis | float <= 3.94 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Roseburia_intestinalis | float > 3.94 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Roseburia intestinalis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Roseburia intestinalis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Rubinisphaera_brasiliensis!='' %}
+          <tr><th>Rubinisphaera_brasiliensis</th>
+          <td>{{ i.Rubinisphaera_brasiliensis |float|round(5)}}</td>
+          
+          
+          {% if i.Rubinisphaera_brasiliensis | float == 0.00 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Rubinisphaera_brasiliensis | float > 0 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Rubinisphaera brasiliensis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Rubinisphaera brasiliensis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Ruminococcus_bicirculans!='' %}
+          <tr><th>Ruminococcus_bicirculans</th>
+          <td>{{ i.Ruminococcus_bicirculans |float|round(5)}}</td>
+          
+          
+          {% if i.Ruminococcus_bicirculans | float > 0 and i.Ruminococcus_bicirculans | float <= 60.38 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Ruminococcus_bicirculans | float > 60.38 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus bicirculans' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus bicirculans' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Ruminococcus_bromii!='' %}
+          <tr><th>Ruminococcus_bromii</th>
+          <td>{{ i.Ruminococcus_bromii |float|round(5)}}</td>
+          
+          
+          {% if i.Ruminococcus_bromii | float > 0 and i.Ruminococcus_bromii | float <= 8.77 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Ruminococcus_bromii | float > 8.77 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus bromii' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus bromii' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Ruminococcus_champanellensis!='' %}
+          <tr><th>Ruminococcus_champanellensis</th>
+          <td>{{ i.Ruminococcus_champanellensis |float|round(5)}}</td>
+         
+          
+          {% if i.Ruminococcus_champanellensis | float > 0 and i.Ruminococcus_champanellensis | float <= 0.90 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Ruminococcus_champanellensis | float > 0.90 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus champanellensis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus champanellensis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Ruminococcus_sp._SR1/5']!='' %}
+          <tr><th>Ruminococcus_sp._SR1/5</th>
+          <td>{{ i['Ruminococcus_sp._SR1/5'] |float|round(5)}}</td>
+          
+          
+          {% if i['Ruminococcus_sp._SR1/5'] | float > 0 and i['Ruminococcus_sp._SR1/5'] | float <= 3.79 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Ruminococcus_sp._SR1/5'] | float > 3.79 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus sp. SR1/5' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Ruminococcus sp. SR1/5' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Sphingobacterium_faecium!='' %}
+          <tr><th>Sphingobacterium_faecium</th>
+          <td>{{ i.Sphingobacterium_faecium |float|round(5)}}</td>
+          
+          
+          {% if i.Sphingobacterium_faecium | float > 0 and i.Sphingobacterium_faecium | float <= 0.24 %}
+          <td> In-Range</td>
+          {% elif i.Sphingobacterium_faecium | float > 0.24 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Sphingobacterium faecium' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Sphingobacterium faecium' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Streptococcus_mitis!='' %}
+          <tr><th>Streptococcus_mitis</th>
+          <td>{{ i.Streptococcus_mitis |float|round(5)}}</td>
+          
+          
+          {% if i.Streptococcus_mitis | float > 0 and i.Streptococcus_mitis | float <= 0.16 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Streptococcus_mitis | float > 0.16 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus mitis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus mitis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Streptococcus_parasanguinis!='' %}
+          <tr><th>Streptococcus_parasanguinis</th>
+          <td>{{ i.Streptococcus_parasanguinis |float|round(5) }}</td>
+          
+          
+          {% if i.Streptococcus_parasanguinis | float > 0 and i.Streptococcus_parasanguinis | float <= 0.13 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Streptococcus_parasanguinis | float > 0.13 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus parasanguinis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus parasanguinis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Streptococcus_pasteurianus!='' %}
+          <tr><th>Streptococcus_pasteurianus</th>
+          <td>{{ i.Streptococcus_pasteurianus |float|round(5) }}</td>
+          
+          
+          {% if i.Streptococcus_pasteurianus | float > 0 and i.Streptococcus_pasteurianus | float <= 0.11 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Streptococcus_pasteurianus | float > 0.11 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus pasteurianus' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus pasteurianus' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Streptococcus_salivarius!='' %}
+          <tr><th>Streptococcus_salivarius</th>
+          <td>{{ i.Streptococcus_salivarius |float|round(5)}}</td>
+          
+          
+          {% if i.Streptococcus_salivarius | float > 0 and i.Streptococcus_salivarius | float <= 0.29 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Streptococcus_salivarius | float > 0.29 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus salivarius' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus salivarius' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i['Streptococcus_sp._I-P16']!='' %}
+          <tr><th>Streptococcus_sp._I-P16</th>
+          <td>{{ i['Streptococcus_sp._I-P16'] |float|round(5) }}</td>
+          
+          
+          {% if i['Streptococcus_sp._I-P16'] | float > 0 and i['Streptococcus_sp._I-P16'] | float <= 0.07 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i['Streptococcus_sp._I-P16'] | float > 0.07 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus sp. I-P16' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus sp. I-P16' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Streptococcus_suis!='' %}
+          <tr><th>Streptococcus_suis</th>
+          <td>{{ i.Streptococcus_suis |float|round(5)}}</td>
+         
+          
+          {% if i.Streptococcus_suis | float > 0 and i.Streptococcus_suis | float <= 0.12 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Streptococcus_suis | float > 0.12 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus suis' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Streptococcus suis' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Tannerella_forsythia!='' %}
+          <tr><th>Tannerella_forsythia</th>
+          <td>{{ i.Tannerella_forsythia |float|round(5) }}</td>
+          
+          
+          {% if i.Tannerella_forsythia | float > 0 and i.Tannerella_forsythia | float <= 0.23 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Tannerella_forsythia | float > 0.23 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Tannerella forsythia' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Tannerella forsythia' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Treponema_succinifaciens!='' %}
+          <tr><th>Treponema_succinifaciens</th>
+          <td>{{ i['Treponema_succinifaciens'] |float|round(5)}}</td>
+          
+          
+          {% if i.Treponema_succinifaciens | float > 0 and i.Treponema_succinifaciens | float <= 0.13 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Treponema_succinifaciens | float > 0.13 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Treponema succinifaciens' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Treponema succinifaciens' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+          {% if i.Veillonella_parvula!='' %}
+          <tr><th>Veillonella_parvula</th>
+          <td>{{ i.Veillonella_parvula |float|round(5)}}</td>
+          
+          
+          {% if i.Veillonella_parvula | float > 0 and i.Veillonella_parvula | float <= 1.36 %}
+          <td> In-Range</td><td></td></tr>
+          {% elif i.Veillonella_parvula | float > 1.36 %}
+          <td> High</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Veillonella parvula' in row[0]  %}<td>{{row[2]}}{%endif%}{% endfor %}</td></tr>
+          {% else %}
+          <td> Low</td>{% for index, row in key_stone_df.iterrows() %} {% if 'Veillonella parvula' in row[0]  %}<td>{{row[1]}}{%endif%}{% endfor %}</td></tr>
+          {% endif %}
+          {% endif %}
+       
+          {% endfor %}
+          
+            
+        
+    </table>
+
+    
+     
+    <h2 style="color: red;">Probiotic</h2>
+    
+      <table border="border-box">
+       
+            <tr>
+              <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Bacteria</th>
+              <th style="color:rgb(40, 0, 100);font-size:large;background-color: bisque;">Abundance</th>
+            <th style="color:rgb(40, 0, 100);font-size:large;background-color: bisque;">Interpretation</th>
+            <th style="color: rgb(40, 0, 100);font-size: large;background-color: bisque;">Recommendation</th>
+            
+        </tr>
+
+        {% for i in cb  %}
+          
+       
+        {% if i.Bifidobacterium_animalis!="" %}
+        <tr><th>Bifidobacterium_animalis</th>
+        <td>{{ i.Bifidobacterium_animalis |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Bifidobacterium animalis' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Bifidobacterium animalis' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+              
+        {% endif %}
+        {% if i.Bifidobacterium_bifidum!="" %}
+    
+        <tr><th>Bifidobacterium_bifidum</th>
+        <td>{{ i.Bifidobacterium_bifidum |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Bifidobacterium bifidum' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Bifidobacterium bifidum' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+        {% if i.Bifidobacterium_breve!="" %}
+        <tr><th>Bifidobacterium_breve</th>
+        <td>{{ i.Bifidobacterium_breve |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Bifidobacterium breve' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Bifidobacterium breve' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Saccharomyces_boulardi!="" %}
+        <tr><th>Saccharomyces_boulardi</th>
+        <td>{{ i.Saccharomyces_boulardi |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Saccharomyces boulardi' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Saccharomyces boulardi' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td>
+        {% endif %}</tr>
+        {% if i.Bifidobacterium_longum!="" %}
+        <tr><th>Bifidobacterium_longum</th>
+        <td>{{ i.Bifidobacterium_longum |float|round(5)}}</td>
+       
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Bifidobacterium longum' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Bifidobacterium longum' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr> {% endif %}
+        {% if i.Lactobacillus_acidophilus!="" %}
+        <tr><th>Lactobacillus_acidophilus</th>
+        <td>{{ i.Lactobacillus_acidophilus |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus acidophilus' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus acidophilus' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+
+        {% if i.Lactobacillus_fermentum!="" %}
+        <tr><th>Lactobacillus_fermentum</th>
+        <td>{{ i.Lactobacillus_fermentum |float|round(5) }}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus_fermentum' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus_fermentum' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+        {% if i.Lactobacillus_gasseri!="" %}
+        <tr><th>Lactobacillus_gasseri</th>
+        <td>{{ i.Lactobacillus_gasseri |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Lactobacillus gasseri' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Lactobacillus gasseri' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Lactobacillus_helveticus!="" %}
+        <tr><th>Lactobacillus_helveticus</th>
+        <td>{{ i.Lactobacillus_helveticus |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Lactobacillus helveticus' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Lactobacillus helveticus' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Lactobacillus_paracasei!="" %}
+        <tr><th>Lactobacillus_paracasei</th>
+        <td>{{ i.Lactobacillus_paracasei |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus paracasei' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus paracasei' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        
+        {% if i.Lactobacillus_plantarum!="" %}
+        <tr><th>Lactobacillus_plantarum</th>
+        <td>{{ i.Lactobacillus_plantarum |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus plantarum' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus plantarum' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        {% if i.Lactobacillus_johnsonii!="" %}
+        <tr><th>Lactobacillus_johnsonii</th>
+        <td>{{ i.Lactobacillus_johnsonii |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Lactobacillus johnsonii' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Lactobacillus johnsonii' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Lactobacillus_reuteri!="" %}
+        <tr><th>Lactobacillus_reuteri</th>
+        <td>{{ i.Lactobacillus_reuteri |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus reuteri' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus reuteri' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        {% if i.Lactobacillus_casei!="" %}
+        <tr><th>Lactobacillus_casei</th>
+        <td>{{ i.Lactobacillus_casei |float|round(5) }}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus casei' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus casei' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>{%endif%}
+        
+        {% if i.Lactobacillus_rhamnosus!="" %}
+        <tr><th>Lactobacillus_rhamnosus</th>
+        <td>{{ i.Lactobacillus_rhamnosus |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus rhamnosus' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus rhamnosus' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        {% if i.Lactobacillus_salivarius!="" %}
+        <tr><th>Lactobacillus_salivarius</th>
+        <td>{{ i.Lactobacillus_salivarius |float|round(5)}}</td>
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Lactobacillus salivarius' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Lactobacillus salivarius' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+        
+        {% if i.Lactococcus_lactis!="" %}
+        <tr><th>Lactococcus_lactis</th>
+        <td>{{ i.Lactococcus_lactis |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Lactococcus lactis' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Lactococcus lactis' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{%endif%}
+        {% if i.Streptococcus_thermophilus!="" %}
+        <tr><th>Streptococcus_thermophilus</th>
+        <td>{{ i.Streptococcus_thermophilus |float|round(5)}}</td>
+      
+       <td> {% for index, row in probiotic_df.iterrows() %}
+        {% if 'Streptococcus thermophilus' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Streptococcus thermophilus' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Enterococcus_durans!="" %}
+        <tr><th>Enterococcus_durans</th>
+        <td>{{ i.Enterococcus_durans |float|round(5)}}</td>
+        
+       <td> {% for index, row in probiotic_df.iterrows() %}
+        {% if 'Enterococcus durans' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Enterococcus durans' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Enterococcus_faecium!="" %}
+        <tr><th>Enterococcus_faecium</th>
+        <td>{{ i.Enterococcus_faecium |float|round(5)}}</td>
+        <td> {% for index, row in probiotic_df.iterrows() %}
+          {% if 'Enterococcus faecium' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Enterococcus faecium' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        {% if i.Pediococcus_acidilactici!="" %}
+        <tr><th>Pediococcus_acidilactici</th>
+        <td>{{ i.Pediococcus_acidilactici |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Pediococcus acidilactici' in row[0]  %}
+          {{row[3]}}
+          {% endif %}
+          {% endfor%}</td>
+          <td>{% for index, row in probiotic_df.iterrows() %}
+            {% if 'Pediococcus acidilactici' in row[0]  %}
+              {{row[1]}}
+              {% endif %}
+              {% endfor%}</td></tr>{% endif %}
+        {% if i.Leuconostoc_mesenteroides!="" %}
+        <tr><th>Leuconostoc_mesenteroides</th>
+        <td>{{ i.Leuconostoc_mesenteroides |float|round(5) }}</td>
+        <td> {% for index, row in probiotic_df.iterrows() %}
+          {% if 'Leuconostoc mesenteroides' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Leuconostoc mesenteroides' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        {% if i.Bacillus_coagulans!="" %}
+        <tr><th>Bacillus_coagulans</th>
+        <td>{{ i.Bacillus_coagulans |float|round(5)}}</td>
+        <td> {% for index, row in probiotic_df.iterrows() %}
+          {% if 'Bacillus coagulans' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Bacillus coagulans' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>
+        {% endif %}
+        {% if i.Bacillus_subtilis!="" %}
+        <tr><th>Bacillus_subtilis</th>
+        <td>{{ i.Bacillus_subtilis |float|round(5)}}</td>
+        <td> {% for index, row in probiotic_df.iterrows() %}
+          {% if 'Bacillus subtilis' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Bacillus subtilis' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td> </tr>
+        {% endif %}
+        
+      
+        {% if i.Bacillus_licheniformis!="" %}
+    
+        <tr><th>Bacillus_licheniformis</th>
+        <td>{{ i.Bacillus_licheniformis |float|round(5)}}</td>
+        
+        <td>{% for index, row in probiotic_df.iterrows() %}
+          {% if 'Bacillus licheniformis' in row[0]  %}
+            {{row[3]}}
+            {% endif %}
+            {% endfor%}</td>
+            <td>{% for index, row in probiotic_df.iterrows() %}
+              {% if 'Bacillus licheniformis' in row[0]  %}
+                {{row[1]}}
+                {% endif %}
+                {% endfor%}</td></tr>{% endif %}
+
+                
+
+                        {% if i.Bifidobacterium_adolescentis!="" %}
+    
+                        <tr><th>Bifidobacterium_adolescentis</th>
+                        <td>{{ i.Bifidobacterium_adolescentis |float|round(5)}}</td>
+                        
+                        <td>{% for index, row in probiotic_df.iterrows() %}
+                          {% if 'Bifidobacterium adolescentis' in row[0]  %}
+                            {{row[3]}}
+                            {% endif %}
+                            {% endfor%}</td>
+                            <td>{% for index, row in probiotic_df.iterrows() %}
+                              {% if 'Bifidobacterium adolescentis' in row[0]  %}
+                                {{row[1]}}
+                                {% endif %}
+                                {% endfor%}</td></tr>{% endif %}
+
+                        {% if i["Bifidobacterium_animalis_subsp._Lactis"]!="" %}
+
+                        <tr><th>Bifidobacterium_animalis_subsp._Lactis</th>
+                        <td>{{ i["Bifidobacterium_animalis_subsp._Lactis"] |float|round(5)}}</td>
+                        
+                        <td>{% for index, row in probiotic_df.iterrows() %}
+                          {% if 'Bifidobacterium animalis subsp. Lactis' in row[0]  %}
+                            {{row[3]}}
+                            {% endif %}
+                            {% endfor%}</td>
+                            <td>{% for index, row in probiotic_df.iterrows() %}
+                              {% if 'Bifidobacterium animalis subsp. Lactis' in row[0]  %}
+                                {{row[1]}}
+                                {% endif %}
+                                {% endfor%}</td></tr>{% endif %}
+                          
+                {% if i.Bifidobacterium_infantis!="" %}
+
+                <tr><th>Bifidobacterium_infantis</th>
+                <td>{{ i.Bifidobacterium_infantis |float|round(5)}}</td>
+                
+                <td>{% for index, row in probiotic_df.iterrows() %}
+                  {% if 'Bifidobacterium infantis' in row[0]  %}
+                    {{row[3]}}
+                    {% endif %}
+                    {% endfor%}</td>
+                    <td>{% for index, row in probiotic_df.iterrows() %}
+                      {% if 'Bifidobacterium infantis' in row[0]  %}
+                        {{row[1]}}
+                        {% endif %}
+                        {% endfor%}</td></tr>{% endif %}
+
+
+                            {% if i["Escherichia_coli_Nissle_1917"] !="" %}
+
+                            <tr><th>Escherichia_coli_Nissle_1917</th>
+                            <td>{{ i["Escherichia_coli_Nissle_1917"] |float|round(5) }}</td>
+                            
+                            <td>{% for index, row in probiotic_df.iterrows() %}
+                              {% if 'Escherichia coli Nissle 1917' in row[0]  %}
+                                {{row[3]}}
+                                {% endif %}
+                                {% endfor%}</td>
+                                <td>{% for index, row in probiotic_df.iterrows() %}
+                                  {% if 'Escherichia coli Nissle 1917' in row[0]  %}
+                                    {{row[1]}}
+                                    {% endif %}
+                                    {% endfor%}</td></tr>{% endif %}
+                                    {% if i.Lacticaseibacillus_casei!="" %}
+
+                                    <tr><th>Lacticaseibacillus_casei</th>
+                                    <td>{{ i.Lacticaseibacillus_casei |float|round(5)}}</td>
+                                    
+                                    <td>{% for index, row in probiotic_df.iterrows() %}
+                                      {% if 'Lacticaseibacillus casei' in row[0]  %}
+                                        {{row[3]}}
+                                        {% endif %}
+                                        {% endfor%}</td>
+                                        <td>{% for index, row in probiotic_df.iterrows() %}
+                                          {% if 'Lacticaseibacillus casei' in row[0]  %}
+                                            {{row[1]}}
+                                            {% endif %}
+                                              {% endfor%}</td></tr>{% endif %}
+                          {% if i.Lacticaseibacillus_rhamnosus!="" %}
+
+                          <tr><th>Lacticaseibacillus_rhamnosus</th>
+                          <td>{{ i.Lacticaseibacillus_rhamnosus |float|round(5)}}</td>
+
+                          <td>{% for index, row in probiotic_df.iterrows() %}
+                          {% if 'Lacticaseibacillus rhamnosus' in row[0]  %}
+                          {{row[3]}}
+                          {% endif %}
+                          {% endfor%}</td>
+                          <td>{% for index, row in probiotic_df.iterrows() %}
+                          {% if 'Lacticaseibacillus rhamnosus' in row[0]  %}
+                          {{row[1]}}
+                          {% endif %}
+                          {% endfor%}</td></tr>{% endif %}
+                          
+                      
+                              {% if i.Lactobacillus_intestinalis!="" %}
+
+                              <tr><th>Lactobacillus_intestinalis</th>
+                              <td>{{ i.Lactobacillus_intestinalis |float|round(5)}}</td>
+                              
+                              <td>{% for index, row in probiotic_df.iterrows() %}
+                                {% if 'Lactobacillus intestinalis' in row[0]  %}
+                                  {{row[3]}}
+                                  {% endif %}
+                                  {% endfor%}</td>
+                                  <td>{% for index, row in probiotic_df.iterrows() %}
+                                    {% if 'Lactobacillus intestinalis' in row[0]  %}
+                                      {{row[1]}}
+                                      {% endif %}
+                                      {% endfor%}</td></tr>{% endif %}
+                                      {% if i.Lactobacillus_ruminis!="" %}
+
+                                      <tr><th>Lactobacillus_ruminis</th>
+                                      <td>{{ i.Lactobacillus_ruminis |float|round(5)}}</td>
+                                      
+                                      <td>{% for index, row in probiotic_df.iterrows() %}
+                                        {% if 'Lactobacillus ruminis' in row[0]  %}
+                                          {{row[3]}}
+                                          {% endif %}
+                                          {% endfor%}</td>
+                                          <td>{% for index, row in probiotic_df.iterrows() %}
+                                            {% if 'Lactobacillus ruminis' in row[0]  %}
+                                              {{row[1]}}
+                                              {% endif %}
+                                              {% endfor%}</td></tr>{% endif %}
+                                              {% if i['Lactococcus_lactis_subsp._lactis'] !="" %}
+
+                                              <tr><th>Lactococcus_lactis_subsp._lactis</th>
+                                              <td>{{ i['Lactococcus_lactis_subsp._lactis'] |float|round(5)}}</td>
+                                              
+                                              <td>{% for index, row in probiotic_df.iterrows() %}
+                                                {% if 'Lactococcus lactis subsp. lactis' in row[0]  %}
+                                                  {{row[3]}}
+                                                  {% endif %}
+                      {% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactococcus lactis subsp. lactis' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Limosilactobacillus_fermentus!="" %}
+
+<tr><th>Limosilactobacillus_fermentus</th>
+<td>{{ i.Limosilactobacillus_fermentus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Limosilactobacillus fermentus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Limosilactobacillus fermentus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+  {% if i.Saccharomyces_bayanus!="" %}
+
+  <tr><th>Saccharomyces_bayanus</th>
+  <td>{{ i.Saccharomyces_bayanus |float|round(5)}}</td>
+  
+  <td>{% for index, row in probiotic_df.iterrows() %}
+    {% if 'Saccharomyces bayanus' in row[0]  %}
+      {{row[3]}}
+      {% endif %}
+      {% endfor%}</td>
+      <td>{% for index, row in probiotic_df.iterrows() %}
+        {% if 'Saccharomyces bayanus' in row[0]  %}
+          {{row[1]}}
+          {% endif %}
+          {% endfor%}</td></tr>{% endif %}
+{% if i['Lactobacillus_delbrueckii_subsp._Bulgaricus']	!="" %}
+
+<tr><th>Lactobacillus_delbrueckii_subsp._Bulgaricus	</th>
+<td>{{ i['Lactobacillus_delbrueckii_subsp._Bulgaricus']	|float|round(5) }}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if i['Lactobacillus delbrueckii subsp. Bulgaricus'] in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if i['Lactobacillus delbrueckii subsp. Bulgaricus'] in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Bacillus_clausii!="" %}
+
+<tr><th>Bacillus_clausii</th>
+<td>{{ i.Bacillus_clausii |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Bacillus clausii' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Bacillus clausii' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Bacillus_indicus !="" %}
+
+<tr><th>Bacillus_indicus</th>
+<td>{{ i.Bacillus_indicus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Bacillus indicus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Bacillus indicus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Butyrivibrio_fibrisolvens!="" %}
+
+<tr><th>Butyrivibrio_fibrisolvens</th>
+<td>{{ i.Butyrivibrio_fibrisolvens |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Butyrivibrio fibrisolvens' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Butyrivibrio fibrisolvens' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Lactobacillus_kefiranofaciens!="" %}
+
+<tr><th>Lactobacillus_kefiranofaciens</th>
+<td>{{ i.Lactobacillus_kefiranofaciens |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus kefiranofaciens' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus kefiranofaciens' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Bifidobacterium_aquikefiri!="" %}
+
+<tr><th>Bifidobacterium_aquikefiri</th>
+<td>{{ i.Bifidobacterium_aquikefiri |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Bifidobacterium aquikefiri' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Bifidobacterium aquikefiri' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Lentilactobacillus_hilgardii !="" %}
+
+<tr><th>Lentilactobacillus_hilgardii</th>
+<td>{{ i.Lentilactobacillus_hilgardii |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lentilactobacillus hilgardii' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lentilactobacillus hilgardii' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Liquorilactobacillus_nagelii !="" %}
+
+<tr><th>Liquorilactobacillus_nagelii</th>
+<td>{{ i.Liquorilactobacillus_nagelii |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Liquorilactobacillus nagelii' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Liquorilactobacillus nagelii' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Limosilactobacillus_fermentun!="" %}
+
+<tr><th>Limosilactobacillus_fermentun</th>
+<td>{{ i.Limosilactobacillus_fermentun |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Limosilactobacillus fermentum' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Limosilactobacillus fermentum' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Limosilactobacillus_reuteri !="" %}
+
+<tr><th>Limosilactobacillus_reuteri</th>
+<td>{{ i.Limosilactobacillus_reuteri|float|round(5) }}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Limosilactobacillus reuteri' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Limosilactobacillus reuteri' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Kluyveromyces_marxianus!="" %}
+
+<tr><th>Kluyveromyces_marxianus</th>
+<td>{{ i.Kluyveromyces_marxianus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Kluyveromyces marxianus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Kluyveromyces marxianus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+
+{% if i.Saccharomycopsis_fibuligera!="" %}
+
+<tr><th>Saccharomycopsis_fibuligera</th>
+<td>{{ i.Saccharomycopsis_fibuligera |float|round(5) }}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Saccharomycopsis fibuligera' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Saccharomycopsis fibuligera' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Lactobacillus_amylovorus!="" %}
+
+<tr><th>Lactobacillus_amylovorus</th>
+<td>{{ i.Lactobacillus_amylovorus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus amylovorus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus amylovorus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Lactobacillus_brevis!="" %}
+
+<tr><th>Lactobacillus_brevis</th>
+<td>{{ i.Lactobacillus_brevis |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus brevis' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus brevis' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Lactobacillus_cellobiosus!="" %}
+
+<tr><th>Lactobacillus_cellobiosus</th>
+<td>{{ i.Lactobacillus_cellobiosus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus cellobiosus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus cellobiosus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Lactobacillus_curvatus!="" %}
+
+<tr><th>Lactobacillus_curvatus</th>
+<td>{{ i.Lactobacillus_curvatus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus curvatus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus curvatus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Lactobacillus_gallinarum!="" %}
+
+<tr><th>Lactobacillus_gallinarum</th>
+<td>{{ i.Lactobacillus_gallinarum |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus gallinarum' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactobacillus gallinarum' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Pediococcus_pentosaceus!="" %}
+
+<tr><th>Pediococcus_pentosaceus</th>
+<td>{{ i.Pediococcus_pentosaceus |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Pediococcus pentosaceus' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Pediococcus pentosaceus' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Lactococcus_lactis_cremoris!="" %}
+
+<tr><th>Lactococcus_lactis_cremoris</th>
+<td>{{ i.Lactococcus_lactis_cremoris |float|round(5) }}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactococcus lactis cremoris' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Lactococcus lactis cremoris' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+{% if i.Propionibacterium_acidipropionici!="" %}
+
+<tr><th>Propionibacterium_acidipropionici</th>
+<td>{{ i.Propionibacterium_acidipropionici |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Propionibacterium acidipropionici' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Propionibacterium acidipropionici' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% if i.Propionibacterium_freudenreichii!="" %}
+
+<tr><th>Propionibacterium_freudenreichii</th>
+<td>{{ i.Propionibacterium_freudenreichii |float|round(5)}}</td>
+
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Propionibacterium freudenreichii' in row[0]  %}
+{{row[3]}}
+{% endif %}
+{% endfor%}</td>
+<td>{% for index, row in probiotic_df.iterrows() %}
+{% if 'Propionibacterium freudenreichii' in row[0]  %}
+{{row[1]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif %}
+
+{% endfor %}
+        
+          
+           
+</table>
+
+<h2 style="color: red;">Pathogen</h2>
+          
+<table border="border-box">
+  <tr>
+    <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Bacteria</th>
+    <th style="color:rgb(40, 0, 100);font-size:large;background-color: bisque;">Abundance</th>
+    <th style="color:rgb(40, 0, 100);font-size: large;background-color: bisque;">Remarks</th>
+    <th style="color:rgb(40, 0, 100);font-size: large;background-color: bisque;">Recommendation</th>
+</tr>
+
+{% for i in cp %}
+               
+      
+      
+{% if i['Helicobacter_pylori'] !='' %}
+<tr><th>Helicobacter_pylori</th>
+<td>{{ i['Helicobacter_pylori'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Helicobacter pylori' in row[0]  %}
+{% if i['Helicobacter_pylori'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+
+{% if i['Escherichia_coli'] !='' %}
+<tr><th>Escherichia_coli</th>
+<td>{{ i['Escherichia_coli'] |float|round(5)}}</td>
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+  {% if 'Escherichia coli' in row[0]  %}
+  {% if i['Escherichia_coli'] | float >= 0.5 %}
+    {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+    {% endif %}
+    {% endfor%}</td></tr>{%endif%}
+{% if i['Salmonella_enterica'] !='' %}
+<tr><th>Salmonella_enterica</th>
+<td>{{ i['Salmonella_enterica'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Salmonella enterica' in row[0]  %}
+{% if i['Salmonella_enterica'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Yersinia_enterocolitica'] !='' %}
+<tr><th>Yersinia_enterocolitica</th>
+<td>{{ i['Yersinia_enterocolitica'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Yersinia enterocolitica' in row[0]  %}
+{% if i['Yersinia_enterocolitica'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Citrobacter_freundii'] !='' %}
+<tr><th>Citrobacter_freundii</th>
+<td>{{ i['Citrobacter_freundii'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Citrobacter freundii' in row[0]  %}
+	{% if i['Citrobacter_freundii'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{%endif%}
+
+{% if i['Blastocystis_hominis'] !='' %}
+<tr><th>Blastocystis_hominis</th>
+<td>{{ i['Blastocystis_hominis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Blastocystis hominis' in row[0]  %}
+{% if i['Bilophila_wadsworthia'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Cyclospora_cayetanensis'] !='' %}
+<tr><th>Cyclospora_cayetanensis</th>
+<td>{{ i['Cyclospora_cayetanensis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Cyclospora cayetanensis' in row[0]  %}
+{% if i['Cyclospora_cayetanensis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Bilophila_wadsworthia'] !='' %}
+<tr><th>Bilophila_wadsworthia</th>
+<td>{{ i['Bilophila_wadsworthia'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Bilophila wadsworthia' in row[0]  %}
+{% if i['Bilophila_wadsworthia'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Entamoeba_histolytica'] !='' %}
+<tr><th>Entamoeba_histolytica</th>
+<td>{{ i['Entamoeba_histolytica'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Entamoeba histolytica' in row[0]  %}
+{% if i['Entamoeba_histolytica'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+
+{% if i['Vibrio_cholerae'] !='' %}
+<tr><th>Vibrio_cholerae</th>
+<td>{{ i['Vibrio_cholerae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Vibrio cholerae' in row[0]  %}
+{% if i['Vibrio_cholerae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Clostridioides_difficile'] !='' %}
+<tr><th>Clostridioides_difficile</th>
+<td>{{ i['Clostridioides_difficile'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Clostridioides difficile' in row[0]  %}
+	{% if i['Clostridioides_difficile'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{%endif%}
+{% if i['Hafnia_alvei'] !='' %}
+<tr><th>Hafnia_alvei</th>
+<td>{{ i['Hafnia_alvei'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Hafnia alvei' in row[0]  %}
+{% if i['Hafnia_alvei'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Giardia_lamblia'] !='' %}
+<tr><th>Giardia_lamblia</th>
+<td>{{ i['Giardia_lamblia'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Giardia lamblia' in row[0]  %}
+{% if i['Giardia_lamblia'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Clostridium_bolteae'] !='' %}
+<tr><th>Clostridium_bolteae</th>
+<td>{{ i['Clostridium_bolteae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Clostridium bolteae' in row[0]  %}
+{% if i['Clostridium_bolteae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Bacteroides_fragilis'] !='' %}
+<tr><th>Bacteroides_fragilis</th>
+<td>{{ i['Bacteroides_fragilis'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Bacteroides fragilis' in row[0]  %}
+	{% if i['Bacteroides_fragilis'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{%endif%}
+{% if i['Klebsiella_pneumoniae'] !='' %}
+<tr><th>Klebsiella_pneumoniae</th>
+<td>{{ i['Klebsiella_pneumoniae'] |float|round(5)}}</td>
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Klebsiella pneumoniae' in row[0]  %}
+	{% if i['Klebsiella_pneumoniae'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{%endif%}
+{% if i.Bacillus_cereus !='' %}
+<tr><th>Bacillus_cereus</th>
+<td>{{ i['Bacillus_cereus'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Bacillus cereus' in row[0]  %}
+{% if i['Bacillus_cereus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Shigella_dysenteriae'] !='' %}
+<tr><th>Shigella_dysenteriae</th>
+<td>{{ i['Shigella_dysenteriae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Shigella dysenteriae' in row[0]  %}
+{% if i['Shigella_dysenteriae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Enterococcus_faecium'] !='' %}
+<tr><th>Enterococcus_faecium</th>
+<td>{{ i['Enterococcus_faecium'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Enterococcus faecium' in row[0]  %}
+{% if i['Enterococcus_faecium'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Clostridium_botulinum'] !='' %}
+<tr><th>Clostridium_botulinum</th>
+<td>{{ i['Clostridium_botulinum'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Clostridium botulinum' in row[0]  %}
+	{% if i['Clostridium_botulinum'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{% endif %}
+{% if i['Clostridium_perfringens'] !='' %}
+<tr><th>Clostridium_perfringens</th>
+<td>{{ i['Clostridium_perfringens'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Clostridium perfringens' in row[0]  %}
+	{% if i['Clostridium_perfringens'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{% endif%}
+
+{% if i['Fusobacterium_nucleatum'] !='' %}
+<tr><th>Fusobacterium_nucleatum</th>
+<td>{{ i['Fusobacterium_nucleatum'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Fusobacterium nucleatum' in row[0]  %}
+	{% if i['Fusobacterium_nucleatum'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr> {% endif%}
+{% if i['Streptococcus_agalactiae'] !='' %}
+<tr><th>Streptococcus_agalactiae</th>
+<td>{{ i['Streptococcus_agalactiae'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Streptococcus agalactiae' in row[0]  %}
+	{% if i['Streptococcus_agalactiae'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{% endif%}
+{% if i['Leptospira_interrogans'] !='' %}
+<tr><th>Leptospira_interrogans</th>
+<td>{{ i['Leptospira_interrogans'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Leptospira interrogans' in row[0]  %}
+{% if i['Leptospira_interrogans'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Yersinia_pestis'] !='' %}
+<tr><th>Yersinia_pestis</th>
+<td>{{ i['Yersinia_pestis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Yersinia pestis' in row[0]  %}
+{% if i['Yersinia_pestis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Staphylococcus_epidermidis'] !='' %}
+<tr><th>Staphylococcus_epidermidis</th>
+<td>{{ i['Staphylococcus_epidermidis'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Staphylococcus epidermis' in row[0]  %}
+	{% if i['Staphylococcus_epidermidis'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{% endif%}
+{% if i['Staphylococcus_aureus'] !='' %}
+<tr><th>Staphylococcus_aureus</th>
+<td>{{ i['Staphylococcus_aureus'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Staphylococcus aureus' in row[0]  %}
+{% if i['Staphylococcus_aureus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Streptococcus_pneumoniae'] !='' %}
+<tr><th>Streptococcus_pneumoniae</th>
+<td>{{ i['Streptococcus_pneumoniae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Streptococcus pneumoniae' in row[0]  %}
+{% if i['Streptococcus_pneumoniae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Listeria_monocytogenes'] !='' %}
+<tr><th>Listeria_monocytogenes</th>
+<td>{{ i['Listeria_monocytogenes'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Listeria monocytogenes' in row[0]  %}
+{% if i['Listeria_monocytogenes'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Enterococcus_faecalis'] !='' %}
+<tr><th>Enterococcus_faecalis</th>
+<td>{{ i['Enterococcus_faecalis'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Enterococcus faecalis' in row[0]  %}
+	{% if i['Enterococcus_faecalis'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{% endif%}
+{% if i['Clostridium_tetani'] !='' %}
+<tr><th>Clostridium_tetani</th>
+<td>{{ i['Clostridium_tetani'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Clostridium tetani' in row[0]  %}
+{% if i['Clostridium_tetani'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+
+{% if i['Campylobacter_jejuni'] !='' %}
+<tr><th>Campylobacter_jejuni</th>
+<td>{{ i['Campylobacter_jejuni'] |float|round(5)}}</td>
+
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Campylobacter jejuni' in row[0]  %}
+	{% if i['Campylobacter_jejuni'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr>{%endif%}
+
+
+
+{% if i['Bacteroides_caccae'] !='' %}
+<tr><th>Bacteroides_caccae</th>
+<td>{{ i['Bacteroides_caccae'] |float|round(5)}}</td>
+
+  <td>{% for index, row in pathogen_df.iterrows() %}
+    {% if 'Bacteroides caccae' in row[0]  %}
+	{% if i['Bacteroides_caccae'] | float >= 0.5 %}
+      {{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+      {% endif %}
+      {% endfor%}</td></tr> {%endif%}
+
+
+
+      
+{% if i['Yersinia_pseudotuberculosis'] !='' %}
+<tr><th>Yersinia_pseudotuberculosis</th>
+<td>{{ i['Yersinia_pseudotuberculosis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Yersinia pseudotuberculosis' in row[0]  %}
+{% if i['Yersinia_pseudotuberculosis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Treponema_pallidum'] !='' %}
+<tr><th>Treponema_pallidum</th>
+<td>{{ i['Treponema_pallidum'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Treponema pallidum' in row[0]  %}
+{% if i['Treponema_pallidum'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+
+{% if i['Rickettsia_rickettsii'] !='' %}
+<tr><th>Rickettsia_rickettsii</th>
+<td>{{ i['Rickettsia_rickettsii'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Rickettsia rickettsii' in row[0]  %}
+{% if i['Rickettsia_rickettsii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Proteus_mirabilis'] !='' %}
+<tr><th>Proteus_mirabilis</th>
+<td>{{ i['Proteus_mirabilis'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Proteus mirabilis' in row[0]  %}
+{% if i['Proteus_mirabilis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Mycoplasma_pneumoniae'] !='' %}
+<tr><th>Mycoplasma_pneumoniae</th>
+<td>{{ i['Mycoplasma_pneumoniae'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Mycoplasma pneumoniae' in row[0]  %}
+{% if i['Mycoplasma_pneumoniae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Haemophilus_influenzae'] !='' %}
+<tr><th>Haemophilus_influenzae</th>
+<td>{{ i['Haemophilus_influenzae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Haemophilus influenzae' in row[0]  %}
+{% if i['Haemophilus_influenzae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Brucella_suis'] !='' %}
+<tr><th>Brucella_suis</th>
+<td>{{ i['Brucella_suis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Brucella suis' in row[0]  %}
+{% if i['Brucella_suis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Brucella_melitensis'] !='' %}
+<tr><th>Brucella_melitensis</th>
+<td>{{ i['Brucella_melitensis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Brucella melitensis' in row[0]  %}
+{% if i['Brucella_melitensis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+
+{% if i['Brucella_abortus'] !='' %}
+<tr><th>Brucella_abortus</th>
+<td>{{ i['Brucella_abortus'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Brucella abortus' in row[0]  %}
+{% if i['Brucella_abortus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Bacillus_anthracis'] !='' %}
+<tr><th>Bacillus_anthracis</th>
+<td>{{ i['Bacillus_anthracis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Bacillus anthracis' in row[0]  %}
+{% if i['Bacillus_anthracis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>
+{% endif%}
+{% if i['Anaerococcus_lactolyticus'] !='' %}
+<tr><th>Anaerococcus_lactolyticus</th>
+<td>{{ i['Anaerococcus_lactolyticus'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Anaerococcus lactolyticus' in row[0]  %}
+{% if i['Anaerococcus_lactolyticus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Anaerococcus_murdochii'] !='' %}
+<tr><th>Anaerococcus_murdochii</th>
+<td>{{ i['Anaerococcus_murdochii'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Anaerococcus murdochii' in row[0]  %}
+{% if i['Anaerococcus_murdochii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Anaerococcus_prevotii'] !='' %}
+<tr><th>Anaerococcus_prevotii</th>
+<td>{{ i['Anaerococcus_prevotii'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Anaerococcus prevotii' in row[0]  %}
+{% if i['Anaerococcus_prevotii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}                            
+
+
+{% if i['Anaerococcus_tetradius'] !='' %}
+<tr><th>Anaerococcus_tetradius</th>
+<td>{{ i['Anaerococcus_tetradius'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Anaerococcus tetradius' in row[0]  %}
+{% if i['Anaerococcus_tetradius'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+
+{% if i['Atopobium_parvulum'] !='' %}
+<tr><th>Atopobium_parvulum</th>
+<td>{{ i['Atopobium_parvulum'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Atopobium parvulum' in row[0]  %}
+{% if i['Atopobium_parvulum'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%} 
+
+
+
+
+
+{% if i['Campylobacter_coli'] !='' %}
+<tr><th>Campylobacter_coli</th>
+<td>{{ i['Campylobacter_coli'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Campylobacter coli' in row[0]  %}
+{% if i['Campylobacter_coli'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}                                    
+
+{% if i['Clostridium_difficle'] !='' %}
+<tr><th>Clostridium_difficle</th>
+<td>{{ i['Clostridium_difficle'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Clostridium difficle' in row[0]  %}
+{% if i['Clostridium_difficle'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Finegoldia_magna'] !='' %}
+<tr><th>Finegoldia_magna</th>
+<td>{{ i['Finegoldia_magna'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Finegoldia magna' in row[0]  %}
+{% if i['Finegoldia_magna'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Flavobacterium_meningosepticum'] !='' %}
+<tr><th>Flavobacterium_meningosepticum</th>
+<td>{{ i['Flavobacterium_meningosepticum'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Flavobacterium meningosepticum' in row[0]  %}
+{% if i['Flavobacterium_meningosepticum'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+
+
+
+
+
+
+{% if i['Murdochiella_asaccharolytica'] !='' %}
+<tr><th>Murdochiella_asaccharolytica</th>
+<td>{{ i['Murdochiella_asaccharolytica'] |float|round(5)}}</td>
+
+            
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Murdochiella asaccharolytica' in row[0]  %}
+{% if i['Murdochiella_asaccharolytica'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Parabacteroides_distasonis'] !='' %}
+<tr><th>Parabacteroides_distasonis</th>
+<td>{{ i['Parabacteroides_distasonis'] |float|round(5)}}</td>                                 
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Parabacteroides distasonis' in row[0]  %}
+{% if i['Parabacteroides_distasonis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Parvimonas_micra'] !='' %}
+<tr><th>Parvimonas_micra</th>
+<td>{{ i['Parvimonas_micra'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Parvimonas micra' in row[0]  %}
+{% if i['Parvimonas_micra'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptococcus_niger'] !='' %}
+<tr><th>Peptococcus_niger</th>
+<td>{{ i['Peptococcus_niger'] |float|round(5)}}</td> 
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptococcus niger' in row[0]  %}
+{% if i['Peptococcus_niger'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Peptoniphilus_asaccharolyticus'] !='' %}
+<tr><th>Peptoniphilus_asaccharolyticus</th>
+<td>{{ i['Peptoniphilus_asaccharolyticus'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus asaccharolyticus' in row[0]  %}
+{% if i['Peptoniphilus_asaccharolyticus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+
+{% if i['Peptoniphilus_coxii'] !='' %}
+<tr><th>Peptoniphilus_coxii</th>
+<td>{{ i['Peptoniphilus_coxii'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus coxii' in row[0]  %}
+{% if i['Peptoniphilus_coxii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_duerdenii'] !='' %}
+<tr><th>Peptoniphilus_duerdenii</th>
+<td>{{ i['Peptoniphilus_duerdenii'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus duerdenii' in row[0]  %}
+{% if i['Peptoniphilus_duerdenii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+{% if i['Peptoniphilus_gorbachii'] !='' %}
+<tr><th>Peptoniphilus_gorbachii</th>
+<td>{{ i['Peptoniphilus_gorbachii'] |float|round(5) }}</td>                                                   
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus gorbachii' in row[0]  %}
+{% if i['Peptoniphilus_gorbachii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_harei'] !='' %}
+<tr><th>Peptoniphilus_harei</th>
+<td>{{ i['Peptoniphilus_harei'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus harei' in row[0]  %}
+{% if i['Peptoniphilus_harei'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_koenoeneniae'] !='' %}
+<tr><th>Peptoniphilus_koenoeneniae</th>
+<td>{{ i['Peptoniphilus_koenoeneniae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus koenoeneniae' in row[0]  %}
+{% if i['Peptoniphilus_koenoeneniae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Rhodotorula_mucilaginosa'] !='' %}
+<tr><th>Rhodotorula_mucilaginosa</th>
+<td>{{ i['Rhodotorula_mucilaginosa'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Rhodotorula mucilaginosa' in row[0]  %}
+{% if i['Rhodotorula_mucilaginosa'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_lacrimalis'] !='' %}
+<tr><th>Peptoniphilus_lacrimalis</th>
+<td>{{ i['Peptoniphilus_lacrimalis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus lacrimalis' in row[0]  %}
+{% if i['Peptoniphilus_lacrimalis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_indolicus'] !='' %}
+<tr><th>Peptoniphilus_indolicus</th>
+<td>{{ i['Peptoniphilus_indolicus'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus indolicus' in row[0]  %}
+{% if i['Peptoniphilus_indolicus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_ivorii'] !='' %}
+<tr><th>Peptoniphilus_ivorii</th>
+<td>{{ i['Peptoniphilus_ivorii']|float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus ivorii' in row[0]  %}
+{% if i['Peptoniphilus_ivorii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_olsenii'] !='' %}
+<tr><th>Peptoniphilus_olsenii</th>
+<td>{{ i['Peptoniphilus_olsenii'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus olsenii' in row[0]  %}
+{% if i['Peptoniphilus_olsenii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptoniphilus_tyrrelliae'] !='' %}
+<tr><th>Peptoniphilus_tyrrelliae</th>
+<td>{{ i['Peptoniphilus_tyrrelliae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptoniphilus tyrrelliae' in row[0]  %}
+{% if i['Peptoniphilus_tyrrelliae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Peptostreptococcus_anaerobius'] !='' %}
+<tr><th>Peptostreptococcus_anaerobius</th>
+<td>{{ i['Peptostreptococcus_anaerobius'] |float|round(5)}}</td>
+
+                                                                                                    
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptostreptococcus anaerobius' in row[0]  %}
+{% if i['Peptostreptococcus_anaerobius'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Peptostreptococcus_stomatis'] !='' %}
+<tr><th>Peptostreptococcus_stomatis</th>
+<td>{{ i['Peptostreptococcus_stomatis'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Peptostreptococcus stomatis' in row[0]  %}
+{% if i['Peptostreptococcus_stomatis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Raoultella_ornithinolytica'] !='' %}
+<tr><th>Raoultella_ornithinolytica</th>
+<td>{{ i['Raoultella_ornithinolytica'] |float|round(5) }}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Raoultella ornithinolytica' in row[0]  %}
+{% if i['Raoultella_ornithinolytica'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Sarcina_ventriculi'] !='' %}
+<tr><th>Sarcina_ventriculi</th>
+<td>{{ i['Sarcina_ventriculi'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Sarcina_ventriculi' in row[0]  %}
+{% if i['Sarcina_ventriculi'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+
+{% if i['Staphylococcus_epidermis'] !='' %}
+<tr><th>Staphylococcus_epidermis</th>
+<td>{{ i['Staphylococcus_epidermis'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Staphylococcus epidermis' in row[0]  %}
+{% if i['Staphylococcus_epidermis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Staphylococcus_epidermis'] !='' %}
+<tr><th>Staphylococcus_epidermis</th>
+<td>{{ i['Staphylococcus_epidermis'] |float|round(5)}}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Staphylococcus epidermis' in row[0]  %}
+{% if i['Staphylococcus_epidermis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Stenotrophomonas_maltophilia'] !='' %}
+<tr><th>Stenotrophomonas_maltophilia</th>
+<td>{{ i['Stenotrophomonas_maltophilia'] |float|round(5) }}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Stenotrophomonas maltophilia' in row[0]  %}
+{% if i['Stenotrophomonas_maltophilia'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Vibrio_paraheamolyticus'] !='' %}
+<tr><th>Vibrio_paraheamolyticus</th>
+<td>{{ i['Vibrio_paraheamolyticus'] |float|round(5) }}</td>
+
+
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Vibrio paraheamolyticus' in row[0]  %}
+{% if i['Vibrio_paraheamolyticus'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Candida_albicans'] !='' %}
+<tr><th>Candida_albicans</th>
+<td>{{ i['Candida_albicans'] }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Candida albicans' in row[0]  %}
+{% if i['Candida_albicans'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Candida_glabrata'] !='' %}
+<tr><th>Candida_glabrata</th>
+<td>{{ i['Candida_glabrata'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Candida glabrata' in row[0]  %}
+{% if i['Candida_glabrata'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Candida_parapsilosis'] !='' %}
+<tr><th>Candida_parapsilosis</th>
+<td>{{ i['Candida_parapsilosis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Candida parapsilosis' in row[0]  %}
+{% if i['Candida_parapsilosis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Candida_tropicalis'] !='' %}
+<tr><th>Candida_tropicalis</th>
+<td>{{ i['Candida_tropicalis'] }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Candida tropicalis' in row[0]  %}
+{% if i['Candida_tropicalis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+                                                                                                                                                                                                                              
+                                                                                                                     
+                                                                                                                                                                                                                           
+{% if i['Issatchenkia_orientalis'] !='' %}
+<tr><th>Issatchenkia_orientalis</th>
+<td>{{ i['Issatchenkia_orientalis'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Issatchenkia orientalis' in row[0]  %}
+{% if i['Issatchenkia_orientalis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Malassezia_furfur'] !='' %}
+<tr><th>Malassezia_furfur</th>
+<td>{{ i['Malassezia_furfur'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Malassezia furfur' in row[0]  %}
+{% if i['Malassezia_furfur'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Malassezia_globosa'] !='' %}
+<tr><th>Malassezia_globosa</th>
+<td>{{ i['Malassezia_globosa'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Malassezia globosa' in row[0]  %}
+{% if i['Malassezia_globosa'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Malassezia_restricta'] !='' %}
+<tr><th>Malassezia_restricta</th>
+<td>{{ i['Malassezia_restricta'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Malassezia restricta' in row[0]  %}
+{% if i['Malassezia_restricta'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Acinetobacter_baumanii'] !='' %}
+<tr><th>Acinetobacter_baumanii</th>
+<td>{{ i['Acinetobacter_baumanii']|float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Acinetobacter baumanii' in row[0]  %}
+{% if i['Acinetobacter_baumanii'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Adlercreutzia_mucosicola'] !='' %}
+<tr><th>Adlercreutzia_mucosicola</th>
+<td>{{ i['Adlercreutzia_mucosicola'] |float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Adlercreutzia mucosicola' in row[0]  %}
+{% if i['Adlercreutzia_mucosicola'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+{% if i['Anaerococcus_octavius'] !='' %}
+<tr><th>Anaerococcus_octavius</th>
+
+<td>{{ i['Anaerococcus_octavius'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Anaerococcus octavius' in row[0]  %}
+{% if i['Anaerococcus_octavius'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Bacillus_circulans'] !='' %}
+<tr><th>Bacillus_circulans</th>
+<td>{{ i['Bacillus_circulans']|float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Bacillus circulans' in row[0]  %}
+{% if i['Bacillus_circulans'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Bacillus_thuringiensis'] !='' %}
+<tr><th>Bacillus_thuringiensis</th>
+<td>{{ i['Bacillus_thuringiensis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Bacillus thuringiensis' in row[0]  %}
+{% if i['Bacillus_thuringiensis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Bacillus_weihenstephanensis'] !='' %}
+<tr><th>Bacillus_weihenstephanensis</th>
+<td>{{ i['Bacillus_weihenstephanensis'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Bacillus weihenstephanensis' in row[0]  %}
+{% if i['Bacillus_weihenstephanensis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Barnesiella_viscericola'] !='' %}
+<tr><th>Barnesiella_viscericola</th>
+<td>{{ i['Barnesiella_viscericola'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Barnesiella viscericola' in row[0]  %}
+{% if i['Barnesiella_viscericola'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Cutibacterium_acnes'] !='' %}
+<tr><th>Cutibacterium_acnes</th>
+<td>{{ i['Cutibacterium_acnes'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Cutibacterium acnes' in row[0]  %}
+{% if i['Cutibacterium_acnes'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Haemophilus_ducreyi'] !='' %}
+<tr><th>Haemophilus_ducreyi</th>
+<td>{{ i['Haemophilus_ducreyi'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Haemophilus ducreyi' in row[0]  %}
+{% if i['Haemophilus_ducreyi'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Klebsiella_aerogenes'] !='' %}
+<tr><th>Klebsiella_aerogenes</th>
+<td>{{ i['Klebsiella_aerogenes'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Klebsiella aerogenes' in row[0]  %}
+{% if i['Klebsiella_aerogenes'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Klebsiella_michiganensis'] !='' %}
+<tr><th>Klebsiella_michiganensis</th>
+<td>{{ i['Klebsiella_michiganensis']|float|round(5) }}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Klebsiella michiganensis' in row[0]  %}
+{% if i['Klebsiella_michiganensis'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Klebsiella_oxyytoca'] !='' %}
+<tr><th>Klebsiella_oxyytoca</th>
+<td>{{ i['Klebsiella_oxyytoca'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Klebsiella oxyytoca' in row[0]  %}
+{% if i['Klebsiella_oxyytoca'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Klebseilla_quasipneumoniae'] !='' %}
+<tr><th>Klebseilla_quasipneumoniae</th>
+<td>{{ i['Klebseilla_quasipneumoniae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Klebseilla quasipneumoniae' in row[0]  %}
+{% if i['Klebseilla_quasipneumoniae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+
+
+{% if i['Klebsiella_variicola'] !='' %}
+<tr><th>Klebsiella_variicola</th>
+<td>{{ i['Klebsiella_variicola'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Klebsiella variicola' in row[0]  %}
+{% if i['Klebsiella_variicola'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+ 
+
+{% if i['Parabacteroides_merdae'] !='' %}
+<tr><th>Parabacteroides_merdae</th>
+<td>{{ i['Parabacteroides_merdae'] |float|round(5)}}</td>
+<td>{% for index, row in pathogen_df.iterrows() %}
+{% if 'Parabacteroides merdae' in row[0]  %}
+{% if i['Parabacteroides_merdae'] | float >= 0.5 %}
+{{row[3]}}{%else%}{{""}}</td>{% endif %}<td>{{row[2]}}
+{% endif %}
+{% endfor%}</td></tr>{% endif%}
+{% endfor %}
+
+</table>
+  
+
+<h2 style="color: red;"></h2>
+<table>
+  <tr><th style="color:green"> Guidelines: Drink plenty of water and follow the food recommendations. Include a variety of herbs and spices in your diet as they help in flushing out pathogenic bacteria from the gut.</th></tr>
+</table>
+<!--
+  
+    <h2 style="color: red;">Composition Comparative Analysis</h2>
+    <div class="column">
+      <table>
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Kingdom</th>
+          {% for i in all_compostion1 %}
+          <th style="color:rgb(40, 0, 100);font-size:large;"> {{i[0]}}</th>
+         
+         {% endfor %}
+        </tr>
+        <tr>
+          
+              <tr>
+                
+                
+                <tr><th>Bacteria</th>
+                  {% for i in all_compostion1 %}
+                  <td>{{i[1]}}</td>
+                 
+               
+              {% endfor %}
+               </tr>
+                <tr><th>archaea</th>
+               {% for i in all_compostion1 %}
+                  <td>{{i[2]}}</td>
+                 
+               
+              {% endfor %}
+               </tr>
+                <tr><th>Fungi</th>
+                {% for i in all_compostion1 %}
+                  <td>{{i[3]}}</td>
+                 
+               
+              {% endfor %}
+               </tr>
+                <tr><th>virus</th>
+                {% for i in all_compostion1 %}
+                  <td>{{i[4]}}</td>
+                 
+               
+              {% endfor %}
+               </tr>
+              </tr>
+               
+        </tr>
+      </table>
+    
+      <h2 style="color: red;">Genus Abundance</h2>
+    <div class="column">
+      <table border="border-box">
+        <tr>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Genus & Abundance</th>
+          
+         
+        
+        </tr>
+        <tr>
+          
+              <tr>
+                {% for i in genus_abundance1 %}
+                
+                <tr><th>{{i[1]}}</th>
+                 <tr><th>{{i[2]}}</th> 
+                  <tr><th>{{i[3]}}</th>
+                    <tr><th>{{i[4]}}</th>
+                      <tr><th>{{i[5]}}</th>
+                        
+                 {% endfor %}
+              
+              </tr>
+               
+        </tr>
+      </table>
+    
+      <h2 style="color: red;">Phylum Abundance</h2>
+    <div class="column">
+      <table border="border-box">
+        <tr>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Phylum & Abundance</th>
+          
+          
+         
+        
+        </tr>
+        <tr>
+          
+              <tr>
+                {% for i in phylum_abundance1 %}
+                
+                <tr><th>{{i[1]}}</th>
+                 <tr><th>{{i[2]}}</th> 
+                  <tr><th>{{i[3]}}</th>
+                    <tr><th>{{i[4]}}</th>
+                      <tr><th>{{i[5]}}</th>
+                       
+                 {% endfor %}
+              
+              </tr>
+               
+        </tr>
+      </table>
+    -->
+
+    
+      <h2 style="color: red;">Genus Abundance</h2>
+    <div class="column">
+      <table border="border-box">
+        <tr>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Genus </th>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Abundance</th>
+         
+        
+        </tr>
+        
+          
+            
+                {% for index,row in df1.iterrows() %}
+                <tr>
+                <td>{{ row[0] }}</td>
+                  <td>{{ row[1] |float|round(2)}}</td>
+                  </tr>
+                 {% endfor %}
+      </table>
+    </div>   
+   
+    <h2 style="color: red;">Phylum Abundance</h2>
+    <div class="column">
+      <table border="border-box">
+        <tr>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Phylum </th>
+          <th style="color:rgb(0, 40, 100);background-color: bisque;">Abundance</th>
+         
+        
+        </tr>
+        
+          
+            
+                {% for index,row in phylum_df.iterrows() %}
+                <tr>
+                  {% if row[0]!=''%}
+                <td>{{ row[0] }}</td>
+                {%endif%}
+                {% if row[1]|float|round(5)>0 %}
+                  <td>{{ row[1] |float|round(2)}}</td>
+                  {%endif%}
+                  </tr>
+                 {% endfor %}
+              
+              
+               
+        </tr>
+      </table>
+    </div>  
+    
+      
+</body>
+</html>

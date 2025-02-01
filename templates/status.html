@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Status</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Pseudo-element for background image with low opacity */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/assets/img/DecodeBiomeRunStatusLogo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0; /* Adjust the opacity here */
+            z-index: -1; /* Ensures the background stays behind content */
+        }
+        .loadingSpinner{
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 5px;
+        align-items: center;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+}
+    </style>
+</head>
+
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Left-aligned Home link -->
+        <a class="nav-link" href="/dashboard">DECODEBIOME</a>
+        
+        <!-- Right-aligned brand, toggler, and links -->
+        <div class="ml-auto d-flex">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/curation">Curation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bioinformatics">Bioinformatics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <div id="loading-screen" style="display: none;">
+        <div class="image-container">
+            <!-- First image (GIF) -->
+            <img class="first-image" src="{{ url_for('static', filename='assets/logo/DECODE AGE to DA1.gif') }}" alt="GIF">
+    
+            <!-- Second image -->
+            <img class="second-image" src="{{ url_for('static', filename='assets/logo/StanAge_Pharma_R.png') }}" alt="Second Image">
+    
+            <!-- Loading sand clock -->
+            <img class="third-image" src="{{ url_for('static', filename='assets/logo/sand-clock-loading.gif') }}" alt="Loading GIF">
+        </div>
+    </div>
+    <style>
+        /* Apply styles to center the content */
+        
+        /* Container for both images */
+        .image-container {
+            position: relative;
+            width: 20%;
+            height: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      
+        /* Style for the first image (GIF) */
+        .first-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 1.2s ease;
+        }
+      
+        /* Style for the second image */
+        .second-image {
+            position: absolute;
+            width: 13%;
+            height: auto;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 3s ease;
+        }
+      
+        /* Style for the loading sand-clock gif */
+        .third-image {
+            position: absolute;
+            width: 30%;
+            height: 40%;
+            object-fit: contain;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 2s ease;
+            bottom: 24%;
+            right: 28%;
+        }
+      
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color:white;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+      </style>
+      <script>
+        window.onbeforeunload = function(event) {
+            if (performance.navigation.type==1){
+                // Show loading screen on page load or refresh
+            document.getElementById('loading-screen').style.display = 'flex';
+    
+            // Fade out first image and show second image during refresh
+            setTimeout(function() {
+                document.querySelector('.first-image').style.opacity = '0'; // Fade out the first image
+                document.querySelector('.second-image').style.opacity = '1'; // Fade in the second image
+            }, 2000); // Delay of 2 seconds before starting the transition
+
+            // Show loading GIF after another 2 seconds
+            setTimeout(function() {
+                document.querySelector('.third-image').style.opacity = '1'; // Fade in the loading GIF
+            }, 4000); // Wait 4 seconds total (2 seconds + 2 seconds of transition)
+                
+            }
+            
+        };
+    </script>
+<!-- 
+      <script>
+        window.onbeforeunload = function(event) {
+            if (performance.navigation.type === 1) {
+                console.log("The page is being refreshed");
+                setTimeout(function() {
+                document.querySelector('.first-image').style.opacity = '0'; 
+                document.querySelector('.second-image').style.opacity = '1'; 
+            }, 2000); 
+            setTimeout(function() {
+                    document.querySelector('.third-image').style.opacity = '1'; 
+                }, 3000); 
+            } else {
+                
+                console.log("The page is being navigated away from");
+            }
+
+            
+        };
+    </script>
+     -->
+    <div class="status-table">
+        
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Run</th>
+                        <th>Barcode</th>
+                        <th>QC Stat</th>
+                        <th>Taxonomy</th>
+                        <th>Function</th>
+                        <th>Database</th>
+                        <th>Curation</th>
+                        <th>Action</th>
+                        <th>Salesforce PDF Request</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for run_id, barcodes in run_dict.items() %}
+                    <!-- First row with the dropdown -->
+                    <tr>
+                        <td>
+                            <a href="#" class="dropdown-toggle" data-toggle="collapse" id="toggle-{{ run_id }}">{{ run_id }}</a>
+                        </td>
+                        <td colspan="9"> <!-- Spanning all columns for the dropdown -->
+                            <button id="toggle-button-{{ run_id }}" class="btn btn-primary" style="display: none;">Show</button>
+                        </td>
+                    
+            </tr>
+                    <!-- Hidden rows for each barcode -->
+                    {% for barcode in barcodes %}
+                    <tr class="{{ run_id }}-row" style="display: none;">
+                        <td>{{ run_id }}</td>
+                        <td>{{ barcode }}</td>
+                        <!-- QC Value Column with View button -->
+                        <td>
+                            <button class="btn btn-info" onclick="showQCValues('{{ run_id }}', '{{ barcode }}')">View</button>
+                            <div id="qc-popup-{{ run_id }}-{{ barcode }}" class="qc-popup">
+                                <div class="qc-popup-content">
+                                    <span class="close" onclick="closeQCPopup('{{ run_id }}', '{{ barcode }}')">&times;</span>
+                                    <h4>QC Details for {{ barcode }}</h4>
+                                    <p><strong>Mean Read length:</strong> {{ extracted_qc_data[barcode][0] if extracted_qc_data[barcode] else 'N/A' }}</p>
+                                    <p><strong>Mean Read quality:</strong> {{ extracted_qc_data[barcode][1] if extracted_qc_data[barcode] else 'N/A' }}</p>
+                                    <p><strong>Number of Reads:</strong> {{ extracted_qc_data[barcode][2] if extracted_qc_data[barcode] else 'N/A' }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- <td>{{ extracted_qc_data[barcode][3] if extracted_qc_data[barcode] else 'N/A' }}</td> -->
+                        {% if barcode in filtered_taxonomy_list%}
+                            <td><span style="color: green; font-weight: bold;">Uploaded</span></td>
+                        {%else%}
+                            <td><span style="color: red; font-weight: bold;">Not Uploaded</span></td>
+                        {%endif%}
+                        {% if barcode in filtered_function_list%}
+                        <td><span style="color: green; font-weight: bold;">Uploaded</span></td>
+
+                        {%else%}
+                            <td><span style="color: red; font-weight: bold;">Not Uploaded</span></td>
+                        {%endif%}
+                        {% if barcode in barcode_score1 %}
+                            
+                            <td>
+                                
+                                
+                                <button type="submit" id="submitButton-{{run_id}}-{{barcode}}" class="btn btn-info" style="background-color: green;"onclick="return viewData('{{barcode}}','{{run_id}}')">ViewData</button>
+                            </td>
+                        {% elif barcode in filtered_taxonomy_list and barcode in filtered_function_list%}
+                            <td>
+                                <div id="loadingSpinner-{{run_id}}-{{barcode}}" class="loadingSpinner" style="display: none;">
+
+                                </div>
+                                <button type="submit" id="submitButton-{{run_id}}-{{barcode}}" class="btn btn-primary" style="background-color: rgb(37, 150, 221);" onclick="return sendDbData('{{barcode}}','{{run_id}}')">Upload</button>
+                            </td>
+                        {%else %}
+                            <td style="color: red; font-weight: bold;">Not Uploaded</td>
+                        {%endif%}
+                        
+                        
+                        {% if barcode in missing_barcode_bac or missing_barcode_arc or missing_barcode_fung%}
+                            {% if barcode in missing_barcode_bac%}
+                            <!-- <td><a href="/missing_curation" style="color: red; font-weight: bold;">Missing bacteria curation</a></td> -->
+                                 <td>
+                                    <a href="#bacteria-curation-data" data-toggle="modal" data-target="#missingCurationModal" style="color: red; font-weight: bold;">
+                                        Missing bacteria curation
+                                    </a>
+                                 </td>
+                            {% elif barcode in missing_barcode_arc %}
+                                <td><a href="#archaea-curation-data" data-toggle="modal" data-target="#missingCurationModal" style="color: red; font-weight: bold;">
+                                    Missing Archaea curation
+                                </a></td>
+                            {% elif barcode in missing_barcode_fung%}
+                            <td><a href="#fungi-curation-data" data-toggle="modal" data-target="#missingCurationModal" style="color: red; font-weight: bold;">
+                                Missing Fungi curation
+                            </a></td>
+                            
+                            {%else%}
+                                <td><span style="color: green; font-weight: bold;">No Missing curation</span></td>
+                            
+                            {% endif %}
+                        {%else%}
+                            <td><span style="color: green; font-weight: bold;">No Missing curation</span></td>
+                        {% endif %}
+                        
+                        {% if barcode in barcode_score1 %}
+                            <!-- <td><a href="{{url_for('delete_query',Barcode=barcode)}}" class="btn btn-primary" style="background-color: red; border-color: red;"  onclick="return confirmDelete('{{barcode}}');">Delete</a></td> -->
+                            <td id="delete-{{ run_id }}-{{ barcode }}"><a href="/delete?from=database&Barcode={{barcode}}" class="btn delete-btn" style="background-color: red; border-color: red;"  onclick="return confirmDelete('{{barcode}}');">Delete</a></td>
+                             <!-- <td>Delete</td> -->
+                        {% else %}
+                            <td >
+                                <button id="nothing-delete-{{ run_id }}-{{ barcode }}" class="nothing-delete">
+                                    Nothing to delete
+                                </button>
+                                
+                            </td>  
+                        {% endif %}
+                        {%if barcode in barcode_score1 %}
+                            <td>
+                                <div id="loadingSpinner-{{run_id}}-{{barcode}}" class="loadingSpinner" style="display: none;">
+                                    <!-- Processing... -->
+                                </div>  
+                                <button type="submit" id="submitButton-{{run_id}}-{{barcode}}"  class="btn btn-primary" style="background-color: rgb(8, 0, 255); border-color: rgb(0, 55, 255);color: #fff;" onclick="return sendReportMakingData('{{barcode}}','{{run_id}}')">JSON PUSH </button>
+                            </td>
+                        {% else %}
+                            <td id="nothing-generate-{{ run_id }}-{{ barcode }}" class="nothing-generate">Nothing to generate</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+            <div class="modal fade" id="missingCurationModal" tabindex="-1" role="dialog" aria-labelledby="missingCurationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="missingCurationModalLabel">Missing Curation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="container">
+                        <h1 class="mt-4">Missing Curation for Bacteria</h1>
+                        <!-- The data for bacteria curation should be injected here by your backend -->
+                        <div class="table-responsive" id="bacteria-curation-data" data-domain="Bacteria">
+                            <!-- Dynamic data will be loaded here -->
+                            {% if data %}  
+                            
+                                <!-- {{ data|safe }} -->
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Run ID</th>
+                                            <th>Barcode</th>
+                                            <th>Microbes</th>
+                                            <th>Category</th>
+                                            <th>Inflammatory Nature</th>
+                                            <th>Interpretation</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in data %}
+                                            <tr>
+                                                <td class="microbe-row">{{ row[0] }}</td>
+                                                <td>{{ row[1] }}</td>
+                                                <td data-filed="microbes">{{ row[2] }}</td>
+                                                <td class="editable" data-field="category">{{ row[3] }}</td>
+                                                <td class="editable" data-field="inflammatoryNature">{{ row[4] }}</td>
+                                                <td class="editable" data-field="interpretation">{{ row[5] }}</td>
+                                                <!-- <td><a href="/edit?microbes={{ row[2] }}&rowId={{ loop.index0 }}" class="btn btn-primary">Add</a></td> -->
+                                                 <td>
+                                                    <button class="btn btn-primary edit-btn">Add</button>
+                                                    <button class="btn btn-success save-btn" style="display: none;">Save</button>
+                                                 </td>
+                                                
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            
+                        {% else %}
+                            <p>No data found.</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Repeat for Archaea and Fungi sections -->
+                    <div class="container">
+                        <h1 class="mt-4">Missing Curation for Archaea</h1>
+                        <div class="table-responsive" id="archaea-curation-data" data-domain="Archaea">
+                            {% if archaea_list %}
+                            <div class="table-responsive" data-domain="Archaea">
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Run ID</th>
+                                            <th>Barcode</th>
+                                            <th>Microbes</th>
+                                            <th>Category</th>
+                                            <th>Inflammatory Nature</th>
+                                            <th>Interpretation</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in archaea_list %}
+                                        <tr>
+                                            <td class="microbe-row">{{ row[0] }}</td>
+                                            <td>{{ row[1] }}</td>
+                                            <td data-filed="microbes">{{ row[2] }}</td>
+                                            <td class="editable" data-field="category">{{ row[3] }}</td>
+                                            <td class="editable" data-field="inflammatoryNature">{{ row[4] }}</td>
+                                            <td class="editable" data-field="interpretation">{{ row[5] }}</td>
+                                            <!-- <td><a href="/edit?microbes={{ row[2] }}&rowId={{ loop.index0 }}" class="btn btn-primary">Add</a></td> -->
+                                             <td>
+                                                <button class="btn btn-primary edit-btn">Add</button>
+                                                <button class="btn btn-success save-btn" style="display: none;">Save</button>
+                                             </td>
+                                            
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <p>No data found.</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="container">
+                        <h1 class="mt-4">Missing Curation for Fungi</h1>
+                        <div class="table-responsive" id="fungi-curation-data" data-domain="Fungi">
+                            {% if fungi_data_list %}
+                            <div class="table-responsive" data-domain="Fungi">
+                                
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Run ID</th>
+                                            <th>Barcode</th>
+                                            <th>Microbes</th>
+                                            <th>Category</th>
+                                            <th>Inflammatory Nature</th>
+                                            <th>Interpretation</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in fungi_data_list %}
+                                        <tr>
+                                            <td class="microbe-row">{{ row[0] }}</td>
+                                            <td>{{ row[1] }}</td>
+                                            <td data-filed="microbes">{{ row[2] }}</td>
+                                            <td class="editable" data-field="category">{{ row[3] }}</td>
+                                            <td class="editable" data-field="inflammatoryNature">{{ row[4] }}</td>
+                                            <td class="editable" data-field="interpretation">{{ row[5] }}</td>
+                                            <!-- <td><a href="/edit?microbes={{ row[2] }}&rowId={{ loop.index0 }}" class="btn btn-primary">Add</a></td> -->
+                                             <td>
+                                                <button class="btn btn-primary edit-btn">Add</button>
+                                                <button class="btn btn-success save-btn" style="display: none;">Save</button>
+                                             </td>
+                                            
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <p>No data found.</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+
+
+</body>
+</html>
+<style>
+    .qc-popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.qc-popup-content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10% auto;
+    width: 60%;
+    border-radius: 5px;
+    position: relative; /* This ensures the X button is positioned relative to this container */
+}
+
+.close {
+    color: red; /* Change color to red */
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;  /* Adjust this to bring the X closer to the top */
+    right: 10px; /* Adjust this to bring the X closer to the right edge */
+    cursor: pointer; /* Makes the cursor a pointer to indicate it's clickable */
+}
+
+.close:hover,
+.close:focus {
+    color: darkred; /* Change to dark red when hovered over */
+    text-decoration: none;
+}
+.modal-dialog {
+    max-width: 80%; /* Adjust to make the modal wider */
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery (required for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+        function showQCValues(run_id, barcode) {
+                document.getElementById('qc-popup-' + run_id + '-' + barcode).style.display = 'block';
+            }
+
+            function closeQCPopup(run_id, barcode) {
+                document.getElementById('qc-popup-' + run_id + '-' + barcode).style.display = 'none';
+            } 
+;
+    // jQuery to toggle the visibility of the rows
+    $(document).ready(function(){
+        {% for run_id in run_dict.keys() %}
+        $('#toggle-{{ run_id }}').click(function(e) {
+            e.preventDefault();  // Prevent default link behavior
+            $('.{{ run_id }}-row').toggle();  // Toggle the hidden rows for this RUN
+        });
+        {% endfor %}
+    });
+
+    
+    
+    
+    // function saveCuration(rowIndex, runId, barcode, microbe) {
+    //     // Get the value from the editable input field
+    //     const interpretation = $(`#${rowIndex}_Interpretation`).val();
+
+    //     // Prepare the data to send in the POST request
+    //     const data = {
+    //         // "Run ID": runId,
+    //         // "Barcode": barcode,
+    //         "Microbes": microbe,
+    //         "Interpretation": interpretation
+    //     };
+
+    //     // Send the POST request to the Flask server
+    //     $.ajax({
+    //         url: "/update_curation",
+    //         type: "POST",
+    //         contentType: "application/json",
+    //         data: JSON.stringify(data),
+    //         success: function (response) {
+    //             alert("Curation updated successfully!");
+    //         },
+    //         error: function (error) {
+    //             alert("Error updating curation: " + error.responseText);
+    //         }
+    //     });
+    // }
+    /*
+    function readCsv(barcode){
+        var hello = documents.getElementById    
+    }
+    */
+// adding event listner to send the data to the database
+function sendDbData(barcode, run_id) {
+    var loadingSpinner = $('#loadingSpinner-' + run_id + '-' + barcode);
+    var submitButton = $('#submitButton-' + run_id + '-' + barcode);
+    loadingSpinner.show();
+    submitButton.hide();
+    
+    $.ajax({
+        type: "POST",
+        url: '/database_upload',
+        data: {barcode: barcode, run_id: run_id},
+        success: function(result) {
+            if (result == "success") {
+                alert("Data sent to DB successfully");
+
+                // Hide the loading spinner and show the submit button again
+                loadingSpinner.hide();
+                submitButton.show();
+
+                // Update the status column dynamically
+                var statusCell = $('#status-' + run_id + '-' + barcode);
+                statusCell.html('<span style="color: green; font-weight: bold;">Uploaded</span>'); // Mark as "Uploaded"
+
+                // Change the button to ViewData after successful upload
+                var buttonCell = $('#submitButton-' + run_id + '-' + barcode);
+                buttonCell.removeClass('btn-primary'); // Remove the Upload button's class
+                buttonCell.addClass('btn-info'); // Add ViewData button's class
+                buttonCell.text('ViewData'); // Update the button text
+                buttonCell.attr('onclick', "return viewData('" + barcode + "', '" + run_id + "')"); // Update the click handler
+                
+
+
+                var notdeleteCell = $('#nothing-delete-' + run_id + '-' + barcode);
+                notdeleteCell.html('<a href="/delete?from=database&Barcode=' + barcode + '" class="btn delete-btn" style="background-color: red; border-color: red;" onclick="return confirmDelete(\'' + barcode + '\');">Delete</a>');
+
+                var jsonpush=$('#nothing-generate-' + run_id + '-' + barcode);
+                jsonpush.html('<button type="submit" id="submitButton-' + run_id + '-' + barcode + '" class="btn btn-primary" style="background-color: rgb(8, 0, 255); border-color: rgb(0, 55, 255); color: #fff;" onclick="return sendReportMakingData(\'' + barcode + '\', \'' + run_id + '\')">JSON PUSH</button>');
+                // Update the delete column content
+                // var deleteButtonCell = $('#delete-' + run_id + '-' + barcode);
+                // console.log("Delete coming from cell",deleteButtonCell);
+                // deleteButtonCell.removeClass('nothing-delete'); // Remove the Upload button's class
+                // deleteButtonCell.addClass('delete-btn'); // Add ViewData button's class
+                // deleteButtonCell.text('Delete'); // Update the button text
+                // deleteButtonCell.attr('onclick', "return confirmDelete('" + barcode + "')"); // Update the click handler
+                // var deleteCell = $('#delete-' + run_id + '-' + barcode);
+                // deleteCell.html('<a href="/delete?from=database&Barcode=' + barcode + '" class="btn btn-primary" style="background-color: red; border-color: red;"  onclick="return confirmDelete(\'' + barcode + '\');">Delete</a>'); // Make delete button visible
+            } else {
+                alert("Failed to send data");
+                loadingSpinner.hide();
+                submitButton.show();
+            }
+        },
+        error: function() {
+            alert("An error occurred. Please try again.");
+            loadingSpinner.hide();
+            submitButton.show();
+        }
+    });
+}       
+    
+
+function viewData(barcode,run_id){
+    // var loadingSpinner=$('#loadingSpinner-'+run_id+'-'+barcode);
+    // var submitButton=$('#submitButton-'+run_id+'-'+barcode);
+    console.log("Barcode in console",barcode);
+    // loadingSpinner.show();
+    // submitButton.hide();
+    $.ajax({
+        type:"POST",
+        url:'/view_taxa_func',
+        data:{barcode,run_id},
+        success:function(result){
+            if (result.status === "success") {
+                // console.log("Success barcode",result.html_tables);
+                // Create the popup modal HTML structure dynamically
+                // Remove any previously appended modal before appending a new one
+                $('#csvDataPopupModal').remove();  // Remove existing modal if any
+                var popupContent = `
+                    <div class="modal fade" id="csvDataPopupModal" tabindex="-1" role="dialog" aria-labelledby="csvDataPopupModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="csvDataPopupModalLabel">${barcode} Data Display</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <h1 class="mt-4">Taxonomy File</h1>
+                                        ${result.html_tables ? Object.entries(result.html_tables).map(([title, table]) => `
+                                        <h2>${title}</h2>
+                                        <div class="table-responsive">
+                                            ${table}  <!-- Render the HTML table -->
+                                        </div>
+                                    `).join('') : ''}
+                                    </div>
+                                    <div class="container">
+                                        <h1 class="mt-4">Function Display</h1>
+                                        ${result.function_tables ? Object.entries(result.function_tables).map(([title, table]) => `
+                                            <h2>${title}</h2>
+                                            <div class="table-responsive">
+                                                ${table}  <!-- Render the HTML table -->
+                                            </div>
+                                        `).join('') : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                 
+
+                // Append the modal to the body of the page
+                $('body').append(popupContent);
+                // Show the modal using Bootstrap's modal method
+                $('#csvDataPopupModal').modal('show');  
+                // loadingSpinner.hide();
+                // submitButton.show();
+            } else {
+                alert("Error: " + result.message);
+            }
+        },
+        error: function(error) {
+            console.error("Error:", error);
+        },
+        
+    });
+}
+//    introducing add and save button to the missing curation
+    $(document).ready(function(){
+        $('.edit-btn').click(function(){
+            var row =$(this).closest('tr'); // Getting the closest row
+            var cells =row.find('.editable'); // Get all the editable cells in this row
+            var saveButton=row.find('.save-btn');
+            var editButton=row.find('.edit-btn');
+
+            // convert each cell into an input field for editing
+            cells.each(function(){
+                var currentText=$(this).text();
+                console.log("CurrentText",currentText);
+                var field=$(this).data('field');
+                // chekc which field we are editing and create a drop down if needed
+                console.log("Fields"+field);
+                if (field === 'category') {
+                var selectField = $('<select>').addClass('form-control');
+                var options = ['Commensal', 'Pathogen', 'Probiotic'];
+                console.log("options:"+options);
+                options.forEach(function(option){
+                    var optionElement = $('<option>').val(option).text(option);
+                    if (option === currentText) {
+                        optionElement.attr('selected', 'selected'); // Select the current value
+                    }
+                    selectField.append(optionElement);
+                });
+                $(this).html(selectField); // Replace with the dropdown
+            }
+            else if (field === 'inflammatoryNature') {
+                var selectField = $('<select>').addClass('form-control');
+                var options = ['Pro', 'Anti','EmptyNature'];
+                options.forEach(function(option){
+                    var optionElement = $('<option>').val(option).text(option);
+                    if (option === currentText) {
+                        optionElement.attr('selected', 'selected'); // Select the current value
+                    }
+                    selectField.append(optionElement);
+                });
+                $(this).html(selectField); // Replace with the dropdown
+            }
+            else if (field === 'interpretation') {
+                // For interpretation, create a text input with a character limit
+                var inputField = $('<input>').val(currentText).addClass('form-control');
+                var charCountMessage = $('<div>').addClass('char-limit-message').text('Characters: ' + currentText.length + ' / 110').css('color', 'green');
+                
+                var wrapper = $('<div>').append(inputField).append(charCountMessage);
+                $(this).html(wrapper); // Replace with the input field and count message
+
+                // Add an event listener to track the character count dynamically
+                inputField.on('input', function() {
+                    var currentText = inputField.val();
+                    var charCount = currentText.length;
+
+                    // Update character count
+                    charCountMessage.text('Characters: ' + charCount + ' / 110');
+
+                    // Handle the character limit
+                    if (charCount > 110) {
+                        charCountMessage.text('Character limit crossed!').css('color', 'red');
+                        inputField.val(currentText.slice(0, 110)); // Limit input to 105 characters
+                    } else {
+                        charCountMessage.css('color', 'green');
+                    }
+                });
+            }  else{
+                var inputField = $('<input>').val(currentText).addClass('form-control');
+                $(this).html(inputField); // For other fields, keep them as text inputs
+            }
+            });
+            // Hide the edit button and show the save button
+            editButton.hide();
+            saveButton.show();
+        });
+        $('.save-btn').click(function(){
+        var row = $(this).closest('tr');
+        var cells = row.find('.editable');
+        var saveButton = row.find('.save-btn');
+        var editButton = row.find('.edit-btn');
+        var updatedData = {};
+        
+        // Get the new value from edit section and update the table
+        cells.each(function(){
+            var alterValue;
+            var field = $(this).data('field');
+            
+            // Check if it's a select field or input field
+            if ($(this).find('select').length > 0) {
+                alterValue = $(this).find('select').val(); // Get selected value from dropdown
+            } else {
+                alterValue = $(this).find('input').val(); // Get value from input field
+            }
+            updatedData[field] = alterValue;
+        });
+
+        // Add MicrobeID to the updatedData object (use the value in the first column)
+        var microbeName = row.find('td').eq(2).text(); // Assuming the first column contains MicrobeID
+        updatedData['microbes'] = microbeName;
+        // Get domain dynamically from the table's data-domain attribute
+        var domain = $(this).closest('.table-responsive').data('domain');  // This fetches the domain (e.g., 'Bacteria')
+        updatedData['domain'] = domain; 
+        console.log("Domain is coming as : ",domain);
+        // Make an AJAX POST request to update the data in the backend
+        $.ajax({
+            url: '_adding_curation_data', // Flask route to handle the data update
+            method: 'POST',
+            contentType: 'application/json', 
+            data: JSON.stringify(updatedData), // Send the updated data (including MicrobeID)
+            dataType:"json",
+            success: function(response) {
+                if(response.status === "success"){
+                console.log("Data updated successfully:", response.updatedData);
+
+                // Update the table with the new values
+                // Display success alert
+                alert("Microbe added successfully!");
+                // Remove the entire row after saving
+                row.remove();  // This will remove the row from the table
+
+            
+            } else{
+                alert("Error: " + response.message);  // Handle error
+            }
+        },
+            error: function(error) {
+                console.error("Error updating data", error);
+            }
+        });
+    });
+    });
+
+    $('#missingCurationModal').on('show.bs.modal', function (event) {
+        // Example for Bacteria data
+        $.ajax({
+            url: '/missing_curation',  // Adjust this URL to get data from your server
+            method: 'GET',
+            success: function (response) {
+                // Assuming `response` contains the HTML table or JSON data
+                $('#bacteria-curation-data').html(response.bacteriaHTML);
+                console.log("response is reading upto here");
+                console.log($('#bacteria-curation-data').html(response.bacteriaHTML));
+                $('#archaea-curation-data').html(response.archaeaHTML);
+                $('#fungi-curation-data').html(response.fungiHTML);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            }
+        });
+    });
+
+    function confirmDelete(barcode){
+        let confirmAction=confirm('Are you sure you want to delete the taxonomy and function files for this barcode: '+barcode+' ?');
+        return confirmAction;
+    }
+    function readBarcode(barcode){
+        console.log("Reading barcode:"+barcode)
+    }
+
+
+// adding event listener to send the data
+function sendReportMakingData(barcode,run_id){
+    var loadingSpinner = $('#loadingSpinner-' + run_id + '-' + barcode);
+    var submitButton = $('#submitButton-' + run_id + '-' + barcode);
+    console.log("Barcode"+barcode);
+    // Show the spinner and hide the button
+    loadingSpinner.show();
+    submitButton.hide();
+    $.ajax({
+        type:"POST",
+        url:'/report_generation',
+        data:{barcode,run_id},
+        success:function(jsonData){
+            $.ajax({
+                type:"POST",
+                url:"/handle_salesforce_integration",
+                contentType:'application/json',
+                data:JSON.stringify(jsonData),
+                dataType:"json",
+                success:function(response){
+                    console.log("Successfully send data for report making");
+                    alert("Successfully JSON send!");
+                    loadingSpinner.hide();
+                    submitButton.show();
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error during report generation:", error);
+                    // Hide the spinner and show the button even if there's an error
+                    loadingSpinner.hide();
+                    submitButton.show();
+                }
+            })
+
+        },
+        error: function(xhr, status, error) {
+            console.log("Error during report generation:", error);
+            // Hide the spinner and show the button if the first request fails
+            loadingSpinner.hide();
+            submitButton.show();
+        }
+    });
+    return false;
+}
+    
+    
+</script>
+
+<style>
+    .table th, .table td {
+    text-align: left; /* Ensure text is aligned consistently */
+    padding: 8px; /* Add padding for consistency */
+}
+.table th {
+    background-color: #f2f2f2; /* For better visibility of headers */
+}
+.table-responsive {
+    overflow-x: auto;
+}
+.word-limit-message {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+</style>

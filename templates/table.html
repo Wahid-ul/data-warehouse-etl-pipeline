@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+    body,
+    .intro {
+      height: 100%;
+    }
+    
+    table td,
+    table th {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    
+    thead th {
+      color: #fff;
+    }
+    
+    .card {
+      border-radius: .5rem;
+    }
+    
+    .table-scroll {
+      border-radius: .5rem;
+    }
+    
+    .table-scroll table thead th {
+      font-size: 1.25rem;
+    }
+    thead {
+      top: 0;
+      position: sticky;
+    }
+    </style>
+      
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon-16x16.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="staticassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+  <header id="header" class="fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">Kelly</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="{{ url_for('dashboard') }}">Logout</a></li>
+          <li><a href="{{ url_for('index') }}">Data submission</a></li>
+          <li><a href="{{ url_for('table') }}">Dashboard</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      
+
+    </div>
+
+  </header><!-- End Header -->
+    <section class="intro">
+        <div class="bg-image h-100" style="background-color: #f5f7fa;">
+          <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body p-0">
+                      <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+                        <table class="table table-striped mb-0">
+                          <thead style="background-color: #002d72;">
+                            <tr>
+                              <th scope="col">Class name</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Hours</th>
+                              <th scope="col">Trainer</th>
+                              <th scope="col">Spots</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Like a butterfly</td>
+                              <td>Boxing</td>
+                              <td>9:00 AM - 11:00 AM</td>
+                              <td>Aaron Chapman</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Mind &amp; Body</td>
+                              <td>Yoga</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Adam Stewart</td>
+                              <td>15</td>
+                            </tr>
+                            <tr>
+                              <td>Crit Cardio</td>
+                              <td>Gym</td>
+                              <td>9:00 AM - 10:00 AM</td>
+                              <td>Aaron Chapman</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Wheel Pose Full Posture</td>
+                              <td>Yoga</td>
+                              <td>7:00 AM - 8:30 AM</td>
+                              <td>Donna Wilson</td>
+                              <td>15</td>
+                            </tr>
+                            <tr>
+                              <td>Playful Dancer's Flow</td>
+                              <td>Yoga</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Donna Wilson</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Zumba Dance</td>
+                              <td>Dance</td>
+                              <td>5:00 PM - 7:00 PM</td>
+                              <td>Donna Wilson</td>
+                              <td>20</td>
+                            </tr>
+                            <tr>
+                              <td>Cardio Blast</td>
+                              <td>Gym</td>
+                              <td>5:00 PM - 7:00 PM</td>
+                              <td>Randy Porter</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Pilates Reformer</td>
+                              <td>Gym</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Randy Porter</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Supple Spine and Shoulders</td>
+                              <td>Yoga</td>
+                              <td>6:30 AM - 8:00 AM</td>
+                              <td>Randy Porter</td>
+                              <td>15</td>
+                            </tr>
+                            <tr>
+                              <td>Yoga for Divas</td>
+                              <td>Yoga</td>
+                              <td>9:00 AM - 11:00 AM</td>
+                              <td>Donna Wilson</td>
+                              <td>20</td>
+                            </tr>
+                            <tr>
+                              <td>Virtual Cycle</td>
+                              <td>Gym</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Randy Porter</td>
+                              <td>20</td>
+                            </tr>
+                            <tr>
+                              <td>Like a butterfly</td>
+                              <td>Boxing</td>
+                              <td>9:00 AM - 11:00 AM</td>
+                              <td>Aaron Chapman</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Mind &amp; Body</td>
+                              <td>Yoga</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Adam Stewart</td>
+                              <td>15</td>
+                            </tr>
+                            <tr>
+                              <td>Crit Cardio</td>
+                              <td>Gym</td>
+                              <td>9:00 AM - 10:00 AM</td>
+                              <td>Aaron Chapman</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Wheel Pose Full Posture</td>
+                              <td>Yoga</td>
+                              <td>7:00 AM - 8:30 AM</td>
+                              <td>Donna Wilson</td>
+                              <td>15</td>
+                            </tr>
+                            <tr>
+                              <td>Playful Dancer's Flow</td>
+                              <td>Yoga</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Donna Wilson</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Zumba Dance</td>
+                              <td>Dance</td>
+                              <td>5:00 PM - 7:00 PM</td>
+                              <td>Donna Wilson</td>
+                              <td>20</td>
+                            </tr>
+                            <tr>
+                              <td>Cardio Blast</td>
+                              <td>Gym</td>
+                              <td>5:00 PM - 7:00 PM</td>
+                              <td>Randy Porter</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Pilates Reformer</td>
+                              <td>Gym</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Randy Porter</td>
+                              <td>10</td>
+                            </tr>
+                            <tr>
+                              <td>Supple Spine and Shoulders</td>
+                              <td>Yoga</td>
+                              <td>6:30 AM - 8:00 AM</td>
+                              <td>Randy Porter</td>
+                              <td>15</td>
+                            </tr>
+                            <tr>
+                              <td>Yoga for Divas</td>
+                              <td>Yoga</td>
+                              <td>9:00 AM - 11:00 AM</td>
+                              <td>Donna Wilson</td>
+                              <td>20</td>
+                            </tr>
+                            <tr>
+                              <td>Virtual Cycle</td>
+                              <td>Gym</td>
+                              <td>8:00 AM - 9:00 AM</td>
+                              <td>Randy Porter</td>
+                              <td>20</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
+

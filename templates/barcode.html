@@ -1,0 +1,52 @@
+<!-- <label for="run">Barcode ID:
+    <select name="barcode" id="barcode" style="background-color: #f0f0f0; border: 1px solid #ccc; padding: 5px; font-size: 16px; border-radius: 5px;">
+        {% for barcode_id in barcode_output.split('\n') %}
+        
+        <option value="{{barcode_id[9:]}}">{{barcode_id[9:]}}</option>
+           
+        {% endfor %}
+    </select> -->
+    {% if filtered_elements %}
+    <label for="run">Barcode ID:
+    <select name="barcode" id="barcode" style="background-color: #f0f0f0; border: 1px solid #ccc; padding: 5px; font-size: 16px; border-radius: 5px;">
+        {% for barcode_id in filtered_elements %}
+            <option value="{{ barcode_id }}">{{ barcode_id }}</option>
+        {% endfor %}
+    </select>
+</label>
+{% else %}
+<div>
+    <div style="text-align: center;">
+        <img src="/static/emtpy_container.png" alt="Image" style="width: 150px; height: auto; margin-bottom: 1px;">
+        <h1>Incomplete or empty run folder</h1>
+    </div>
+</div>
+{% endif %}
+   
+    <br><br>
+    <div id="loadingSpinner" style="display: none;">
+        <!-- Processing... -->
+    </div>
+    <div style="display: flex; justify-content: flex-start; gap: 10px;">
+        <!-- <button type="button" id="backButton" onclick="history.back()">Back</button> -->
+        <button type="button" id="backButton">Back</button>
+        <button type="submit" id="submitButton">Submit</button>
+    </div>
+    <!-- <button type="submit" id="submitButton">Submit</button> -->
+<style>
+    #loadingSpinner{
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 5px;
+        align-items: center;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+}
+</style>

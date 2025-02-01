@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      .row {
+        display: block;
+        margin-left:-5px;
+        margin-right:-5px;
+      }
+      .column {
+        flex: 50%;
+        padding: 5px;
+      }
+      
+      table {
+          
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+      }
+      
+      th, td {
+        text-align: left;
+        padding: 16px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      </style>
+      
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js"></script>
+<!--
+   <h2 style="color: red;">Function</h2>
+  
+      <h2 style="color: rgb(51, 255, 0);">SCFA </h2>
+         <div class="column">
+      <table border="table-bordered" id="mytable">
+        <thead>
+          <tr>
+            <th style="color:rgb(0, 40, 100);font-size:large;">Metabolic Profile</th>
+            <th style="color:rgb(0, 40, 100);font-size:large;">RA</th>
+            <th style="color:rgb(0, 40, 100);font-size:large;">Range</th>
+            <th style="color:rgb(0, 40, 100);font-size:large;">Remarks</th>
+            <th style="color:rgb(0, 40, 100);font-size:large;">Curation</th>
+            <th style="color:rgb(0, 40, 100);font-size:large;">Recommendation</th>
+            
+          </tr>
+          
+        </thead>
+       <tbody>
+        <tr>
+          <td>acetate</td>
+          
+                  <td>{{ function1[0][10] }}</td>
+                  
+                  <td>45-75</td>
+                  {% if function1[0][10] < 45 %}
+                  <td style="color:rgb(229, 255, 0)">Low</td>
+                  {% elif function1[0][10] > 75 %}
+                  <td style="color:red">High</td>
+                  {% else %}
+                  <td style="color:rgb(0, 255, 38)">Ideal </td>
+                  {% endif %}
+                  
+                  <td>{{ acetate_value}} </td>
+                  
+                  <td> {{acetate_recommendation_dict}}</td>
+                
+        </tr>
+        <tr>
+          <td>butyrate</td>
+                <td>{{ function1[0][11] }}</td>
+                        
+                <td>8.025-27.775</td>
+                {% if function1[0][11] < 8.025 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][11] > 27.775 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ butyrate_value}} </td>
+                
+                <td>{{butyrate_recommendation_dict}}</td>
+                
+        </tr>
+          <tr>
+          <td>Propionate</td>
+              <td>{{ function1[0][12] }}</td>
+                      
+              <td>13.9-35</td>
+              {% if function1[0][12] < 13.9 %}
+              <td style="color:rgb(229, 255, 0)">Low</td>
+              {% elif function1[0][12] > 35 %}
+              <td style="color:red">High</td>
+              {% else %}
+              <td style="color:rgb(0, 255, 38)">Ideal </td>
+              {% endif %}
+              
+              <td>{{ propionate_value}} </td>
+              <td> {{propionate_recommendation_dict}}</td>
+          </tr>
+          
+          
+        </tr>
+       </tbody>
+        
+        
+       
+   </table>
+   <button id="export-btn">Download</button>
+   <h2 style="color: rgb(51, 255, 0);">GUT BRAIN</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>GABA</td>
+          
+                  <td>{{ function1[0][1] }}</td>
+                  
+                  <td>0-10</td>
+                  {% if function1[0][1] < 0 %}
+                  <td style="color:rgb(229, 255, 0)">Low</td>
+                  {% elif function1[0][1] >10 %}
+                  <td style="color:red">High</td>
+                  {% else %}
+                  <td style="color:rgb(0, 255, 38)">Ideal </td>
+                  {% endif %}
+                  
+                  <td>{{ Gaba_value}} </td>
+                  <td> {{Gaba_recommendation_dict }}</td>
+                
+        </tr>
+        <tr>
+          <td>Serotonine</td>
+                <td>{{ function1[0][2] }}</td>
+                        
+                <td>0-10</td>
+                {% if function1[0][2] < 0.1 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][2] > 10 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ serotonin_value}} </td>
+                <td> {{serotonin_recommendation_dict}}</td>
+        </tr>
+          <tr>
+          <td>Dopamine</td>
+              <td>{{ function1[0][3] }}</td>
+                      
+              <td>0-10</td>
+              {% if function1[0][3] < 0.1 %}
+              <td style="color:rgb(229, 255, 0)">Low</td>
+              {% elif function1[0][3] > 10 %}
+              <td style="color:red">High</td>
+              {% else %}
+              <td style="color:rgb(0, 255, 38)">Ideal </td>
+              {% endif %}
+              
+              <td>{{ dopamin_value}} </td>
+              <td>{{dopamin_recommendation_dict}}</td>
+          </tr>
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">GAS</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Ammonia</td>
+          
+                  <td>{{ function1[0][7] }}</td>
+                  
+                  <td>0.195-10</td>
+                  {% if function1[0][7] < 0.195 %}
+                  <td style="color:rgb(229, 255, 0)">Low</td>
+                  {% elif function1[0][1] > 5.5 %}
+                  <td style="color:red">High</td>
+                  {% else %}
+                  <td style="color:rgb(0, 255, 38)">Ideal </td>
+                  {% endif %}
+                  
+                  <td>{{ ammonina_value}} </td>
+                  <td> {{ammonina_recommendation_dict}}</td>
+                
+        </tr>
+        <tr>
+          <td>Methane</td>
+                <td>{{ function1[0][8] }}</td>
+                        
+                <td>0-1.65</td>
+                {% if function1[0][8] < 0 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][8] > 1.65 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ methane_value}} </td>
+                <td> {{methane_recommendation_dict}}</td>
+        </tr>
+          <tr>
+          <td>Hydrogen Sulfide</td>
+                <td>{{ function1[0][9] }}</td>
+                        
+                <td>0.42-3.5</td>
+                {% if function1[0][9] < 0.42 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][9] > 3.5 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ sulfid_value}} </td>
+                <td> {{methane_recommendation_dict}}</td>
+        </tr>
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">Lipid</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Cholesterol</td>
+          
+                  <td>{{ function1[0][4] }}</td>
+                  
+                  <td>0.4-4.8</td>
+                  {% if function1[0][4] < 0.4 %}
+                  <td style="color:rgb(229, 255, 0)">Low</td>
+                  {% elif function1[0][4] > 4.8 %}
+                  <td style="color:red">High</td>
+                  {% else %}
+                  <td style="color:rgb(0, 255, 38)">Ideal </td>
+                  {% endif %}
+                  
+                  <td>{{ cholesterol_value}} </td>
+                  <td>{{cholesterol_recommendation_dict}}</td>
+                
+        </tr>
+        <tr>
+          <td>Phospholipid</td>
+                <td>{{ function1[0][5] }}</td>
+                        
+                <td>0.2-6.9</td>
+                {% if function1[0][5] < 0.2 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][5] > 6.9 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ phospholipid_value}} </td>
+                <td>{{phospholipid_recommendation_dict}}</td>
+            </tr>
+            <tr>
+            <td>Triglycerides</td>
+            <td>{{ function1[0][6] }}</td>
+                    
+            <td>0.3-2.8</td>
+            {% if function1[0][6] < 0.3 %}
+            <td style="color:rgb(229, 255, 0)">Low</td>
+            {% elif function1[0][6] > 2.8 %}
+            <td style="color:red">High</td>
+            {% else %}
+            <td style="color:rgb(0, 255, 38)">Ideal </td>
+            {% endif %}
+            
+            <td>{{triglycerides_value}} </td>
+            <td>{{triglycerides_recommendation_dict}}</td>
+        </tr>
+          
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">Metabolism</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Carbohydrate</td>
+          
+                  <td>{{ function1[0][19] }}</td>
+                  
+                  <td>61-76</td>
+                  {% if function1[0][19] < 61 %}
+                  <td style="color:rgb(229, 255, 0)">Low</td>
+                  {% elif function1[0][19] > 76 %}
+                  <td style="color:red">High</td>
+                  {% else %}
+                  <td style="color:rgb(0, 255, 38)">Ideal </td>
+                  {% endif %}
+                  
+                  <td>{{carb_value}} </td>
+                  <td>{{carb_recommendation_dict}}</td>
+                
+        </tr>
+        <tr>
+          <td>Protein</td>
+                <td>{{ function1[0][20] }}</td>
+                        
+                <td>63-77</td>
+                {% if function1[0][20] < 63 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][20] > 77 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ protein_value}} </td>
+                <td>{{protein_recommendation_dict}}</td>
+                  </tr>
+              <tr>
+            
+          
+        </tr>
+       
+   </table>
+   
+   <h2 style="color: rgb(51, 255, 0);">Vitamin</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Riboflavin</td>
+          
+                  <td>{{ function1[0][13] }}</td>
+                  
+                  <td>29-58</td>
+                  {% if function1[0][13] < 29 %}
+                  <td style="color:rgb(229, 255, 0)">Low</td>
+                  {% elif function1[0][13] > 58 %}
+                  <td style="color:red">High</td>
+                  {% else %}
+                  <td style="color:rgb(0, 255, 38)">Ideal </td>
+                  {% endif %}
+                  
+                  <td>{{ riboflavin_value}} </td>
+                  <td>{{riboflavin_recommendation_dict}}</td>
+                
+        </tr>
+        <tr>
+          <td>Biotin</td>
+                <td>{{ function1[0][14] }}</td>
+                        
+                <td>22-51</td>
+                {% if function1[0][14] < 22 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][14] > 51 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ biotin_value}} </td>
+                <td>{{biotin_recommendation_dict}}</td>
+                  </tr>
+
+                  <tr>
+                  <td>Folate</td>
+                <td>{{ function1[0][16] }}</td>
+                        
+                <td>34-58</td>
+                {% if function1[0][16] < 34 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][16] > 58 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ folate_value}} </td>
+                <td>{{folate_recommendation_dict}} </td>
+                  </tr>
+              <tr>
+                <td>Cobalamine</td>
+                <td>{{ function1[0][17] }}</td>
+                        
+                <td>18-48</td>
+                {% if function1[0][17] < 18 %}
+                <td style="color:rgb(229, 255, 0)">Low</td>
+                {% elif function1[0][17] > 48 %}
+                <td style="color:red">High</td>
+                {% else %}
+                <td style="color:rgb(0, 255, 38)">Ideal </td>
+                {% endif %}
+                
+                <td>{{ cobalamin_value}} </td>
+                <td>{{cobalamin_recommendation_dict}}</td>
+                  </tr>
+          
+        </tr>
+       
+   </table>
+-->
+   <h2>Recommendation without category of Barcode {{Barcode}}</h2>
+   
+   <p><a href="/function_file_download/{{Barcode}}" style="display:inline-block; padding: 10px;  text-decoration:none; float: right;"><span style="font-size:xx-large ">&#x1F4E5;</span>Export in csv </a></p>
+<style>
+  a {
+   text-decoration: none;
+}
+</style>
+   <h2 style="color: red;">Function</h2>
+  
+      <h2 style="color: rgb(51, 255, 0);">SCFA</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Acetate</td>
+          
+                  <td>{{ function1[0][10] }}</td>
+                  
+                  <td>9.83-23.57 </td>
+                  {% if function1[0][10] < 9.83 %}
+                  <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][10] >= 9.83 and function1[0][10] < 14.69 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][10] >= 14.69 and function1[0][10] < 17.47 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][10] >= 17.47 and function1[0][10] < 19.10 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][10] >= 19.10 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                  
+                  <td>{{ acetate_value }} </td>
+                  
+                  <td> {{acetate_recommendation_updated}}</td>
+                
+        </tr>
+        <tr>
+          <td>Butyrate</td>
+                <td>{{ function1[0][11] }}</td>
+                        
+                <td>35.48-60</td>
+                {% if function1[0][11] < 35.48 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][11] >= 35.48 and function1[0][11] < 41.46 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][11] >= 41.46 and function1[0][11] < 45.13 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][11] >= 45.13 and function1[0][11] < 49.95 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][11] >= 49.95 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                  
+                <td>{{ butyrate_value }} </td>
+                
+                <td>{{butyrate_recommendation_updated}}</td>
+                
+        </tr>
+          <tr>
+          <td>Propionate</td>
+              <td>{{ function1[0][12] }}</td>
+                      
+              <td>25.57-47.23</td>
+              {% if function1[0][12] < 25.57 %}
+              <td style="color:rgb(255, 13, 0)">Below Average</td>                
+              {% elif function1[0][12] >= 25.57 and function1[0][12] < 34.37 %}
+              <td style="color:rgb(255, 255, 0)">Fair</td>
+              {% elif function1[0][12] >= 34.37 and function1[0][12] < 37.69 %}
+              <td style="color:rgb(6, 251, 6)">Good</td>
+              {% elif function1[0][12] >= 37.69 and function1[0][12] < 40.71 %}
+              <td style="color:rgb(4, 147, 54)">Very Good</td>
+              {% elif function1[0][12] >= 40.71 %}
+              <td style="color:rgb(2, 36, 1)">Excellent</td>
+              {% endif %}
+              
+              <td>{{ propionate_value }} </td>
+              <td> {{propionate_recommendation_updated}}</td>
+          </tr>
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">GUT BRAIN</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>GABA</td>
+          
+                  <td>{{ function1[0][1] }}</td>
+                  
+                  <td>0-1</td>
+                  {% if function1[0][1] <= 0 %}
+                  <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][1] > 0 and function1[0][1] < 0.25 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][1] >= 0.25 and function1[0][1] < 0.5 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][1] >= 0.5 and function1[0][1] < 0.75 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][1] >= 0.75 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                  
+                  <td>{{ Gaba_value }} </td>
+                  <td> {{Gaba_recommendation_updated }}</td>
+                
+        </tr>
+        <tr>
+          <td>Serotonin</td>
+                <td>{{ function1[0][2] }}</td>
+                        
+                <td>0-1</td>
+                {% if function1[0][2] <= 0 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][2] > 0 and function1[0][2] < 0.25 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][2] >= 0.25 and function1[0][2] < 0.5 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][2] >= 0.5 and function1[0][2] < 0.75 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][2] >= 0.75 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                   
+                <td>{{ serotonin_value }} </td>
+                <td> {{serotonin_recommendation_updated}}</td>
+        </tr>
+          <tr>
+          <td>Dopamine</td>
+              <td>{{ function1[0][3] }}</td>
+                      
+              <td>0-1</td>
+              {% if function1[0][3] <= 0 %}
+              <td style="color:rgb(255, 13, 0)">Below Average</td>
+              {% elif function1[0][3] > 0 and function1[0][3] < 0.25 %}
+              <td style="color:rgb(255, 255, 0)">Fair</td>
+              {% elif function1[0][3] >= 0.25 and function1[0][3] < 0.5 %}
+              <td style="color:rgb(6, 251, 6)">Good</td>
+              {% elif function1[0][3] >= 0.5 and function1[0][3] < 0.75 %}
+              <td style="color:rgb(4, 147, 54)">Very Good</td>
+              {% elif function1[0][3] >= 0.75 %}
+              <td style="color:rgb(2, 36, 1)">Excellent</td>
+              {% endif %}
+              
+              <td>{{ dopamin_value }} </td>
+              <td>{{dopamin_recommendation__updated}}</td>
+          </tr>
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">GAS</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Ammonia</td>
+          
+                  <td>{{ function1[0][7] }}</td>
+                  
+                  <td>0-0.23</td>
+                  {% if function1[0][7] >=  0.23 %}
+                  <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][7] >= 0.13 and function1[0][7] < 0.23 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][7] >= 0.112 and function1[0][7] < 0.13 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][7] >= 0.064 and function1[0][7] < 0.112 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][7] < 0.064 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                  
+                  <td>{{ ammonina_value }} </td>
+                  <td> {{ammonina_recommendation_updated}}</td>
+                
+        </tr>
+        <tr>
+          <td>Methane</td>
+                <td>{{ function1[0][8] }}</td>
+                        
+                <td>0.67-1.52</td>
+                {% if function1[0][8] >= 1.52 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][8] >= 1.2 and function1[0][8] < 1.52 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][8] >= 1.08 and function1[0][8] < 1.2 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][8] >= 0.93 and function1[0][8] < 1.08 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][8] < 0.93 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                
+                <td>{{ methane_value }} </td>
+                <td> {{methane_recommendation_updated}}</td>
+        </tr>
+          <tr>
+          <td>Hydrogen Sulfide</td>
+                <td>{{ function1[0][9] }}</td>
+                        
+                <td>0-0.24</td>
+                {% if function1[0][9] > 0.24 %}
+              <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][9] >= 0.13 and function1[0][9] < 0.24 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][9] >= 0.112 and function1[0][9] < 0.14 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][9] >= 0.064 and function1[0][9] < 0.113 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][9] < 0.065 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                
+                <td>{{ sulfid_value }} </td>
+                <td> {{sulfid_recommendation_updated}}</td>
+        </tr>
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">Lipid</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Cholesterol</td>
+          
+                  <td>{{ function1[0][4] }}</td>
+                  
+                  <td>0-0.27</td>
+                  {% if function1[0][4] <= 0 %}
+                  <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][4] > 0 and function1[0][4] < 0.06 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][4] >= 0.06 and function1[0][4] < 0.1 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][4] >= 0.1 and function1[0][4] < 0.16 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][4] >= 0.16 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                  
+                  <td>{{ cholesterol_value }} </td>
+                  <td>{{cholesterol_recommendation_updated}}</td>
+                
+        </tr>
+        <tr>
+          <td>Phospholipid</td>
+                <td>{{ function1[0][5] }}</td>
+                        
+                <td>0-0.28</td>
+                {% if function1[0][5] <= 0 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][5] > 0 and function1[0][5] < 0.06 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][5] >= 0.06 and function1[0][5] < 0.11 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][5] >= 0.11 and function1[0][5] < 0.16 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][5] >= 0.16 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                  
+                <td>{{ phospholipid_value }} </td>
+                <td>{{phospholipid_recommendation_updated}}</td>
+            </tr>
+            <tr>
+            <td>Triglycerides</td>
+            <td>{{ function1[0][6] }}</td>
+                    
+            <td>0.3-2.8</td>
+            {% if function1[0][6] < 0.15 %}
+            <td style="color:rgb(255, 13, 0)">Below Average</td>
+            {% elif function1[0][6] >= 0.15 and function1[0][6] < 0.3 %}
+            <td style="color:rgb(255, 255, 0)">Fair</td>
+            {% elif function1[0][6] >= 0.3 and function1[0][6] < 1.475 %}
+            <td style="color:rgb(6, 251, 6)">Good</td>
+            {% elif function1[0][6] >= 1.475 and function1[0][6] < 2.8 %}
+            <td style="color:rgb(4, 147, 54)">Very Good</td>
+            {% elif function1[0][6] >= 2.8 %}
+            <td style="color:rgb(2, 36, 1)">Excellent</td>
+            {% endif %}
+              
+            <td>{{triglycerides_value }} </td>
+            <td>{{triglycerides_recommendation_updated}}</td>
+        </tr>
+          
+          
+          
+        </tr>
+       
+   </table>
+   <h2 style="color: rgb(51, 255, 0);">Metabolism</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Carbohydrate</td>
+          
+                  <td>{{ function1[0][19] }}</td>
+                  
+                  <td>50.06-57.88</td>
+                  {% if function1[0][19] < 50.06 %}
+                  <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][19] >= 50.06 and function1[0][19] < 52.3 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][19] >= 52.3 and function1[0][19] < 53.50 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][19] >= 53.5 and function1[0][19] < 54.91 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][19] >= 54.91 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+                  
+                  <td>{{ carb_value }} </td>
+                  <td>{{carb_recommendation_updated}}</td>
+                
+        </tr>
+       
+              <tr>
+          <td>Protein</td>
+                <td>{{ function1[0][20] }}</td>
+                        
+                <td>31.72-39.39</td>
+                {% if function1[0][20] < 31.72 %}
+              <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][20] >= 31.72 and function1[0][20] < 34.25 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][20] >= 34.25 and function1[0][20] < 35.91 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][20] >= 35.91 and function1[0][20] < 36.90 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][20] >= 36.90 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                
+                <td>{{ protein_value }} </td>
+                <td>{{protein_recommendation_updated}}</td>
+                  </tr>
+              <tr>
+            
+          
+        </tr>
+       
+   </table>
+   
+   <h2 style="color: rgb(51, 255, 0);">Vitamin</h2>
+    <div class="column">
+      <table border="table-bordered">
+        <tr>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Metabolic Profile</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">RA</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Range</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Remarks</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Curation</th>
+          <th style="color:rgb(0, 40, 100);font-size:large;background-color: bisque;">Recommendation</th>
+          
+        </tr>
+        
+        
+        <tr>
+          <td>Riboflavin</td>
+          
+                  <td>{{ function1[0][13] }}</td>
+                  
+                  <td>4.57-28.28</td>
+                  {% if function1[0][13] < 4.57 %}
+                  <td style="color:rgb(255, 13, 0)">Below Average</td>
+                  {% elif function1[0][13] >= 4.57 and function1[0][13] < 14.2 %}
+                  <td style="color:rgb(255, 255, 0)">Fair</td>
+                  {% elif function1[0][13] >= 14.2 and function1[0][13] < 18 %}
+                  <td style="color:rgb(6, 251, 6)">Good</td>
+                  {% elif function1[0][13] >= 18 and function1[0][13] < 22.08 %}
+                  <td style="color:rgb(4, 147, 54)">Very Good</td>
+                  {% elif function1[0][13] >= 22.08 %}
+                  <td style="color:rgb(2, 36, 1)">Excellent</td>
+                  {% endif %}
+
+                   <td>{{ riboflavin_value }} </td>
+                  <td>{{riboflavin_recommendation_updated}}</td>
+                
+        </tr>
+        <tr>
+          <td>Biotin</td>
+                <td>{{ function1[0][14] }}</td>
+                        
+                <td>13.22-31.18</td>
+                {% if function1[0][14] < 13.22 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][14] >= 13.22 and function1[0][14] < 18.26 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][14] >= 18.26 and function1[0][14] < 22.72 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][14] >= 22.72 and function1[0][14] < 27.10 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][14] >= 27.10 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                
+                <td>{{ biotin_value }} </td>
+                <td>{{biotin_recommendation_updated}}</td>
+                  </tr>
+
+                  <tr>
+                  <td>Folate</td>
+                <td>{{ function1[0][16] }}</td>
+                        
+                <td>49.49-62.83</td>
+                {% if function1[0][16] < 49.49 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][16] >= 49.49 and function1[0][16] < 54.8 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][16] >= 54.8 and function1[0][16] < 58.10 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][16] >= 58.10 and function1[0][16] < 59.12 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][16] >= 59.12 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                  
+                <td>{{ folate_value }} </td>
+                <td>{{folate_recommendation_updated}} </td>
+                  </tr>
+              <tr>
+                <td>Cobalamine</td>
+                <td>{{ function1[0][17] }}</td>
+                        
+                <td>0-4.47</td>
+                {% if function1[0][17] <= 0 %}
+                <td style="color:rgb(255, 13, 0)">Below Average</td>
+                {% elif function1[0][17] > 0 and function1[0][17] < 0.37 %}
+                <td style="color:rgb(255, 255, 0)">Fair</td>
+                {% elif function1[0][17] >= 0.37 and function1[0][17] < 1.01 %}
+                <td style="color:rgb(6, 251, 6)">Good</td>
+                {% elif function1[0][17] >= 1.01 and function1[0][17] < 2.06 %}
+                <td style="color:rgb(4, 147, 54)">Very Good</td>
+                {% elif function1[0][17] >= 2.06 %}
+                <td style="color:rgb(2, 36, 1)">Excellent</td>
+                {% endif %}
+                
+                <td>{{ cobalamin_value }} </td>
+                <td>{{cobalamin_recommendation_updated}}</td>
+                  </tr>
+          
+        </tr>
+       
+   </table>
+   
+</body>
+</html>

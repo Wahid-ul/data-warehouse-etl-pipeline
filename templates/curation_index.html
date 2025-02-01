@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Curation Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Left-aligned Home link -->
+        <a class="nav-link" href="/dashboard">DECODEBIOME</a>
+        
+        <!-- Right-aligned brand, toggler, and links -->
+        <div class="ml-auto d-flex">
+            <a class="navbar-brand" href="#">Curation</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bioinformatics">Bioinformatics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1 class="mt-4">Most abundant species</h1>
+        <div class="mb-3">
+            <input type="text" id="microbeSearch" class="form-control" placeholder="Search by Microbe Name">
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>MicrobeID</th>
+                    <th>Microbes</th>
+                    <th>Domain</th>
+                    <!-- <th>Taxa ID</th> -->
+                    <th>Category (Commensal/Pathogen/Probiotic)</th>
+                    <th>Inflammatory Nature (Pro/Anti)</th>
+                    <th>Interpretation</th>
+                    <!-- <th>Microbes(From Checkpoint)</th> -->
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <!-- Table for Archaea -->
+            <tr>
+                <td colspan="7"><strong>Archaea</strong></td>
+            </tr>
+            {% for index, row in df_collect.iterrows() %}
+                {% if row['Domain'] == 'Archaea' %}
+                    <tr class="microbe-row">
+                        <td>{{ row['MicrobeID'] }}</td>
+                        <td class="editable" data-field="microbename">{{ row['Microbes'] }}</td>
+                        <td class="editable" data-field="domain">{{ row['Domain'] }}</td>
+                        <td class="editable" data-field="category">{{ row['Category'] }}</td>
+                        <td class="editable" data-field="inflammatorynature">{{ row['Inflammatory Nature'] }}</td>
+                        <td class="editable" data-field="interpretation">{{ row['Interpretation'] }}</td>
+                        <td>
+                            <!-- <a href="#" class="btn btn-primary">Delete</a> -->
+                            <button class="btn btn-primary edit-btn">Edit</button>
+                            <button class="btn btn-success save-btn" style="display:none;">Save</button>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Table for Bacteria -->
+            <tr>
+                <td colspan="7"><strong>Bacteria</strong></td>
+            </tr>
+            {% for index, row in df_collect.iterrows() %}
+                {% if row['Domain'] == 'Bacteria' %}
+                    <tr class="microbe-row">
+                        <td>{{ row['MicrobeID'] }}</td>
+                        <td class="editable" data-field="microbename">{{ row['MicrobeName'] }}</td>
+                        <td class="editable" data-field="domain">{{ row['Domain'] }}</td>
+                        <td class="editable" data-field="category">{{ row['Category'] }}</td>
+                        <td class="editable" data-field="inflammatorynature">{{ row['Inflammatory Nature'] }}</td>
+                        <td class="editable" data-field="interpretation">{{ row['Interpretation'] }}</td>
+                        <td>
+                            <!-- <a href="#" class="btn btn-primary">Delete</a> -->
+                            <button class="btn btn-primary edit-btn">Edit</button>
+                            <button class="btn btn-success save-btn" style="display:none;">Save</button>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Table for Fungi -->
+            <tr>
+                <td colspan="7"><strong>Fungi</strong></td>
+            </tr>
+            {% for index, row in df_collect.iterrows() %}
+                {% if row['Domain'] == 'Fungi' %}
+                    <tr class="microbe-row">
+                        <td>{{ row['MicrobeID'] }}</td>
+                        <td class="editable" data-field="microbename">{{ row['MicrobeName'] }}</td>
+                        <td class="editable" data-field="domain">{{ row['Domain'] }}</td>
+                        <td class="editable" data-field="category">{{ row['Category'] }}</td>
+                        <td class="editable" data-field="inflammatorynature">{{ row['Inflammatory Nature'] }}</td>
+                        <td class="editable" data-field="interpretation">{{ row['Interpretation'] }}</td>
+                        <td>
+                            <!-- <a href="#" class="btn btn-primary">Delete</a> -->
+                            <button class="btn btn-primary edit-btn">Edit</button>
+                            <button class="btn btn-success save-btn" style="display:none;">Save</button>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+
+        </table>
+    </div>
+    <div class="container" id="bacteria-curation-table">
+        <h1 class="mt-4">Missing Curation for Bacteria</h1>
+        {% if data %}  
+            <div class="table-responsive">
+                <!-- {{ data|safe }} -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Run ID</th>
+                            <th>Barcode</th>
+                            <th>Microbes</th>
+                            <th>Category</th>
+                            <th>Inflammatory Nature</th>
+                            <th>Interpretation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td>{{ row[3] }}</td>
+                                <td>{{ row[4] }}</td>
+                                <td>{{ row[5] }}</td>
+                                <td><a href="/edit?microbes={{ row[2] }}&rowId={{ loop.index0 }}" class="btn btn-primary">Add</a></td>
+                                
+                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No data found.</p>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <h1 class="mt-4">Missing Curation for Archaea</h1>
+        {% if archaea_list %}
+            <div class="table-responsive">
+               
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Run ID</th>
+                            <th>Barcode</th>
+                            <th>Microbes</th>
+                            <th>Category</th>
+                            <th>Inflammatory Nature</th>
+                            <th>Interpretation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in archaea_list %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td>{{ row[3] }}</td>
+                                <td>{{ row[4] }}</td>
+                                <td>{{ row[5] }}</td>
+                                <td><a href="/edit?microbes={{ row[2] }}&type=archaea&rowId={{ loop.index0 }}" class="btn btn-primary">Add</a></td>
+                                
+                              
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No data found.</p>
+        {% endif %}
+    </div>
+    <div class="container">
+        <h1 class="mt-4">Missing Curation for Fungi</h1>
+        {% if fungi_data_list %}
+            <div class="table-responsive">
+                
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Run ID</th>
+                            <th>Barcode</th>
+                            <th>Microbes</th>
+                            <th>Category</th>
+                            <th>Inflammatory Nature</th>
+                            <th>Interpretation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in fungi_data_list %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td>{{ row[3] }}</td>
+                                <td>{{ row[4] }}</td>
+                                <td>{{ row[5] }}</td>
+                                <td><a href="/edit?microbes={{ row[2] }}&rowId={{ loop.index0 }}" class="btn btn-primary">Add</a></td>
+                                
+                       
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No data found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+
+        $(document).ready(function() {
+            // Event listener for the search input field
+            $('#microbeSearch').on('keyup', function() {
+                var searchTerm = $(this).val();  // Get the search term without converting to lowercase
+                $('.microbe-row').each(function() {  // Iterate over rows with the 'microbe-row' class
+                    var microbeName = $(this).find('td[data-field="microbename"]').text().toLowerCase();  // Get the text of the MicrobeName cell and convert to lowercase
+                    if (microbeName.indexOf(searchTerm.toLowerCase()) > -1) {
+                        $(this).show();  // Show row if the search term is found in the microbe name
+                    } else {
+                        $(this).hide();  // Hide row if the search term is not found
+                    }
+                });
+            });
+        });
+
+
+    // jQuery to toggle the visibility of the rows
+    $(document).ready(function(){
+    $(".edit-btn").click(function(){
+        var row = $(this).closest('tr'); // Get the closest row
+        var cells = row.find('.editable'); // Get all the editable cells in this row
+        var saveButton = row.find('.save-btn');
+        var editButton = row.find('.edit-btn');
+        
+        // Convert each cell into an input field for editing
+        cells.each(function(){
+            var currentText = $(this).text();
+            var field = $(this).data('field');
+        // Check which field we are editing and create a dropdown if needed
+        if (field === 'domain') {
+                var selectField = $('<select>').addClass('form-control');
+                var options = ['Archaea', 'Bacteria', 'Fungi'];
+                options.forEach(function(option){
+                    var optionElement = $('<option>').val(option).text(option);
+                    if (option === currentText) {
+                        optionElement.attr('selected', 'selected'); // Select the current value
+                    }
+                    selectField.append(optionElement);
+                });
+                $(this).html(selectField); // Replace with the dropdown
+            }
+            else if (field === 'category') {
+                var selectField = $('<select>').addClass('form-control');
+                var options = ['Commensal', 'Pathogen', 'Probiotic'];
+                options.forEach(function(option){
+                    var optionElement = $('<option>').val(option).text(option);
+                    if (option === currentText) {
+                        optionElement.attr('selected', 'selected'); // Select the current value
+                    }
+                    selectField.append(optionElement);
+                });
+                $(this).html(selectField); // Replace with the dropdown
+            }
+            else if (field === 'inflammatorynature') {
+                var selectField = $('<select>').addClass('form-control');
+                var options = ['Pro', 'Anti','EmptyNature'];
+                options.forEach(function(option){
+                    var optionElement = $('<option>').val(option).text(option);
+                    if (option === currentText) {
+                        optionElement.attr('selected', 'selected'); // Select the current value
+                    }
+                    selectField.append(optionElement);
+                });
+                $(this).html(selectField); // Replace with the dropdown
+            } else {
+                var inputField = $('<input>').val(currentText).addClass('form-control');
+                $(this).html(inputField); // For other fields, keep them as text inputs
+            }
+        });
+        
+        // Hide the edit button and show the save button
+        editButton.hide();
+        saveButton.show();
+    });
+    
+    // Save the editable content
+    // Save the editable content
+    $('.save-btn').click(function(){
+        var row = $(this).closest('tr');
+        var cells = row.find('.editable');
+        var saveButton = row.find('.save-btn');
+        var editButton = row.find('.edit-btn');
+        var updatedData = {};
+        
+        // Get the new value from edit section and update the table
+        cells.each(function(){
+            var alterValue;
+            var field = $(this).data('field');
+            
+            // Check if it's a select field or input field
+            if ($(this).find('select').length > 0) {
+                alterValue = $(this).find('select').val(); // Get selected value from dropdown
+            } else {
+                alterValue = $(this).find('input').val(); // Get value from input field
+            }
+            updatedData[field] = alterValue;
+        });
+
+        // Add MicrobeID to the updatedData object (use the value in the first column)
+        var microbeID = row.find('td').first().text(); // Assuming the first column contains MicrobeID
+        updatedData['MicrobeID'] = microbeID;
+        
+        // Make an AJAX POST request to update the data in the backend
+        $.ajax({
+            url: '_updated_data', // Flask route to handle the data update
+            method: 'POST',
+            contentType: 'application/json', 
+            data: JSON.stringify(updatedData), // Send the updated data (including MicrobeID)
+            dataType:"json",
+            success: function(response) {
+                if(response.status === "success"){
+                console.log("Data updated successfully:", response.updatedData);
+
+                // Update the table with the new values
+                cells.each(function(){
+                    var field = $(this).data('field');
+                    $(this).text(response.updatedData[field]);  // Update cell with the new value
+                });
+
+                // Hide the save button and show the edit button again
+                editButton.show();
+                saveButton.hide();
+            } else{
+                alert("Error: " + response.message);  // Handle error
+            }
+        },
+            error: function(error) {
+                console.error("Error updating data", error);
+            }
+        });
+    });
+});
+
+
+    
+    
+    
+    function saveCuration(rowIndex, runId, barcode, microbe) {
+        // Get the value from the editable input field
+        const interpretation = $(`#${rowIndex}_Interpretation`).val();
+
+        // Prepare the data to send in the POST request
+        const data = {
+            // "Run ID": runId,
+            // "Barcode": barcode,
+            "Microbes": microbe,
+            "Interpretation": interpretation
+        };
+
+        // Send the POST request to the Flask server
+        $.ajax({
+            url: "/update_curation",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert("Curation updated successfully!");
+            },
+            error: function (error) {
+                alert("Error updating curation: " + error.responseText);
+            }
+        });
+    }
+
+    function confirmDelete(barcode){
+        let confirmAction=confirm('Are you sure you want to delete the taxonomy and function files for this barcode: '+barcode+' ?');
+        return confirmAction;
+    }
+    
+</script>

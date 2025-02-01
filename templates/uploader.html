@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+  <head>
+    <title> File Upload</title>
+    
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon-16x16.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="staticassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/upload_style.css" rel="stylesheet">
+  </head>
+  <style>
+ 
+  input {
+	display: block;
+	width: 60vw;
+	max-width: 300px;
+	margin: 0 auto;
+	background-color: rgb(117, 205, 90);
+	border-radius: 2px;
+	font-size: 1em;
+	line-height: 2.5em;
+	text-align: center;
+}
+body {
+	
+	background-color: rgb(243, 243, 240);
+}
+
+  </style>
+  <body>
+    <header id="header" class="fixed-top">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+  
+        <h1 class="logo me-auto me-lg-0"><a href="index.html">Decode Biome</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+  
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li><a href="{{ url_for('index') }}">Lab submission</a></li>
+            <li><a href="{{ url_for('table') }}">Dashboard</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+  
+        
+  
+      </div>
+  
+    </header><!-- End Header -->
+    <center><h1 style="color: blue;">Upload files for : <span style="color: brown;" id="barcodeValue"></span></h1></center>
+    <form method="POST" action="/taxonomy_upload" enctype="multipart/form-data">
+      <div style="display: flex; align-items: center;">
+        <h2 style="margin-right: 10px;">Taxonomy:</h2>
+        <input type="file" id="file1" name="file" accept=".zip" required>
+      </div>
+      </form>
+      <form method="POST" action="/function_upload" enctype="multipart/form-data">
+        <div style="display: flex; align-items: center;">  
+        <h2 style="margin-right: 10px;">Function:</h2>
+      <input type="file" id="file2" name="file" accept=".zip" required>
+      </div>
+      
+    </form>
+    <div style="display: flex; justify-content: flex-end; margin-top: 10px;margin-left: 120px;">
+      <input type="submit" id="submit" value="Submit">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+          var barcode = "{{Barcode}}";
+          document.getElementById("barcodeValue").textContent = barcode;
+          console.log("Barcode value:", barcode);  
+          $("#submit").click(function(e){
+                e.preventDefault(); // Prevent form submission
+                // Add your own logic here for handling the form submission
+                // For example, you can use JavaScript to make an AJAX request to the desired action URL
+                // e.g., fetch('/upload1', { method: 'POST', body: new FormData(this) })
+                let file1=document.getElementById("file1").files[0];
+                let file_name1=file1 ? file1.name:"";
+                let form_data1=new FormData();
+                if(file1){
+                  form_data1.append("file1",file1);
+                }
+                
+
+                let file2=document.getElementById("file2").files[0];
+                let file_name2=file2 ? file2.name:"";
+                let form_data2=new FormData();
+                if (file2){
+                  form_data2.append("file2",file2);
+                }
+                
+
+                if(!file_name1){
+                  alert("Empty Taxonomy files")
+                }
+                else if(file_name1!="Taxonomy_"+barcode+".zip"){
+                  alert("Upload valid Taxonomy files with a correct barcode")
+                }
+                
+                else{
+                  $.ajax({
+                    type:"POST",
+                    url:"/taxonomy_upload",
+                    data:form_data1,
+                    contentType:false,
+                    catch:false,
+                    processData:false,
+                    success:function(result){
+                      if(result=="Taxonomy files uploaded successfully"){
+                        alert(result);
+                        console.log(result);
+                        window.location.href="http://192.168.130.245:5000/table";
+                        //window.location.href="http://127.0.0.1:5000/table";
+                      }
+                      else if(result=="some files are missing!"){
+                          alert(result);
+                          e.stopImmediatePropagation;
+                          return false;
+                      }
+                      else if(result=="Files with same barcode are not found"){
+                          alert(result);
+                          e.stopImmediatePropagation;
+                          return false;
+                      }
+                      else if(result=="Error has occured"){
+                          alert(result);
+                          e.stopImmediatePropagation;
+                          return false;
+                      }
+                    },
+                    error:function(error){
+                        console.log("error!");
+                    }
+
+    });
+  }
+
+
+  if(file_name2!="Function_"+barcode+".zip"){
+                  alert("Enter valid Function files with a correct barcode")
+                }
+                else if(!file_name2){
+                  alert("Empty function files")
+                }
+                else{
+                  
+                  $.ajax({
+                    type:"POST",
+                    url:"/function_upload",
+                    
+                    data:form_data2,
+                    contentType:false,
+                    catch:false,
+                    processData:false,
+                    success:function(result){
+                      if(result=="Function files uploaded successfully"){
+                        alert(result);
+                        console.log(result);
+                        window.location.href="http://192.168.130.245:5000/table";
+                        //window.location.href="http://127.0.0.1:5000/table";
+                      }
+                      else if(result=="some files are missing!"){
+                          alert(result);
+                          e.stopImmediatePropagation;
+                          return false;
+                      }
+                      else if(result=="Files with same barcode are not found"){
+                          alert(result);
+                          e.stopImmediatePropagation;
+                          return false;
+                      }
+                      else if(result=="Error has occured"){
+                          alert(result);
+                          e.stopImmediatePropagation;
+                          return false;
+                      }
+                    },
+                    
+                    error:function(error){
+                        console.log("error!");
+                    }
+
+    });
+  }
+})
+             
+    </script>
+    </div>
+  </body>
+</html>
