@@ -1,0 +1,72 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: url('DecodeBiome_background_image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.container {
+    /* position: absolute; */
+    /* top: 0; */
+    /* right: 0; */
+    width: 300px; /* Adjust as necessary */
+    height: 70%;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    padding: 20px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+    margin-right: 40px;
+    
+}
+
+.logo {
+    max-width: 70%;
+    height: auto;
+    margin: 0 auto 5px; /* Center horizontally with 5px bottom margin */
+    text-align: center; /* Center the contents inside the container */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure there's space between the top and bottom elements */
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+label, input, button {
+    display: block;
+    width: 93%;
+    margin-bottom: 1px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"], button {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#output {
+    margin-top: 20px;
+    
+}
