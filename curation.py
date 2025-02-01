@@ -19,7 +19,12 @@ from admin_login import *
 from admin_login import *
 from etl_script import MicrobeDataTransfer
 
+# Load server credentials
 load_dotenv("decodeageserver.env")
+
+# Load Salesforce credentials
+load_dotenv("salesforce.env")
+
 transfer=MicrobeDataTransfer(host="0.0.0.0",user="root",database="curation_normalization")
 transfer.connect()
 df_collect=transfer.get_data()
@@ -1181,6 +1186,13 @@ def report_generation():
 # @app.route("/missing_curation",methods=['GET','POST'])
 # def missing_curation():
 #     return render_template("missing_curation.html")
+
+
+salesforce_client_id = os.getenv("SALESFORCE_CLIENT_ID")
+salesforce_client_secret = os.getenv("SALESFORCE_CLIENT_SECRET")
+salesforce_username = os.getenv("SALESFORCE_USERNAME")
+salesforce_password = os.getenv("SALESFORCE_PASSWORD")
+
 @app.route('/handle_salesforce_integration', methods=['POST'])
 def handle_salesforce_integration():
     # Get JSON data from the request
@@ -1197,13 +1209,12 @@ def handle_salesforce_integration():
     # salesforce token
     token_url="https://decodeage-health.my.salesforce.com/services/oauth2/token"
     token_params = {
-    'grant_type': 'password',
-    
-    'client_id':'3MVG9uk_cDhyHiA4qhRKRuMyKUcsxVyRYeUT14kITbPb07VIMDCiSKeQR3ipq52JShnQUbjRyV8sKCTCejahl',
-    'client_secret': '84CA900ED7AC9C14C1266242E8409167F3D115FF308A9A481DA2BF5C32106AE9',
-    'username': 'automation@decodeage.com',
-    'password': 'Decodeage@2024GQ7okqAFwSLy1UFH4UvpJECV5'  
-}
+        'grant_type': os.getenv("SALESFORCE_GRANT_TYPE"),
+        'client_id': os.getenv("SALESFORCE_CLIENT_ID"),
+        'client_secret': os.getenv("SALESFORCE_CLIENT_SECRET"),
+        'username': os.getenv("SALESFORCE_USERNAME"),
+        'password': os.getenv("SALESFORCE_PASSWORD")
+    }
 
     # Get the access token
     token_response = requests.post(token_url, data=token_params)
